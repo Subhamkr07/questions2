@@ -109,54 +109,222 @@
           }
         ]
       },
-      { "level3": [
-          { "question": "What is the currency of Japan?", "options": ["Yuan", "Won", "Yen", "Rupee"], "correctAnswer": "Yen" },
-          { "question": "Which famous scientist developed the theory of relativity?", "options": ["Isaac Newton", "Albert Einstein", "Stephen Hawking", "Galileo Galilei"], "correctAnswer": "Albert Einstein" },
-          { "question": "What is the process by which plants make their own food?", "options": ["Respiration", "Transpiration", "Photosynthesis", "Germination"], "correctAnswer": "Photosynthesis" },
-          { "question": "What is the highest mountain in Africa?", "options": ["Mount Everest", "Mount Kilimanjaro", "Mount Elbrus", "Mount Fuji"], "correctAnswer": "Mount Kilimanjaro" },
-          { "question": "What is the study of earthquakes called?", "options": ["Geology", "Seismology", "Volcanology", "Meteorology"], "correctAnswer": "Seismology" },
-          { "question": "Which is the smallest planet in our solar system?", "options": ["Mars", "Mercury", "Venus", "Pluto (dwarf planet)"], "correctAnswer": "Mercury" },
-          { "question": "What are the three primary colors?", "options": ["Red, Green, Blue", "Red, Yellow, Blue", "Orange, Green, Purple", "Cyan, Magenta, Yellow"], "correctAnswer": "Red, Yellow, Blue" },
-          { "question": "Who is known as the 'Father of Computers'?", "options": ["Bill Gates", "Steve Jobs", "Charles Babbage", "Alan Turing"], "correctAnswer": "Charles Babbage" },
-          { "question": "What is the boiling point of water in Celsius?", "options": ["0°C", "50°C", "100°C", "212°C"], "correctAnswer": "100°C" },
-          { "question": "Which continent is home to the Amazon rainforest?", "options": ["Africa", "Asia", "South America", "Australia"], "correctAnswer": "South America" }
-      ]},
-      { "level4": [
-          { "question": "Which famous playwright wrote 'Hamlet'?", "options": ["George Bernard Shaw", "William Shakespeare", "Oscar Wilde", "Arthur Miller"], "correctAnswer": "William Shakespeare" },
-          { "question": "What is the unit of electric current?", "options": ["Volt", "Watt", "Ampere", "Ohm"], "correctAnswer": "Ampere" },
-          { "question": "Which bird is a symbol of peace?", "options": ["Eagle", "Dove", "Owl", "Sparrow"], "correctAnswer": "Dove" },
-          { "question": "What is the national animal of India?", "options": ["Lion", "Elephant", "Tiger", "Peacock"], "correctAnswer": "Tiger" },
-          { "question": "In which city is the famous landmark 'The Colosseum' located?", "options": ["Athens", "Istanbul", "Rome", "Cairo"], "correctAnswer": "Rome" },
-          { "question": "Which element has the atomic number 1?", "options": ["Oxygen", "Helium", "Hydrogen", "Carbon"], "correctAnswer": "Hydrogen" },
-          { "question": "What is the name of the galaxy our solar system is in?", "options": ["Andromeda", "Triangulum", "Whirlpool", "Milky Way"], "correctAnswer": "Milky Way" },
-          { "question": "Who invented the light bulb?", "options": ["Nikola Tesla", "Alexander Graham Bell", "Thomas Edison", "Benjamin Franklin"], "correctAnswer": "Thomas Edison" },
-          { "question": "What is the primary gas found in the Earth's atmosphere?", "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"], "correctAnswer": "Nitrogen" },
-          { "question": "Which sport is known as the 'beautiful game'?", "options": ["Basketball", "Tennis", "Football (Soccer)", "Baseball"], "correctAnswer": "Football (Soccer)" }
-      ]},
-      { "level5": [
-          { "question": "What is the deepest point in the Earth's oceans?", "options": ["Mariana Trench", "Puerto Rico Trench", "Java Trench", "Kermadec Trench"], "correctAnswer": "Mariana Trench" },
-          { "question": "Which instrument is used to measure atmospheric pressure?", "options": ["Thermometer", "Anemometer", "Barometer", "Hygrometer"], "correctAnswer": "Barometer" },
-          { "question": "Who wrote 'Don Quixote'?", "options": ["Gabriel Garcia Marquez", "Miguel de Cervantes", "Jorge Luis Borges", "Pablo Neruda"], "correctAnswer": "Miguel de Cervantes" },
-          { "question": "What is the main component of Earth's core?", "options": ["Iron and Nickel", "Silicon and Oxygen", "Aluminum and Copper", "Magnesium and Sulfur"], "correctAnswer": "Iron and Nickel" },
-          { "question": "Which country is the largest producer of coffee?", "options": ["Colombia", "Vietnam", "Brazil", "Ethiopia"], "correctAnswer": "Brazil" },
-          { "question": "What is the name of the fear of heights?", "options": ["Claustrophobia", "Arachnophobia", "Acrophobia", "Hydrophobia"], "correctAnswer": "Acrophobia" },
-          { "question": "Which year did the Titanic sink?", "options": ["1905", "1912", "1918", "1923"], "correctAnswer": "1912" },
-          { "question": "What is the smallest prime number?", "options": ["0", "1", "2", "3"], "correctAnswer": "2" },
-          { "question": "Which ancient civilization built the pyramids?", "options": ["Roman", "Greek", "Egyptian", "Mayan"], "correctAnswer": "Egyptian" },
-          { "question": "What is the capital of Canada?", "options": ["Toronto", "Vancouver", "Montreal", "Ottawa"], "correctAnswer": "Ottawa" }
-      ]},
-      { "level6": [
-          { "question": "Who developed the theory of evolution by natural selection?", "options": ["Gregor Mendel", "Charles Darwin", "Louis Pasteur", "Isaac Newton"], "correctAnswer": "Charles Darwin" },
-          { "question": "What is the primary function of red blood cells?", "options": ["Fighting infection", "Clotting blood", "Carrying oxygen", "Producing antibodies"], "correctAnswer": "Carrying oxygen" },
-          { "question": "Which ocean borders the west coast of the United States?", "options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], "correctAnswer": "Pacific Ocean" },
-          { "question": "Who composed the 'Symphony No. 5'?", "options": ["Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Ludwig van Beethoven", "Pyotr Ilyich Tchaikovsky"], "correctAnswer": "Ludwig van Beethoven" },
-          { "question": "What is the chemical symbol for gold?", "options": ["Ag", "Au", "Fe", "Cu"], "correctAnswer": "Au" },
-          { "question": "Which animal lays the largest eggs?", "options": ["Chicken", "Ostrich", "Eagle", "Penguin"], "correctAnswer": "Ostrich" },
-          { "question": "What is the name of the phobia of spiders?", "options": ["Ophidiophobia", "Claustrophobia", "Arachnophobia", "Nyctophobia"], "correctAnswer": "Arachnophobia" },
-          { "question": "What is the largest land animal?", "options": ["Giraffe", "Elephant", "Rhinoceros", "Hippopotamus"], "correctAnswer": "Elephant" },
-          { "question": "Which city is known as the 'Eternal City'?", "options": ["Paris", "London", "Rome", "Athens"], "correctAnswer": "Rome" },
-          { "question": "Who is credited with inventing the printing press?", "options": ["Johannes Gutenberg", "Galileo Galilei", "Leonardo da Vinci", "Isaac Newton"], "correctAnswer": "Johannes Gutenberg" }
-      ]}
+      {
+        "level3": [
+          {
+            "question": "What is the currency of Japan?",
+            "options": ["Yuan", "Won", "Yen", "Rupee"],
+            "correctAnswer": "Yen"
+          },
+          {
+            "question": "Which famous scientist developed the theory of relativity?",
+            "options": ["Isaac Newton", "Albert Einstein", "Stephen Hawking", "Galileo Galilei"],
+            "correctAnswer": "Albert Einstein"
+          },
+          {
+            "question": "What is the process by which plants make their own food?",
+            "options": ["Respiration", "Transpiration", "Photosynthesis", "Germination"],
+            "correctAnswer": "Photosynthesis"
+          },
+          {
+            "question": "What is the highest mountain in Africa?",
+            "options": ["Mount Everest", "Mount Kilimanjaro", "Mount Elbrus", "Mount Fuji"],
+            "correctAnswer": "Mount Kilimanjaro"
+          },
+          {
+            "question": "What is the study of earthquakes called?",
+            "options": ["Geology", "Seismology", "Volcanology", "Meteorology"],
+            "correctAnswer": "Seismology"
+          },
+          {
+            "question": "Which is the smallest planet in our solar system?",
+            "options": ["Mars", "Mercury", "Venus", "Pluto (dwarf planet)"],
+            "correctAnswer": "Mercury"
+          },
+          {
+            "question": "What are the three primary colors?",
+            "options": ["Red, Green, Blue", "Red, Yellow, Blue", "Orange, Green, Purple", "Cyan, Magenta, Yellow"],
+            "correctAnswer": "Red, Yellow, Blue"
+          },
+          {
+            "question": "Who is known as the 'Father of Computers'?",
+            "options": ["Bill Gates", "Steve Jobs", "Charles Babbage", "Alan Turing"],
+            "correctAnswer": "Charles Babbage"
+          },
+          {
+            "question": "What is the boiling point of water in Celsius?",
+            "options": ["0°C", "50°C", "100°C", "212°C"],
+            "correctAnswer": "100°C"
+          },
+          {
+            "question": "Which continent is home to the Amazon rainforest?",
+            "options": ["Africa", "Asia", "South America", "Australia"],
+            "correctAnswer": "South America"
+          }
+        ]
+      },
+      {
+        "level4": [
+          {
+            "question": "Which famous playwright wrote 'Hamlet'?",
+            "options": ["George Bernard Shaw", "William Shakespeare", "Oscar Wilde", "Arthur Miller"],
+            "correctAnswer": "William Shakespeare"
+          },
+          {
+            "question": "What is the unit of electric current?",
+            "options": ["Volt", "Watt", "Ampere", "Ohm"],
+            "correctAnswer": "Ampere"
+          },
+          {
+            "question": "Which bird is a symbol of peace?",
+            "options": ["Eagle", "Dove", "Owl", "Sparrow"],
+            "correctAnswer": "Dove"
+          },
+          {
+            "question": "What is the national animal of India?",
+            "options": ["Lion", "Elephant", "Tiger", "Peacock"],
+            "correctAnswer": "Tiger"
+          },
+          {
+            "question": "In which city is the famous landmark 'The Colosseum' located?",
+            "options": ["Athens", "Istanbul", "Rome", "Cairo"],
+            "correctAnswer": "Rome"
+          },
+          {
+            "question": "Which element has the atomic number 1?",
+            "options": ["Oxygen", "Helium", "Hydrogen", "Carbon"],
+            "correctAnswer": "Hydrogen"
+          },
+          {
+            "question": "What is the name of the galaxy our solar system is in?",
+            "options": ["Andromeda", "Triangulum", "Whirlpool", "Milky Way"],
+            "correctAnswer": "Milky Way"
+          },
+          {
+            "question": "Who invented the light bulb?",
+            "options": ["Nikola Tesla", "Alexander Graham Bell", "Thomas Edison", "Benjamin Franklin"],
+            "correctAnswer": "Thomas Edison"
+          },
+          {
+            "question": "What is the primary gas found in the Earth's atmosphere?",
+            "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+            "correctAnswer": "Nitrogen"
+          },
+          {
+            "question": "Which sport is known as the 'beautiful game'?",
+            "options": ["Basketball", "Tennis", "Football (Soccer)", "Baseball"],
+            "correctAnswer": "Football (Soccer)"
+          }
+        ]
+      },
+      {
+        "level5": [
+          {
+            "question": "What is the deepest point in the Earth's oceans?",
+            "options": ["Mariana Trench", "Puerto Rico Trench", "Java Trench", "Kermadec Trench"],
+            "correctAnswer": "Mariana Trench"
+          },
+          {
+            "question": "Which instrument is used to measure atmospheric pressure?",
+            "options": ["Thermometer", "Anemometer", "Barometer", "Hygrometer"],
+            "correctAnswer": "Barometer"
+          },
+          {
+            "question": "Who wrote 'Don Quixote'?",
+            "options": ["Gabriel Garcia Marquez", "Miguel de Cervantes", "Jorge Luis Borges", "Pablo Neruda"],
+            "correctAnswer": "Miguel de Cervantes"
+          },
+          {
+            "question": "What is the main component of Earth's core?",
+            "options": ["Iron and Nickel", "Silicon and Oxygen", "Aluminum and Copper", "Magnesium and Sulfur"],
+            "correctAnswer": "Iron and Nickel"
+          },
+          {
+            "question": "Which country is the largest producer of coffee?",
+            "options": ["Colombia", "Vietnam", "Brazil", "Ethiopia"],
+            "correctAnswer": "Brazil"
+          },
+          {
+            "question": "What is the name of the fear of heights?",
+            "options": ["Claustrophobia", "Arachnophobia", "Acrophobia", "Hydrophobia"],
+            "correctAnswer": "Acrophobia"
+          },
+          {
+            "question": "Which year did the Titanic sink?",
+            "options": ["1905", "1912", "1918", "1923"],
+            "correctAnswer": "1912"
+          },
+          {
+            "question": "What is the smallest prime number?",
+            "options": ["0", "1", "2", "3"],
+            "correctAnswer": "2"
+          },
+          {
+            "question": "Which ancient civilization built the pyramids?",
+            "options": ["Roman", "Greek", "Egyptian", "Mayan"],
+            "correctAnswer": "Egyptian"
+          },
+          {
+            "question": "What is the capital of Canada?",
+            "options": ["Toronto", "Vancouver", "Montreal", "Ottawa"],
+            "correctAnswer": "Ottawa"
+          }
+        ]
+      },
+      {
+        "level6": [
+          {
+            "question": "Who developed the theory of evolution by natural selection?",
+            "options": ["Gregor Mendel", "Charles Darwin", "Louis Pasteur", "Isaac Newton"],
+            "correctAnswer": "Charles Darwin"
+          },
+          {
+            "question": "What is the primary function of red blood cells?",
+            "options": ["Fighting infection", "Clotting blood", "Carrying oxygen", "Producing antibodies"],
+            "correctAnswer": "Carrying oxygen"
+          },
+          {
+            "question": "Which ocean borders the west coast of the United States?",
+            "options": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"],
+            "correctAnswer": "Pacific Ocean"
+          },
+          {
+            "question": "Who composed the 'Symphony No. 5'?",
+            "options": ["Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Ludwig van Beethoven", "Pyotr Ilyich Tchaikovsky"],
+            "correctAnswer": "Ludwig van Beethoven"
+          },
+          {
+            "question": "What is the chemical symbol for gold?",
+            "options": ["Ag", "Au", "Fe", "Cu"],
+            "correctAnswer": "Au"
+          },
+          {
+            "question": "Which animal lays the largest eggs?",
+            "options": ["Chicken", "Ostrich", "Eagle", "Penguin"],
+            "correctAnswer": "Ostrich"
+          },
+          {
+            "question": "What is the name of the phobia of spiders?",
+            "options": ["Ophidiophobia", "Claustrophobia", "Arachnophobia", "Nyctophobia"],
+            "correctAnswer": "Arachnophobia"
+          },
+          {
+            "question": "What is the largest land animal?",
+            "options": ["Giraffe", "Elephant", "Rhinoceros", "Hippopotamus"],
+            "correctAnswer": "Elephant"
+          },
+          {
+            "question": "Which city is known as the 'Eternal City'?",
+            "options": ["Paris", "London", "Rome", "Athens"],
+            "correctAnswer": "Rome"
+          },
+          {
+            "question": "Who is credited with inventing the printing press?",
+            "options": ["Johannes Gutenberg", "Galileo Galilei", "Leonardo da Vinci", "Isaac Newton"],
+            "correctAnswer": "Johannes Gutenberg"
+          }
+        ]
+      }
     ],
     "Indian History": [
       {
@@ -213,66 +381,276 @@
           }
         ]
       },
-      { "level2": [
-          { "question": "Who founded the Maurya Empire?", "options": ["Ashoka", "Chandragupta Maurya", "Bindusara", "Samudragupta"], "correctAnswer": "Chandragupta Maurya" },
-          { "question": "The 'Quit India' movement was launched in which year?", "options": ["1930", "1942", "1945", "1947"], "correctAnswer": "1942" },
-          { "question": "Who wrote 'Arthashastra'?", "options": ["Kalidasa", "Chanakya (Kautilya)", "Panini", "Patanjali"], "correctAnswer": "Chanakya (Kautilya)" },
-          { "question": "The Jallianwala Bagh Massacre took place in which city?", "options": ["Delhi", "Mumbai", "Amritsar", "Kolkata"], "correctAnswer": "Amritsar" },
-          { "question": "Who was the first woman Prime Minister of India?", "options": ["Sarojini Naidu", "Indira Gandhi", "Benazir Bhutto", "Margaret Thatcher"], "correctAnswer": "Indira Gandhi" },
-          { "question": "The famous 'Iron Pillar' is located in which city?", "options": ["Agra", "Jaipur", "Delhi", "Udaipur"], "correctAnswer": "Delhi" },
-          { "question": "Who was the founder of the Sikh religion?", "options": ["Guru Arjan Dev", "Guru Gobind Singh", "Guru Nanak Dev", "Guru Ram Das"], "correctAnswer": "Guru Nanak Dev" },
-          { "question": "Which battle marked the end of the Mughal Empire?", "options": ["Battle of Panipat", "Battle of Buxar", "Battle of Plassey", "Battle of Seringapatam"], "correctAnswer": "Battle of Buxar" },
-          { "question": "The ancient university of Nalanda was in which state?", "options": ["Uttar Pradesh", "Bihar", "Madhya Pradesh", "West Bengal"], "correctAnswer": "Bihar" },
-          { "question": "Who was the military leader who led the Marathas against the Mughals?", "options": ["Shivaji Maharaj", "Peshwa Bajirao I", "Maharana Pratap", "Rani Lakshmibai"], "correctAnswer": "Shivaji Maharaj" }
-      ]},
-      { "level3": [
-          { "question": "Who was the architect of the Indian Constitution?", "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Dr. B.R. Ambedkar", "Sardar Patel"], "correctAnswer": "Dr. B.R. Ambedkar" },
-          { "question": "The Sepoy Mutiny of 1857 started from which city?", "options": ["Delhi", "Meerut", "Lucknow", "Kanpur"], "correctAnswer": "Meerut" },
-          { "question": "Who wrote the national anthem of India, 'Jana Gana Mana'?", "options": ["Bankim Chandra Chatterjee", "Rabindranath Tagore", "Subhas Chandra Bose", "Muhammad Iqbal"], "correctAnswer": "Rabindranath Tagore" },
-          { "question": "The Chola dynasty was primarily known for its naval power and which type of architecture?", "options": ["Cave temples", "Stupas", "Dravidian temples", "Mughal forts"], "correctAnswer": "Dravidian temples" },
-          { "question": "Who founded the Indian National Army (INA)?", "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhas Chandra Bose", "Bhagat Singh"], "correctAnswer": "Subhas Chandra Bose" },
-          { "question": "The city of Fatehpur Sikri was built by which Mughal emperor?", "options": ["Humayun", "Akbar", "Jahangir", "Shah Jahan"], "correctAnswer": "Akbar" },
-          { "question": "Which of the following was a prominent leader of the 'Extremist' faction of the Indian National Congress?", "options": ["Gopal Krishna Gokhale", "Dadabhai Naoroji", "Bal Gangadhar Tilak", "Surendranath Banerjee"], "correctAnswer": "Bal Gangadhar Tilak" },
-          { "question": "The ancient text 'Ramayana' was written by whom?", "options": ["Vyasa", "Valmiki", "Tulsidas", "Kalidasa"], "correctAnswer": "Valmiki" },
-          { "question": "Who was the founder of the Slave Dynasty in Delhi Sultanate?", "options": ["Iltutmish", "Razia Sultan", "Qutb al-Din Aibak", "Ghiyas ud din Balban"], "correctAnswer": "Qutb al-Din Aibak" },
-          { "question": "The 'divide and rule' policy was most prominently used by which British Viceroy?", "options": ["Lord Curzon", "Lord Dalhousie", "Lord Lytton", "Lord Minto"], "correctAnswer": "Lord Curzon" }
-      ]},
-      { "level4": [
-          { "question": "The Swaraj Party was formed by whom?", "options": ["Motilal Nehru and C.R. Das", "Mahatma Gandhi and Jawaharlal Nehru", "Sardar Patel and Rajendra Prasad", "Subhas Chandra Bose and Bhagat Singh"], "correctAnswer": "Motilal Nehru and C.R. Das" },
-          { "question": "Which Indian emperor converted to Buddhism after the Kalinga War?", "options": ["Chandragupta Maurya", "Ashoka", "Samudragupta", "Harsha"], "correctAnswer": "Ashoka" },
-          { "question": "The first Round Table Conference was held in which year?", "options": ["1929", "1930", "1931", "1932"], "correctAnswer": "1930" },
-          { "question": "Who was the author of the famous book 'Discovery of India'?", "options": ["Mahatma Gandhi", "Rabindranath Tagore", "Jawaharlal Nehru", "Sardar Vallabhbhai Patel"], "correctAnswer": "Jawaharlal Nehru" },
-          { "question": "The Battle of Haldighati was fought between Maharana Pratap and which Mughal emperor?", "options": ["Babur", "Humayun", "Akbar", "Jahangir"], "correctAnswer": "Akbar" },
-          { "question": "Which of the following was NOT a part of the 'Trimurti' of 'Lal-Bal-Pal'?", "options": ["Lala Lajpat Rai", "Bal Gangadhar Tilak", "Bipin Chandra Pal", "Gopal Krishna Gokhale"], "correctAnswer": "Gopal Krishna Gokhale" },
-          { "question": "Who was the founder of the Arya Samaj?", "options": ["Swami Vivekananda", "Swami Dayananda Saraswati", "Ramakrishna Paramahamsa", "Raja Ram Mohan Roy"], "correctAnswer": "Swami Dayananda Saraswati" },
-          { "question": "The policy of 'Doctrine of Lapse' was introduced by which Governor-General?", "options": ["Lord William Bentinck", "Lord Dalhousie", "Lord Canning", "Lord Hastings"], "correctAnswer": "Lord Dalhousie" },
-          { "question": "The famous Sanchi Stupa was originally commissioned by whom?", "options": ["Chandragupta Maurya", "Ashoka", "Kanishka", "Harsha"], "correctAnswer": "Ashoka" },
-          { "question": "Which Portuguese explorer was the first European to reach India by sea?", "options": ["Christopher Columbus", "Ferdinand Magellan", "Vasco da Gama", "James Cook"], "correctAnswer": "Vasco da Gama" }
-      ]},
-      { "level5": [
-          { "question": "Who founded the Brahmo Samaj?", "options": ["Swami Dayananda Saraswati", "Swami Vivekananda", "Raja Ram Mohan Roy", "Keshab Chandra Sen"], "correctAnswer": "Raja Ram Mohan Roy" },
-          { "question": "The first Indian to become a member of the British Parliament was?", "options": ["Mahatma Gandhi", "Dadabhai Naoroji", "Surendranath Banerjee", "Gopal Krishna Gokhale"], "correctAnswer": "Dadabhai Naoroji" },
-          { "question": "When did the Battle of Panipat (First Battle) take place?", "options": ["1526", "1556", "1761", "1540"], "correctAnswer": "1526" },
-          { "question": "Who was the Viceroy of India when the Jallianwala Bagh massacre occurred?", "options": ["Lord Curzon", "Lord Chelmsford", "Lord Hardinge", "Lord Irwin"], "correctAnswer": "Lord Chelmsford" },
-          { "question": "The famous slogan 'Swaraj is my birthright, and I shall have it' was given by?", "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Bal Gangadhar Tilak", "Subhas Chandra Bose"], "correctAnswer": "Bal Gangadhar Tilak" },
-          { "question": "The city of Hampi is associated with the ruins of which empire?", "options": ["Chola", "Pallava", "Vijayanagara", "Hoysala"], "correctAnswer": "Vijayanagara" },
-          { "question": "Who was the only Indian ruler to defeat Aurangzeb in a battle?", "options": ["Shivaji Maharaj", "Maharana Pratap", "Guru Gobind Singh", "Ranjit Singh"], "correctAnswer": "Shivaji Maharaj" },
-          { "question": "The Ghadar Party was formed in which country?", "options": ["India", "England", "USA", "Canada"], "correctAnswer": "USA" },
-          { "question": "The book 'Anand Math' was written by whom?", "options": ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Sarojini Naidu", "Premchand"], "correctAnswer": "Bankim Chandra Chatterjee" },
-          { "question": "Which of the following was NOT a part of the Non-Cooperation Movement?", "options": ["Boycott of foreign goods", "Surrender of titles", "Non-payment of taxes", "Formation of Indian National Army"], "correctAnswer": "Formation of Indian National Army" }
-      ]},
-      { "level6": [
-          { "question": "Who was the last Governor-General of British India and the first Governor-General of independent India?", "options": ["Lord Mountbatten", "C. Rajagopalachari", "Lord Wavell", "Lord Canning"], "correctAnswer": "Lord Mountbatten" },
-          { "question": "The ancient city of Pataliputra is now known by what name?", "options": ["Varanasi", "Patna", "Prayagraj", "Bhopal"], "correctAnswer": "Patna" },
-          { "question": "Who was the founder of the Satavahana dynasty?", "options": ["Simuka", "Gautamiputra Satakarni", "Pulakeshin II", "Kharavela"], "correctAnswer": "Simuka" },
-          { "question": "The partition of Bengal took place in which year?", "options": ["1900", "1905", "1911", "1919"], "correctAnswer": "1905" },
-          { "question": "Who was known as the 'Frontier Gandhi'?", "options": ["Sardar Patel", "Khan Abdul Ghaffar Khan", "Maulana Abul Kalam Azad", "Mohammad Ali Jinnah"], "correctAnswer": "Khan Abdul Ghaffar Khan" },
-          { "question": "The Rigveda is a collection of which of the following?", "options": ["Philosophical treatises", "Hymns", "Medical texts", "Legal codes"], "correctAnswer": "Hymns" },
-          { "question": "Which Indian ruler issued the 'Edicts of Ashoka'?", "options": ["Chandragupta Maurya", "Ashoka", "Samudragupta", "Kanishka"], "correctAnswer": "Ashoka" },
-          { "question": "The All India Muslim League was founded in which city?", "options": ["Lahore", "Delhi", "Dhaka", "Aligarh"], "correctAnswer": "Dhaka" },
-          { "question": "Who was the leader of the Bardoli Satyagraha?", "options": ["Mahatma Gandhi", "Sardar Vallabhbhai Patel", "Jawaharlal Nehru", "Morarji Desai"], "correctAnswer": "Sardar Vallabhbhai Patel" },
-          { "question": "The famous book 'Hind Swaraj' was written by whom?", "options": ["Jawaharlal Nehru", "Mahatma Gandhi", "Sardar Patel", "Rabindranath Tagore"], "correctAnswer": "Mahatma Gandhi" }
-      ]}
+      {
+        "level2": [
+          {
+            "question": "Who founded the Maurya Empire?",
+            "options": ["Ashoka", "Chandragupta Maurya", "Bindusara", "Samudragupta"],
+            "correctAnswer": "Chandragupta Maurya"
+          },
+          {
+            "question": "The 'Quit India' movement was launched in which year?",
+            "options": ["1930", "1942", "1945", "1947"],
+            "correctAnswer": "1942"
+          },
+          {
+            "question": "Who wrote 'Arthashastra'?",
+            "options": ["Kalidasa", "Chanakya (Kautilya)", "Panini", "Patanjali"],
+            "correctAnswer": "Chanakya (Kautilya)"
+          },
+          {
+            "question": "The Jallianwala Bagh Massacre took place in which city?",
+            "options": ["Delhi", "Mumbai", "Amritsar", "Kolkata"],
+            "correctAnswer": "Amritsar"
+          },
+          {
+            "question": "Who was the first woman Prime Minister of India?",
+            "options": ["Sarojini Naidu", "Indira Gandhi", "Benazir Bhutto", "Margaret Thatcher"],
+            "correctAnswer": "Indira Gandhi"
+          },
+          {
+            "question": "The famous 'Iron Pillar' is located in which city?",
+            "options": ["Agra", "Jaipur", "Delhi", "Udaipur"],
+            "correctAnswer": "Delhi"
+          },
+          {
+            "question": "Who was the founder of the Sikh religion?",
+            "options": ["Guru Arjan Dev", "Guru Gobind Singh", "Guru Nanak Dev", "Guru Ram Das"],
+            "correctAnswer": "Guru Nanak Dev"
+          },
+          {
+            "question": "Which battle marked the end of the Mughal Empire?",
+            "options": ["Battle of Panipat", "Battle of Buxar", "Battle of Plassey", "Battle of Seringapatam"],
+            "correctAnswer": "Battle of Buxar"
+          },
+          {
+            "question": "The ancient university of Nalanda was in which state?",
+            "options": ["Uttar Pradesh", "Bihar", "Madhya Pradesh", "West Bengal"],
+            "correctAnswer": "Bihar"
+          },
+          {
+            "question": "Who was the military leader who led the Marathas against the Mughals?",
+            "options": ["Shivaji Maharaj", "Peshwa Bajirao I", "Maharana Pratap", "Rani Lakshmibai"],
+            "correctAnswer": "Shivaji Maharaj"
+          }
+        ]
+      },
+      {
+        "level3": [
+          {
+            "question": "Who was the architect of the Indian Constitution?",
+            "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Dr. B.R. Ambedkar", "Sardar Patel"],
+            "correctAnswer": "Dr. B.R. Ambedkar"
+          },
+          {
+            "question": "The Sepoy Mutiny of 1857 started from which city?",
+            "options": ["Delhi", "Meerut", "Lucknow", "Kanpur"],
+            "correctAnswer": "Meerut"
+          },
+          {
+            "question": "Who wrote the national anthem of India, 'Jana Gana Mana'?",
+            "options": ["Bankim Chandra Chatterjee", "Rabindranath Tagore", "Subhas Chandra Bose", "Muhammad Iqbal"],
+            "correctAnswer": "Rabindranath Tagore"
+          },
+          {
+            "question": "The Chola dynasty was primarily known for its naval power and which type of architecture?",
+            "options": ["Cave temples", "Stupas", "Dravidian temples", "Mughal forts"],
+            "correctAnswer": "Dravidian temples"
+          },
+          {
+            "question": "Who founded the Indian National Army (INA)?",
+            "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhas Chandra Bose", "Bhagat Singh"],
+            "correctAnswer": "Subhas Chandra Bose"
+          },
+          {
+            "question": "The city of Fatehpur Sikri was built by which Mughal emperor?",
+            "options": ["Humayun", "Akbar", "Jahangir", "Shah Jahan"],
+            "correctAnswer": "Akbar"
+          },
+          {
+            "question": "Which of the following was a prominent leader of the 'Extremist' faction of the Indian National Congress?",
+            "options": ["Gopal Krishna Gokhale", "Dadabhai Naoroji", "Bal Gangadhar Tilak", "Surendranath Banerjee"],
+            "correctAnswer": "Bal Gangadhar Tilak"
+          },
+          {
+            "question": "The ancient text 'Ramayana' was written by whom?",
+            "options": ["Vyasa", "Valmiki", "Tulsidas", "Kalidasa"],
+            "correctAnswer": "Valmiki"
+          },
+          {
+            "question": "Who was the founder of the Slave Dynasty in Delhi Sultanate?",
+            "options": ["Iltutmish", "Razia Sultan", "Qutb al-Din Aibak", "Ghiyas ud din Balban"],
+            "correctAnswer": "Qutb al-Din Aibak"
+          },
+          {
+            "question": "The 'divide and rule' policy was most prominently used by which British Viceroy?",
+            "options": ["Lord Curzon", "Lord Dalhousie", "Lord Lytton", "Lord Minto"],
+            "correctAnswer": "Lord Curzon"
+          }
+        ]
+      },
+      {
+        "level4": [
+          {
+            "question": "The Swaraj Party was formed by whom?",
+            "options": ["Motilal Nehru and C.R. Das", "Mahatma Gandhi and Jawaharlal Nehru", "Sardar Patel and Rajendra Prasad", "Subhas Chandra Bose and Bhagat Singh"],
+            "correctAnswer": "Motilal Nehru and C.R. Das"
+          },
+          {
+            "question": "Which Indian emperor converted to Buddhism after the Kalinga War?",
+            "options": ["Chandragupta Maurya", "Ashoka", "Samudragupta", "Harsha"],
+            "correctAnswer": "Ashoka"
+          },
+          {
+            "question": "The first Round Table Conference was held in which year?",
+            "options": ["1929", "1930", "1931", "1932"],
+            "correctAnswer": "1930"
+          },
+          {
+            "question": "Who was the author of the famous book 'Discovery of India'?",
+            "options": ["Mahatma Gandhi", "Rabindranath Tagore", "Jawaharlal Nehru", "Sardar Vallabhbhai Patel"],
+            "correctAnswer": "Jawaharlal Nehru"
+          },
+          {
+            "question": "The Battle of Haldighati was fought between Maharana Pratap and which Mughal emperor?",
+            "options": ["Babur", "Humayun", "Akbar", "Jahangir"],
+            "correctAnswer": "Akbar"
+          },
+          {
+            "question": "Which of the following was NOT a part of the 'Trimurti' of 'Lal-Bal-Pal'?",
+            "options": ["Lala Lajpat Rai", "Bal Gangadhar Tilak", "Bipin Chandra Pal", "Gopal Krishna Gokhale"],
+            "correctAnswer": "Gopal Krishna Gokhale"
+          },
+          {
+            "question": "Who was the founder of the Arya Samaj?",
+            "options": ["Swami Vivekananda", "Swami Dayananda Saraswati", "Ramakrishna Paramahamsa", "Raja Ram Mohan Roy"],
+            "correctAnswer": "Swami Dayananda Saraswati"
+          },
+          {
+            "question": "The policy of 'Doctrine of Lapse' was introduced by which Governor-General?",
+            "options": ["Lord William Bentinck", "Lord Dalhousie", "Lord Canning", "Lord Hastings"],
+            "correctAnswer": "Lord Dalhousie"
+          },
+          {
+            "question": "The famous Sanchi Stupa was originally commissioned by whom?",
+            "options": ["Chandragupta Maurya", "Ashoka", "Kanishka", "Harsha"],
+            "correctAnswer": "Ashoka"
+          },
+          {
+            "question": "Which Portuguese explorer was the first European to reach India by sea?",
+            "options": ["Christopher Columbus", "Ferdinand Magellan", "Vasco da Gama", "James Cook"],
+            "correctAnswer": "Vasco da Gama"
+          }
+        ]
+      },
+      {
+        "level5": [
+          {
+            "question": "Who founded the Brahmo Samaj?",
+            "options": ["Swami Dayananda Saraswati", "Swami Vivekananda", "Raja Ram Mohan Roy", "Keshab Chandra Sen"],
+            "correctAnswer": "Raja Ram Mohan Roy"
+          },
+          {
+            "question": "The first Indian to become a member of the British Parliament was?",
+            "options": ["Mahatma Gandhi", "Dadabhai Naoroji", "Surendranath Banerjee", "Gopal Krishna Gokhale"],
+            "correctAnswer": "Dadabhai Naoroji"
+          },
+          {
+            "question": "When did the Battle of Panipat (First Battle) take place?",
+            "options": ["1526", "1556", "1761", "1540"],
+            "correctAnswer": "1526"
+          },
+          {
+            "question": "Who was the Viceroy of India when the Jallianwala Bagh massacre occurred?",
+            "options": ["Lord Curzon", "Lord Chelmsford", "Lord Hardinge", "Lord Irwin"],
+            "correctAnswer": "Lord Chelmsford"
+          },
+          {
+            "question": "The famous slogan 'Swaraj is my birthright, and I shall have it' was given by?",
+            "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Bal Gangadhar Tilak", "Subhas Chandra Bose"],
+            "correctAnswer": "Bal Gangadhar Tilak"
+          },
+          {
+            "question": "The city of Hampi is associated with the ruins of which empire?",
+            "options": ["Chola", "Pallava", "Vijayanagara", "Hoysala"],
+            "correctAnswer": "Vijayanagara"
+          },
+          {
+            "question": "Who was the only Indian ruler to defeat Aurangzeb in a battle?",
+            "options": ["Shivaji Maharaj", "Maharana Pratap", "Guru Gobind Singh", "Ranjit Singh"],
+            "correctAnswer": "Shivaji Maharaj"
+          },
+          {
+            "question": "The Ghadar Party was formed in which country?",
+            "options": ["India", "England", "USA", "Canada"],
+            "correctAnswer": "USA"
+          },
+          {
+            "question": "The book 'Anand Math' was written by whom?",
+            "options": ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Sarojini Naidu", "Premchand"],
+            "correctAnswer": "Bankim Chandra Chatterjee"
+          },
+          {
+            "question": "Which of the following was NOT a part of the Non-Cooperation Movement?",
+            "options": ["Boycott of foreign goods", "Surrender of titles", "Non-payment of taxes", "Formation of Indian National Army"],
+            "correctAnswer": "Formation of Indian National Army"
+          }
+        ]
+      },
+      {
+        "level6": [
+          {
+            "question": "Who was the last Governor-General of British India and the first Governor-General of independent India?",
+            "options": ["Lord Mountbatten", "C. Rajagopalachari", "Lord Wavell", "Lord Canning"],
+            "correctAnswer": "Lord Mountbatten"
+          },
+          {
+            "question": "The ancient city of Pataliputra is now known by what name?",
+            "options": ["Varanasi", "Patna", "Prayagraj", "Bhopal"],
+            "correctAnswer": "Patna"
+          },
+          {
+            "question": "Who was the founder of the Satavahana dynasty?",
+            "options": ["Simuka", "Gautamiputra Satakarni", "Pulakeshin II", "Kharavela"],
+            "correctAnswer": "Simuka"
+          },
+          {
+            "question": "The partition of Bengal took place in which year?",
+            "options": ["1900", "1905", "1911", "1919"],
+            "correctAnswer": "1905"
+          },
+          {
+            "question": "Who was known as the 'Frontier Gandhi'?",
+            "options": ["Sardar Patel", "Khan Abdul Ghaffar Khan", "Maulana Abul Kalam Azad", "Mohammad Ali Jinnah"],
+            "correctAnswer": "Khan Abdul Ghaffar Khan"
+          },
+          {
+            "question": "The Rigveda is a collection of which of the following?",
+            "options": ["Philosophical treatises", "Hymns", "Medical texts", "Legal codes"],
+            "correctAnswer": "Hymns"
+          },
+          {
+            "question": "Which Indian ruler issued the 'Edicts of Ashoka'?",
+            "options": ["Chandragupta Maurya", "Ashoka", "Samudragupta", "Kanishka"],
+            "correctAnswer": "Ashoka"
+          },
+          {
+            "question": "The All India Muslim League was founded in which city?",
+            "options": ["Lahore", "Delhi", "Dhaka", "Aligarh"],
+            "correctAnswer": "Dhaka"
+          },
+          {
+            "question": "Who was the leader of the Bardoli Satyagraha?",
+            "options": ["Mahatma Gandhi", "Sardar Vallabhbhai Patel", "Jawaharlal Nehru", "Subhas Chandra Bose"],
+            "correctAnswer": "Sardar Vallabhbhai Patel"
+          },
+          {
+            "question": "The 'Magadha Empire' was located in which modern Indian state?",
+            "options": ["Uttar Pradesh", "Bihar", "West Bengal", "Odisha"],
+            "correctAnswer": "Bihar"
+          }
+        ]
+      }
     ],
     "About India": [
       {
@@ -288,29 +666,29 @@
             "correctAnswer": "New Delhi"
           },
           {
-            "question": "How many states are there in India?",
-            "options": ["28", "29", "30", "27"],
+            "question": "Which river is considered the holiest river in India?",
+            "options": ["Yamuna", "Godavari", "Ganges (Ganga)", "Brahmaputra"],
+            "correctAnswer": "Ganges (Ganga)"
+          },
+          {
+            "question": "How many states are there in India (as of 2024)?",
+            "options": ["28", "29", "30", "31"],
             "correctAnswer": "28"
           },
           {
-            "question": "Which is the longest river in India?",
-            "options": ["Yamuna", "Ganges", "Brahmaputra", "Godavari"],
-            "correctAnswer": "Ganges"
+            "question": "Which monument is a symbol of love and is located in Agra?",
+            "options": ["Red Fort", "India Gate", "Taj Mahal", "Qutub Minar"],
+            "correctAnswer": "Taj Mahal"
           },
           {
-            "question": "What is India's national bird?",
-            "options": ["Parrot", "Sparrow", "Peacock", "Pigeon"],
+            "question": "What is the national bird of India?",
+            "options": ["Eagle", "Sparrow", "Peacock", "Pigeon"],
             "correctAnswer": "Peacock"
           },
           {
-            "question": "Which festival is known as the 'festival of lights' in India?",
-            "options": ["Holi", "Eid", "Diwali", "Christmas"],
-            "correctAnswer": "Diwali"
-          },
-          {
-            "question": "Which is the highest mountain peak in India?",
-            "options": ["Mount Everest", "K2", "Kangchenjunga", "Nanda Devi"],
-            "correctAnswer": "Kangchenjunga"
+            "question": "Which is the largest state in India by area?",
+            "options": ["Madhya Pradesh", "Maharashtra", "Rajasthan", "Uttar Pradesh"],
+            "correctAnswer": "Rajasthan"
           },
           {
             "question": "What is the national flower of India?",
@@ -318,77 +696,287 @@
             "correctAnswer": "Lotus"
           },
           {
-            "question": "Which is the largest state in India by area?",
-            "options": ["Uttar Pradesh", "Maharashtra", "Rajasthan", "Madhya Pradesh"],
-            "correctAnswer": "Rajasthan"
+            "question": "Which is the highest mountain peak in India?",
+            "options": ["Mount Everest", "Kanchenjunga", "Nanda Devi", "K2 (Godwin Austen)"],
+            "correctAnswer": "Kanchenjunga"
           },
           {
-            "question": "How many Union Territories are there in India?",
-            "options": ["7", "8", "9", "6"],
-            "correctAnswer": "8"
+            "question": "What is the national fruit of India?",
+            "options": ["Apple", "Banana", "Mango", "Orange"],
+            "correctAnswer": "Mango"
           }
         ]
       },
-      { "level2": [
-          { "question": "Which Indian city is known as the 'Pink City'?", "options": ["Jodhpur", "Udaipur", "Jaipur", "Mysuru"], "correctAnswer": "Jaipur" },
-          { "question": "What is the national aquatic animal of India?", "options": ["Shark", "Dolphin (Ganges River Dolphin)", "Whale", "Octopus"], "correctAnswer": "Dolphin (Ganges River Dolphin)" },
-          { "question": "The famous monument 'India Gate' is located in which city?", "options": ["Mumbai", "New Delhi", "Kolkata", "Chennai"], "correctAnswer": "New Delhi" },
-          { "question": "Which is the hottest state in India?", "options": ["Rajasthan", "Gujarat", "Madhya Pradesh", "Uttar Pradesh"], "correctAnswer": "Rajasthan" },
-          { "question": "What is the national tree of India?", "options": ["Mango Tree", "Banyan Tree", "Neem Tree", "Peepal Tree"], "correctAnswer": "Banyan Tree" },
-          { "question": "Which Indian state has the longest coastline?", "options": ["Kerala", "Gujarat", "Maharashtra", "Tamil Nadu"], "correctAnswer": "Gujarat" },
-          { "question": "What is the traditional Indian dress for women called?", "options": ["Lungi", "Kurta", "Saree", "Dhoti"], "correctAnswer": "Saree" },
-          { "question": "Which major river flows through the city of Varanasi?", "options": ["Yamuna", "Ganges", "Godavari", "Narmada"], "correctAnswer": "Ganges" },
-          { "question": "The Sun Temple is located in which state of India?", "options": ["Odisha", "Karnataka", "Tamil Nadu", "Rajasthan"], "correctAnswer": "Odisha" },
-          { "question": "Which is the most populous state in India?", "options": ["Maharashtra", "Bihar", "West Bengal", "Uttar Pradesh"], "correctAnswer": "Uttar Pradesh" }
-      ]},
-      { "level3": [
-          { "question": "The official language of India is Hindi. Which is the other official language?", "options": ["Bengali", "Tamil", "English", "Urdu"], "correctAnswer": "English" },
-          { "question": "Which state is known as the 'Spice Garden of India'?", "options": ["Kerala", "Karnataka", "Goa", "Andhra Pradesh"], "correctAnswer": "Kerala" },
-          { "question": "The famous Rann of Kutch is located in which state?", "options": ["Rajasthan", "Gujarat", "Madhya Pradesh", "Maharashtra"], "correctAnswer": "Gujarat" },
-          { "question": "What is the currency of India?", "options": ["Dollar", "Euro", "Yen", "Indian Rupee"], "correctAnswer": "Indian Rupee" },
-          { "question": "Which Indian city is known as the 'Silicon Valley of India'?", "options": ["Mumbai", "Hyderabad", "Bengaluru", "Chennai"], "correctAnswer": "Bengaluru" },
-          { "question": "The classical dance form 'Kathakali' originated from which state?", "options": ["Tamil Nadu", "Kerala", "Andhra Pradesh", "Karnataka"], "correctAnswer": "Kerala" },
-          { "question": "Which is the highest waterfall in India?", "options": ["Jog Falls", "Nohkalikai Falls", "Kunchikal Falls", "Dudhsagar Falls"], "correctAnswer": "Kunchikal Falls" },
-          { "question": "The national pledge of India was written by whom?", "options": ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Pydimarri Venkata Subba Rao", "Jawaharlal Nehru"], "correctAnswer": "Pydimarri Venkata Subba Rao" },
-          { "question": "Which is the southernmost tip of mainland India?", "options": ["Indira Point", "Kanyakumari", "Rameswaram", "Chennai"], "correctAnswer": "Kanyakumari" },
-          { "question": "The state of Goa was liberated from which colonial power?", "options": ["British", "French", "Dutch", "Portuguese"], "correctAnswer": "Portuguese" }
-      ]},
-      { "level4": [
-          { "question": "Which is the largest freshwater lake in India?", "options": ["Dal Lake", "Wular Lake", "Chilika Lake", "Sambhar Lake"], "correctAnswer": "Wular Lake" },
-          { "question": "What is the national fruit of India?", "options": ["Banana", "Apple", "Mango", "Orange"], "correctAnswer": "Mango" },
-          { "question": "The famous tourist destination 'Leh-Ladakh' is located in which region?", "options": ["Himachal Pradesh", "Uttarakhand", "Jammu & Kashmir (UT)", "Sikkim"], "correctAnswer": "Jammu & Kashmir (UT)" },
-          { "question": "Which Indian city is known as the 'City of Nawabs'?", "options": ["Hyderabad", "Lucknow", "Delhi", "Jaipur"], "correctAnswer": "Lucknow" },
-          { "question": "The Bharat Ratna is India's highest civilian award. When was it instituted?", "options": ["1947", "1950", "1954", "1962"], "correctAnswer": "1954" },
-          { "question": "Which Indian state is known for its backwaters and houseboats?", "options": ["Goa", "Kerala", "Odisha", "West Bengal"], "correctAnswer": "Kerala" },
-          { "question": "The 'Statue of Unity' is dedicated to which Indian leader?", "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Sardar Vallabhbhai Patel", "Subhas Chandra Bose"], "correctAnswer": "Sardar Vallabhbhai Patel" },
-          { "question": "Which desert is located in India?", "options": ["Gobi Desert", "Thar Desert", "Sahara Desert", "Kalahari Desert"], "correctAnswer": "Thar Desert" },
-          { "question": "What is the national game of India?", "options": ["Cricket", "Football", "Hockey", "Kabaddi"], "correctAnswer": "Hockey" },
-          { "question": "The state of 'Nagaland' is famous for which festival?", "options": ["Hornbill Festival", "Onam", "Bihu", "Durga Puja"], "correctAnswer": "Hornbill Festival" }
-      ]},
-      { "level5": [
-          { "question": "Which Indian scientist is known as the 'Missile Man of India'?", "options": ["Homi J. Bhabha", "C.V. Raman", "A.P.J. Abdul Kalam", "Vikram Sarabhai"], "correctAnswer": "A.P.J. Abdul Kalam" },
-          { "question": "The famous 'Gateway of India' is located in which city?", "options": ["New Delhi", "Kolkata", "Mumbai", "Chennai"], "correctAnswer": "Mumbai" },
-          { "question": "Which river is also known as 'Dakshin Ganga' (Ganges of the South)?", "options": ["Krishna", "Godavari", "Cauvery", "Narmada"], "correctAnswer": "Godavari" },
-          { "question": "Which Indian state has the highest literacy rate?", "options": ["Karnataka", "Maharashtra", "Kerala", "Tamil Nadu"], "correctAnswer": "Kerala" },
-          { "question": "The 'Pancha Rathas' are a group of monuments located in which Indian state?", "options": ["Odisha", "Tamil Nadu", "Karnataka", "Andhra Pradesh"], "correctAnswer": "Tamil Nadu" },
-          { "question": "Which is the highest civilian award in India?", "options": ["Padma Vibhushan", "Padma Bhushan", "Padma Shri", "Bharat Ratna"], "correctAnswer": "Bharat Ratna" },
-          { "question": "Which city is famous for its 'Biryani'?", "options": ["Lucknow", "Hyderabad", "Delhi", "Bengaluru"], "correctAnswer": "Hyderabad" },
-          { "question": "The famous 'Konark Sun Temple' is dedicated to which deity?", "options": ["Lord Shiva", "Lord Vishnu", "Surya Dev (Sun God)", "Goddess Durga"], "correctAnswer": "Surya Dev (Sun God)" },
-          { "question": "Which is the national vegetable of India?", "options": ["Potato", "Onion", "Pumpkin", "Brinjal"], "correctAnswer": "Pumpkin" },
-          { "question": "The Indian subcontinent is part of which tectonic plate?", "options": ["African Plate", "Eurasian Plate", "Indo-Australian Plate", "Pacific Plate"], "correctAnswer": "Indo-Australian Plate" }
-      ]},
-      { "level6": [
-          { "question": "Which Indian festival involves decorating houses with rangoli and lighting lamps?", "options": ["Holi", "Diwali", "Eid", "Ganesh Chaturthi"], "correctAnswer": "Diwali" },
-          { "question": "The 'Golden Temple' is a prominent Sikh gurdwara located in which city?", "options": ["Delhi", "Chandigarh", "Amritsar", "Ludhiana"], "correctAnswer": "Amritsar" },
-          { "question": "Which is the only active volcano in India?", "options": ["Barren Island", "Narcondam", "Deccan Traps", "Pugah Valley"], "correctAnswer": "Barren Island" },
-          { "question": "The classical dance form 'Bharatanatyam' originated from which state?", "options": ["Kerala", "Karnataka", "Tamil Nadu", "Andhra Pradesh"], "correctAnswer": "Tamil Nadu" },
-          { "question": "Which national park in India is famous for its one-horned rhinoceros?", "options": ["Ranthambore", "Kaziranga", "Bandipur", "Gir Forest"], "correctAnswer": "Kaziranga" },
-          { "question": "What is the national motto of India?", "options": ["Satyameva Jayate", "Vande Mataram", "Jai Hind", "Incredible India"], "correctAnswer": "Satyameva Jayate" },
-          { "question": "Which Indian state is the largest producer of rice?", "options": ["Punjab", "Uttar Pradesh", "West Bengal", "Odisha"], "correctAnswer": "West Bengal" },
-          { "question": "The 'Qutub Minar' is located in which Indian city?", "options": ["Agra", "Jaipur", "Delhi", "Lucknow"], "correctAnswer": "Delhi" },
-          { "question": "Which is the longest national highway in India?", "options": ["NH 44", "NH 27", "NH 6", "NH 48"], "correctAnswer": "NH 44" },
-          { "question": "The city of Mumbai was originally a group of how many islands?", "options": ["5", "6", "7", "8"], "correctAnswer": "7" }
-      ]}
+      {
+        "level2": [
+          {
+            "question": "Which Indian state has the longest coastline?",
+            "options": ["Maharashtra", "Tamil Nadu", "Gujarat", "Andhra Pradesh"],
+            "correctAnswer": "Gujarat"
+          },
+          {
+            "question": "Who was the first Indian to win a Nobel Prize?",
+            "options": ["C.V. Raman", "Mother Teresa", "Rabindranath Tagore", "Amartya Sen"],
+            "correctAnswer": "Rabindranath Tagore"
+          },
+          {
+            "question": "The festival of Diwali is primarily associated with which religion?",
+            "options": ["Islam", "Christianity", "Hinduism", "Sikhism"],
+            "correctAnswer": "Hinduism"
+          },
+          {
+            "question": "Which is the most populated state in India?",
+            "options": ["Maharashtra", "Bihar", "Uttar Pradesh", "West Bengal"],
+            "correctAnswer": "Uttar Pradesh"
+          },
+          {
+            "question": "The famous 'Gateway of India' is located in which city?",
+            "options": ["New Delhi", "Kolkata", "Mumbai", "Chennai"],
+            "correctAnswer": "Mumbai"
+          },
+          {
+            "question": "Which Indian city is known as the 'Pink City'?",
+            "options": ["Udaipur", "Jodhpur", "Jaipur", "Bhopal"],
+            "correctAnswer": "Jaipur"
+          },
+          {
+            "question": "What is the national tree of India?",
+            "options": ["Neem", "Banyan", "Mango", "Peepal"],
+            "correctAnswer": "Banyan"
+          },
+          {
+            "question": "Which Indian state is known as the 'Spice Garden of India'?",
+            "options": ["Karnataka", "Kerala", "Goa", "Tamil Nadu"],
+            "correctAnswer": "Kerala"
+          },
+          {
+            "question": "The Bharatanatyam dance form originated in which state?",
+            "options": ["Andhra Pradesh", "Karnataka", "Kerala", "Tamil Nadu"],
+            "correctAnswer": "Tamil Nadu"
+          },
+          {
+            "question": "Which Indian city is known as the 'Silicon Valley of India'?",
+            "options": ["Mumbai", "Hyderabad", "Bengaluru", "Pune"],
+            "correctAnswer": "Bengaluru"
+          }
+        ]
+      },
+      {
+        "level3": [
+          {
+            "question": "Which is the oldest mountain range in India?",
+            "options": ["Himalayas", "Western Ghats", "Eastern Ghats", "Aravalli Range"],
+            "correctAnswer": "Aravalli Range"
+          },
+          {
+            "question": "Who designed the Indian National Flag?",
+            "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Pingali Venkayya", "Sardar Patel"],
+            "correctAnswer": "Pingali Venkayya"
+          },
+          {
+            "question": "The Konark Sun Temple is located in which state?",
+            "options": ["Odisha", "Tamil Nadu", "Karnataka", "Maharashtra"],
+            "correctAnswer": "Odisha"
+          },
+          {
+            "question": "What is the national aquatic animal of India?",
+            "options": ["Shark", "Dolphin", "Crocodile", "Octopus"],
+            "correctAnswer": "Dolphin"
+          },
+          {
+            "question": "Which Indian state is famous for its backwaters and houseboats?",
+            "options": ["Goa", "Karnataka", "Kerala", "Odisha"],
+            "correctAnswer": "Kerala"
+          },
+          {
+            "question": "What is the currency of India?",
+            "options": ["Dollar", "Yen", "Rupee", "Euro"],
+            "correctAnswer": "Rupee"
+          },
+          {
+            "question": "Which Indian festival is known as the 'Festival of Colors'?",
+            "options": ["Diwali", "Holi", "Navratri", "Eid"],
+            "correctAnswer": "Holi"
+          },
+          {
+            "question": "Which is the largest freshwater lake in India?",
+            "options": ["Dal Lake", "Wular Lake", "Chilika Lake", "Loktak Lake"],
+            "correctAnswer": "Wular Lake"
+          },
+          {
+            "question": "Who was the first Indian to go into space?",
+            "options": ["Kalpana Chawla", "Rakesh Sharma", "Sunita Williams", "Vikram Ambalal Sarabhai"],
+            "correctAnswer": "Rakesh Sharma"
+          },
+          {
+            "question": "The Jim Corbett National Park is located in which state?",
+            "options": ["Uttar Pradesh", "Himachal Pradesh", "Uttarakhand", "Madhya Pradesh"],
+            "correctAnswer": "Uttarakhand"
+          }
+        ]
+      },
+      {
+        "level4": [
+          {
+            "question": "Which Indian state is known as the 'Land of Five Rivers'?",
+            "options": ["Haryana", "Punjab", "Rajasthan", "Uttar Pradesh"],
+            "correctAnswer": "Punjab"
+          },
+          {
+            "question": "The famous Ellora Caves are located in which state?",
+            "options": ["Gujarat", "Maharashtra", "Madhya Pradesh", "Karnataka"],
+            "correctAnswer": "Maharashtra"
+          },
+          {
+            "question": "Who is known as the 'Missile Man of India'?",
+            "options": ["Homi J. Bhabha", "Vikram Sarabhai", "A.P.J. Abdul Kalam", "Satish Dhawan"],
+            "correctAnswer": "A.P.J. Abdul Kalam"
+          },
+          {
+            "question": "What is the total length of India's coastline?",
+            "options": ["5500 km", "6100 km", "7516.6 km", "8000 km"],
+            "correctAnswer": "7516.6 km"
+          },
+          {
+            "question": "Which city is known as the 'Diamond City of India'?",
+            "options": ["Mumbai", "Surat", "Ahmedabad", "Jaipur"],
+            "correctAnswer": "Surat"
+          },
+          {
+            "question": "The 'Rann of Kutch' is located in which state?",
+            "options": ["Rajasthan", "Gujarat", "Maharashtra", "Odisha"],
+            "correctAnswer": "Gujarat"
+          },
+          {
+            "question": "Which of the following is the highest civilian award in India?",
+            "options": ["Padma Bhushan", "Padma Vibhushan", "Bharat Ratna", "Padma Shri"],
+            "correctAnswer": "Bharat Ratna"
+          },
+          {
+            "question": "The 'Charminar' is located in which city?",
+            "options": ["Lucknow", "Hyderabad", "Bhopal", "Delhi"],
+            "correctAnswer": "Hyderabad"
+          },
+          {
+            "question": "Which Indian state is the largest producer of rice?",
+            "options": ["Punjab", "Uttar Pradesh", "West Bengal", "Andhra Pradesh"],
+            "correctAnswer": "West Bengal"
+          },
+          {
+            "question": "Who composed the Indian national song 'Vande Mataram'?",
+            "options": ["Rabindranath Tagore", "Bankim Chandra Chatterjee", "Subhas Chandra Bose", "Muhammad Iqbal"],
+            "correctAnswer": "Bankim Chandra Chatterjee"
+          }
+        ]
+      },
+      {
+        "level5": [
+          {
+            "question": "Which Indian state is the smallest by area?",
+            "options": ["Sikkim", "Goa", "Tripura", "Nagaland"],
+            "correctAnswer": "Goa"
+          },
+          {
+            "question": "The 'Victory Tower' (Vijay Stambha) is located in which fort?",
+            "options": ["Red Fort", "Amber Fort", "Chittorgarh Fort", "Mehrangarh Fort"],
+            "correctAnswer": "Chittorgarh Fort"
+          },
+          {
+            "question": "Who is known as the 'Iron Man of India'?",
+            "options": ["Mahatma Gandhi", "Sardar Vallabhbhai Patel", "Jawaharlal Nehru", "Subhas Chandra Bose"],
+            "correctAnswer": "Sardar Vallabhbhai Patel"
+          },
+          {
+            "question": "Which desert is located in the western part of India?",
+            "options": ["Thar Desert", "Gobi Desert", "Sahara Desert", "Kalahari Desert"],
+            "correctAnswer": "Thar Desert"
+          },
+          {
+            "question": "The 'Kaziranga National Park' is famous for which animal?",
+            "options": ["Tiger", "Lion", "One-horned Rhinoceros", "Elephant"],
+            "correctAnswer": "One-horned Rhinoceros"
+          },
+          {
+            "question": "Which Indian state is the largest producer of sugarcane?",
+            "options": ["Maharashtra", "Punjab", "Uttar Pradesh", "Bihar"],
+            "correctAnswer": "Uttar Pradesh"
+          },
+          {
+            "question": "The 'Ajanta Caves' are famous for their ancient paintings and sculptures related to which religion?",
+            "options": ["Hinduism", "Jainism", "Buddhism", "Sikhism"],
+            "correctAnswer": "Buddhism"
+          },
+          {
+            "question": "Which city is known as the 'City of Lakes' in India?",
+            "options": ["Jaipur", "Udaipur", "Bhopal", "Srinagar"],
+            "correctAnswer": "Udaipur"
+          },
+          {
+            "question": "What is the national song of India?",
+            "options": ["Jana Gana Mana", "Vande Mataram", "Sare Jahan Se Achha", "Ae Mere Watan Ke Logo"],
+            "correctAnswer": "Vande Mataram"
+          },
+          {
+            "question": "Which state has the highest literacy rate in India?",
+            "options": ["Maharashtra", "Kerala", "Tamil Nadu", "Gujarat"],
+            "correctAnswer": "Kerala"
+          }
+        ]
+      },
+      {
+        "level6": [
+          {
+            "question": "Which is the highest waterfall in India?",
+            "options": ["Dudhsagar Falls", "Jog Falls", "Nohkalikai Falls", "Kunchikal Falls"],
+            "correctAnswer": "Kunchikal Falls"
+          },
+          {
+            "question": "The 'Golconda Fort' is located in which city?",
+            "options": ["Bengaluru", "Hyderabad", "Chennai", "Kochi"],
+            "correctAnswer": "Hyderabad"
+          },
+          {
+            "question": "Who is known as the 'Father of Indian Cinema'?",
+            "options": ["Raj Kapoor", "Dadasaheb Phalke", "Satyajit Ray", "Guru Dutt"],
+            "correctAnswer": "Dadasaheb Phalke"
+          },
+          {
+            "question": "Which Indian state is famous for its tea gardens, particularly Darjeeling tea?",
+            "options": ["Assam", "Kerala", "West Bengal", "Karnataka"],
+            "correctAnswer": "West Bengal"
+          },
+          {
+            "question": "What is the longest dam in India?",
+            "options": ["Bhakra Dam", "Tehri Dam", "Hirakud Dam", "Nagarjuna Sagar Dam"],
+            "correctAnswer": "Hirakud Dam"
+          },
+          {
+            "question": "The 'Sunderbans Delta' is located in which state?",
+            "options": ["Odisha", "West Bengal", "Andhra Pradesh", "Gujarat"],
+            "correctAnswer": "West Bengal"
+          },
+          {
+            "question": "Which Indian city is known as the 'Detroit of India' due to its automobile industry?",
+            "options": ["Pune", "Chennai", "Gurgaon", "Mumbai"],
+            "correctAnswer": "Chennai"
+          },
+          {
+            "question": "What is the name of the Indian space agency?",
+            "options": ["NASA", "ESA", "ISRO", "JAXA"],
+            "correctAnswer": "ISRO"
+          },
+          {
+            "question": "Which state is known as the 'Breadbasket of India'?",
+            "options": ["Uttar Pradesh", "Punjab", "Haryana", "Madhya Pradesh"],
+            "correctAnswer": "Punjab"
+          },
+          {
+            "question": "The 'Khajuraho Group of Monuments' are located in which state?",
+            "options": ["Rajasthan", "Uttar Pradesh", "Madhya Pradesh", "Gujarat"],
+            "correctAnswer": "Madhya Pradesh"
+          }
+        ]
+      }
     ],
     "Hindu Religion": [
       {
@@ -399,130 +987,394 @@
             "correctAnswer": "Brahma"
           },
           {
-            "question": "Which sacred text is considered the oldest scripture of Hinduism?",
-            "options": ["Upanishads", "Puranas", "Rigveda", "Bhagavad Gita"],
-            "correctAnswer": "Rigveda"
+            "question": "What is the holy river for Hindus?",
+            "options": ["Yamuna", "Saraswati", "Godavari", "Ganges (Ganga)"],
+            "correctAnswer": "Ganges (Ganga)"
+          },
+          {
+            "question": "Which sacred text contains the Bhagavad Gita?",
+            "options": ["Rigveda", "Upanishads", "Mahabharata", "Ramayana"],
+            "correctAnswer": "Mahabharata"
           },
           {
             "question": "Who is the wife of Lord Rama?",
-            "options": ["Radha", "Sita", "Lakshmi", "Parvati"],
+            "options": ["Radha", "Lakshmi", "Sita", "Parvati"],
             "correctAnswer": "Sita"
           },
           {
-            "question": "What is the name of the divine mother, also known as Shakti?",
-            "options": ["Saraswati", "Lakshmi", "Durga", "Parvati"],
-            "correctAnswer": "Durga"
+            "question": "The festival of Diwali symbolizes the victory of good over what?",
+            "options": ["Sorrow", "Darkness", "Poverty", "Ignorance"],
+            "correctAnswer": "Darkness"
           },
           {
-            "question": "Which festival celebrates the victory of good over evil and the return of Lord Rama to Ayodhya?",
+            "question": "Who is known as the preserver god in Hinduism?",
+            "options": ["Brahma", "Shiva", "Vishnu", "Agni"],
+            "correctAnswer": "Vishnu"
+          },
+          {
+            "question": "Which animal is considered sacred in Hinduism and is often worshipped?",
+            "options": ["Elephant", "Tiger", "Cow", "Monkey"],
+            "correctAnswer": "Cow"
+          },
+          {
+            "question": "What is the concept of reincarnation in Hinduism called?",
+            "options": ["Nirvana", "Moksha", "Samsara", "Dharma"],
+            "correctAnswer": "Samsara"
+          },
+          {
+            "question": "Who is the god of destruction and transformation?",
+            "options": ["Vishnu", "Brahma", "Shiva", "Krishna"],
+            "correctAnswer": "Shiva"
+          },
+          {
+            "question": "Which Hindu deity has an elephant head?",
+            "options": ["Vishnu", "Hanuman", "Ganesha", "Kartikeya"],
+            "correctAnswer": "Ganesha"
+          }
+        ]
+      },
+      {
+        "level2": [
+          {
+            "question": "What are the four Vedas?",
+            "options": ["Rigveda, Yajurveda, Samaveda, Atharvaveda", "Upanishads, Puranas, Sutras, Aranyakas", "Ramayana, Mahabharata, Bhagavad Gita, Puranas", "Dharma, Artha, Kama, Moksha"],
+            "correctAnswer": "Rigveda, Yajurveda, Samaveda, Atharvaveda"
+          },
+          {
+            "question": "Who is the divine consort of Lord Vishnu?",
+            "options": ["Saraswati", "Parvati", "Lakshmi", "Durga"],
+            "correctAnswer": "Lakshmi"
+          },
+          {
+            "question": "The concept of Karma in Hinduism refers to what?",
+            "options": ["Destiny", "Action and its consequences", "Devotion to gods", "Spiritual liberation"],
+            "correctAnswer": "Action and its consequences"
+          },
+          {
+            "question": "Which Hindu festival marks the return of Lord Rama to Ayodhya?",
             "options": ["Holi", "Navratri", "Diwali", "Dussehra"],
             "correctAnswer": "Diwali"
           },
           {
-            "question": "How many Vedas are there in Hinduism?",
+            "question": "Who is the god of war and commander of the gods' army?",
+            "options": ["Indra", "Agni", "Kartikeya", "Varuna"],
+            "correctAnswer": "Kartikeya"
+          },
+          {
+            "question": "The holy symbol 'Om' or 'Aum' represents what in Hinduism?",
+            "options": ["The universe and ultimate reality", "Peace and harmony", "Strength and courage", "Knowledge and wisdom"],
+            "correctAnswer": "The universe and ultimate reality"
+          },
+          {
+            "question": "Which avatar of Vishnu is known for lifting the Govardhan Hill?",
+            "options": ["Rama", "Krishna", "Buddha", "Parshurama"],
+            "correctAnswer": "Krishna"
+          },
+          {
+            "question": "What is the ultimate goal of human life in Hinduism?",
+            "options": ["Dharma (righteous conduct)", "Artha (material prosperity)", "Kama (desire)", "Moksha (liberation)"],
+            "correctAnswer": "Moksha (liberation)"
+          },
+          {
+            "question": "Who is the divine architect and builder of the universe?",
+            "options": ["Vishwakarma", "Indra", "Kubera", "Yama"],
+            "correctAnswer": "Vishwakarma"
+          },
+          {
+            "question": "The festival of Holi is primarily associated with which Hindu deity?",
+            "options": ["Lord Shiva", "Lord Vishnu", "Lord Krishna", "Goddess Lakshmi"],
+            "correctAnswer": "Lord Krishna"
+          }
+        ]
+      },
+      {
+        "level3": [
+          {
+            "question": "Which deity is worshipped as the goddess of wisdom, arts, and learning?",
+            "options": ["Lakshmi", "Parvati", "Durga", "Saraswati"],
+            "correctAnswer": "Saraswati"
+          },
+          {
+            "question": "The pilgrimage to Char Dham involves visiting four holy sites, which one is NOT among them?",
+            "options": ["Badrinath", "Puri", "Dwarka", "Varanasi"],
+            "correctAnswer": "Varanasi"
+          },
+          {
+            "question": "What is the sacred sound chanted in yoga and meditation?",
+            "options": ["Hare", "Shanti", "Om", "Namah"],
+            "correctAnswer": "Om"
+          },
+          {
+            "question": "Who was the demon king defeated by Lord Rama in the Ramayana?",
+            "options": ["Hiranyakashipu", "Ravana", "Mahishasura", "Kamsa"],
+            "correctAnswer": "Ravana"
+          },
+          {
+            "question": "Which Hindu text is often referred to as the 'Song of God'?",
+            "options": ["Vedas", "Upanishads", "Bhagavad Gita", "Puranas"],
+            "correctAnswer": "Bhagavad Gita"
+          },
+          {
+            "question": "Who is the monkey god, known for his strength and devotion to Rama?",
+            "options": ["Ganesha", "Kartikeya", "Hanuman", "Garuda"],
+            "correctAnswer": "Hanuman"
+          },
+          {
+            "question": "What is the concept of 'Ahimsa' in Hinduism?",
+            "options": ["Truthfulness", "Non-violence", "Generosity", "Self-control"],
+            "correctAnswer": "Non-violence"
+          },
+          {
+            "question": "Which festival celebrates the birth of Lord Krishna?",
+            "options": ["Ram Navami", "Janmashtami", "Ganesh Chaturthi", "Maha Shivaratri"],
+            "correctAnswer": "Janmashtami"
+          },
+          {
+            "question": "Who is the celestial sage known for his wisdom and role in many Hindu scriptures?",
+            "options": ["Narada", "Vishwamitra", "Durvasa", "Valmiki"],
+            "correctAnswer": "Narada"
+          },
+          {
+            "question": "The concept of 'Moksha' in Hinduism signifies what?",
+            "options": ["Rebirth", "Spiritual liberation from the cycle of birth and death", "Accumulation of good karma", "Material prosperity"],
+            "correctAnswer": "Spiritual liberation from the cycle of birth and death"
+          }
+        ]
+      },
+      {
+        "level4": [
+          {
+            "question": "Who is the father of Lord Ganesha?",
+            "options": ["Lord Vishnu", "Lord Brahma", "Lord Shiva", "Lord Indra"],
+            "correctAnswer": "Lord Shiva"
+          },
+          {
+            "question": "What is the traditional greeting in Hinduism, often accompanied by folded hands?",
+            "options": ["Hello", "Namaste", "Greetings", "Om Shanti"],
+            "correctAnswer": "Namaste"
+          },
+          {
+            "question": "Which festival celebrates the victory of Goddess Durga over the demon Mahishasura?",
+            "options": ["Diwali", "Holi", "Navratri", "Maha Shivaratri"],
+            "correctAnswer": "Navratri"
+          },
+          {
+            "question": "The 'Varna' system in ancient Hindu society broadly classified people into how many main categories?",
             "options": ["2", "3", "4", "5"],
             "correctAnswer": "4"
           },
           {
-            "question": "Who is the Hindu god of destruction and transformation?",
-            "options": ["Brahma", "Vishnu", "Shiva", "Krishna"],
-            "correctAnswer": "Shiva"
+            "question": "Which river is associated with Lord Shiva and is believed to have originated from his hair?",
+            "options": ["Yamuna", "Godavari", "Narmada", "Ganges (Ganga)"],
+            "correctAnswer": "Ganges (Ganga)"
           },
           {
-            "question": "Which animal is associated with Lord Ganesha?",
-            "options": ["Lion", "Elephant", "Mouse", "Cow"],
-            "correctAnswer": "Mouse"
+            "question": "What is the name of the cosmic dance performed by Lord Shiva?",
+            "options": ["Lasya", "Tandava", "Bharatnatyam", "Kathak"],
+            "correctAnswer": "Tandava"
           },
           {
-            "question": "What is the ultimate goal in Hinduism, often referred to as liberation from the cycle of rebirth?",
-            "options": ["Dharma", "Artha", "Moksha", "Karma"],
-            "correctAnswer": "Moksha"
+            "question": "Which of the following is NOT one of the primary Hindu deities of the 'Trimurti'?",
+            "options": ["Brahma", "Vishnu", "Shiva", "Indra"],
+            "correctAnswer": "Indra"
           },
           {
-            "question": "Which river is considered sacred in Hinduism and is often referred to as 'Ganga Ma' (Mother Ganges)?",
-            "options": ["Yamuna", "Godavari", "Ganges", "Saraswati"],
-            "correctAnswer": "Ganges"
+            "question": "What is the significance of the 'Tilak' (mark on the forehead) in Hinduism?",
+            "options": ["Beauty", "Status symbol", "Spiritual significance, often indicating devotion or blessing", "Fashion accessory"],
+            "correctAnswer": "Spiritual significance, often indicating devotion or blessing"
+          },
+          {
+            "question": "Which Hindu scripture focuses on ancient Indian law and duties?",
+            "options": ["Vedas", "Upanishads", "Dharmaśāstras (e.g., Manusmriti)", "Puranas"],
+            "correctAnswer": "Dharmaśāstras (e.g., Manusmriti)"
+          },
+          {
+            "question": "The festival of 'Maha Shivaratri' is dedicated to the worship of which deity?",
+            "options": ["Lord Vishnu", "Lord Brahma", "Lord Shiva", "Goddess Parvati"],
+            "correctAnswer": "Lord Shiva"
           }
         ]
       },
-      { "level2": [
-          { "question": "Who is the preserver god in the Hindu trinity (Trimurti)?", "options": ["Brahma", "Shiva", "Vishnu", "Indra"], "correctAnswer": "Vishnu" },
-          { "question": "The festival of colors is known as?", "options": ["Diwali", "Holi", "Navratri", "Janmashtami"], "correctAnswer": "Holi" },
-          { "question": "Which son of Shiva is known as the god of war and commander of the celestial armies?", "options": ["Ganesha", "Kartikeya (Murugan)", "Hanuman", "Nandi"], "correctAnswer": "Kartikeya (Murugan)" },
-          { "question": "What is the sacred sound or mantra often chanted in Hinduism, representing the universe?", "options": ["Shanti", "Om", "Hare", "Karma"], "correctAnswer": "Om" },
-          { "question": "Who is the wife of Lord Vishnu, symbolizing wealth and prosperity?", "options": ["Saraswati", "Parvati", "Lakshmi", "Durga"], "correctAnswer": "Lakshmi" },
-          { "question": "The epic 'Mahabharata' includes which philosophical dialogue between Krishna and Arjuna?", "options": ["Ramayana", "Upanishads", "Bhagavad Gita", "Puranas"], "correctAnswer": "Bhagavad Gita" },
-          { "question": "Which avatar of Vishnu rescued the earth from the demon Hiranyaksha in the form of a boar?", "options": ["Rama", "Krishna", "Varaha", "Narasimha"], "correctAnswer": "Varaha" },
-          { "question": "What is the Hindu concept of 'duty', 'righteousness', or 'moral law'?", "options": ["Karma", "Moksha", "Dharma", "Artha"], "correctAnswer": "Dharma" },
-          { "question": "Who is the celestial architect and designer of the universe in Hindu mythology?", "options": ["Indra", "Vishwakarma", "Agni", "Surya"], "correctAnswer": "Vishwakarma" },
-          { "question": "Which Hindu deity is depicted with four arms and a discus (Sudarshana Chakra) and conch shell?", "options": ["Brahma", "Shiva", "Vishnu", "Ganesha"], "correctAnswer": "Vishnu" }
-      ]},
-      { "level3": [
-          { "question": "Who is the goddess of knowledge, music, art, and learning?", "options": ["Lakshmi", "Parvati", "Saraswati", "Kali"], "correctAnswer": "Saraswati" },
-          { "question": "The practice of yoga originated in which ancient civilization?", "options": ["Egyptian", "Greek", "Indian (Hindu)", "Chinese"], "correctAnswer": "Indian (Hindu)" },
-          { "question": "Which festival marks the birth of Lord Krishna?", "options": ["Diwali", "Holi", "Janmashtami", "Dussehra"], "correctAnswer": "Janmashtami" },
-          { "question": "What is the term for the cycle of birth, death, and rebirth in Hinduism?", "options": ["Karma", "Dharma", "Samsara", "Moksha"], "correctAnswer": "Samsara" },
-          { "question": "Who is the divine charioteer of Arjuna in the Mahabharata?", "options": ["Indra", "Hanuman", "Krishna", "Bhima"], "correctAnswer": "Krishna" },
-          { "question": "Which mountain is considered the abode of Lord Shiva?", "options": ["Mount Everest", "Mount Kailash", "Himalayas", "Vindhya"], "correctAnswer": "Mount Kailash" },
-          { "question": "What is the concept of 'action' or 'deed' and its consequences in Hinduism?", "options": ["Dharma", "Moksha", "Karma", "Artha"], "correctAnswer": "Karma" },
-          { "question": "Which Hindu deity is associated with the color blue and often depicted playing a flute?", "options": ["Rama", "Shiva", "Krishna", "Vishnu"], "correctAnswer": "Krishna" },
-          { "question": "The 'Trimurti' consists of Brahma, Vishnu, and which other god?", "options": ["Indra", "Agni", "Shiva", "Surya"], "correctAnswer": "Shiva" },
-          { "question": "Which sacred Hindu city is known as the 'Spiritual Capital of India'?", "options": ["Ayodhya", "Mathura", "Varanasi", "Haridwar"], "correctAnswer": "Varanasi" }
-      ]},
-      { "level4": [
-          { "question": "Who is the monkey god, known for his devotion to Lord Rama?", "options": ["Ganesha", "Nandi", "Hanuman", "Garuda"], "correctAnswer": "Hanuman" },
-          { "question": "The sacred thread ceremony (Upanayana) is primarily associated with which varnas (social classes) in Hinduism?", "options": ["Shudras", "Vaishyas", "Kshatriyas & Brahmins", "All varnas"], "correctAnswer": "Kshatriyas & Brahmins" },
-          { "question": "Which festival celebrates the birth of Lord Rama?", "options": ["Diwali", "Dussehra", "Ram Navami", "Janmashtami"], "correctAnswer": "Ram Navami" },
-          { "question": "What are the four goals of human life in Hinduism (Purusharthas)?", "options": ["Dharma, Artha, Kama, Moksha", "Karma, Bhakti, Jnana, Yoga", "Samsara, Maya, Atman, Brahman", "Satya, Ahimsa, Asteya, Brahmacharya"], "correctAnswer": "Dharma, Artha, Kama, Moksha" },
-          { "question": "Which Hindu deity is known as the 'Remover of Obstacles'?", "options": ["Vishnu", "Shiva", "Ganesha", "Indra"], "correctAnswer": "Ganesha" },
-          { "question": "The river Yamuna is associated with the childhood of which Hindu deity?", "options": ["Rama", "Shiva", "Krishna", "Vishnu"], "correctAnswer": "Krishna" },
-          { "question": "What is the Hindu concept of 'illusion' or 'cosmic energy that creates the phenomenal world'?", "options": ["Dharma", "Karma", "Maya", "Atman"], "correctAnswer": "Maya" },
-          { "question": "Which ancient sage is traditionally credited with compiling the Vedas?", "options": ["Valmiki", "Vyasa", "Vishwamitra", "Agastya"], "correctAnswer": "Vyasa" },
-          { "question": "The goddess Parvati is a manifestation of which supreme goddess?", "options": ["Lakshmi", "Saraswati", "Durga", "Kali"], "correctAnswer": "Durga" },
-          { "question": "What is the Hindu tradition of worshipping the divine in female form called?", "options": ["Vaishnavism", "Shaivism", "Shaktism", "Smartism"], "correctAnswer": "Shaktism" }
-      ]},
-      { "level5": [
-          { "question": "Which avatar of Vishnu is known as the 'fish avatar' that saved Manu from the great flood?", "options": ["Kurma", "Matsya", "Varaha", "Narasimha"], "correctAnswer": "Matsya" },
-          { "question": "The sacred fire ritual in Hinduism, performed during ceremonies, is called?", "options": ["Puja", "Arti", "Havan (Yajna)", "Kirtan"], "correctAnswer": "Havan (Yajna)" },
-          { "question": "Who is the celestial king of gods and god of storms, thunder, and rain?", "options": ["Agni", "Varuna", "Indra", "Surya"], "correctAnswer": "Indra" },
-          { "question": "Which of the following is NOT one of the traditional Hindu philosophical schools (Darshanas)?", "options": ["Nyaya", "Yoga", "Buddhism", "Vedanta"], "correctAnswer": "Buddhism" },
-          { "question": "The festival of 'Maha Shivaratri' celebrates the great night of which deity?", "options": ["Lord Vishnu", "Lord Brahma", "Lord Shiva", "Goddess Durga"], "correctAnswer": "Lord Shiva" },
-          { "question": "What is the Hindu concept of the 'individual soul' or 'self'?", "options": ["Brahman", "Atman", "Moksha", "Samsara"], "correctAnswer": "Atman" },
-          { "question": "Which Hindu scripture is considered the 'fifth Veda' and contains stories of gods and goddesses?", "options": ["Upanishads", "Aranyakas", "Brahmanas", "Puranas"], "correctAnswer": "Puranas" },
-          { "question": "Who is the mythical bird mount (vahana) of Lord Vishnu?", "options": ["Nandi", "Garuda", "Peacock", "Swan"], "correctAnswer": "Garuda" },
-          { "question": "The festival of 'Rath Yatra' is most famously associated with which deity and city?", "options": ["Krishna (Mathura)", "Rama (Ayodhya)", "Jagannath (Puri)", "Shiva (Varanasi)"], "correctAnswer": "Jagannath (Puri)" },
-          { "question": "What is the Hindu concept of 'divine universal consciousness' or 'ultimate reality'?", "options": ["Atman", "Brahman", "Maya", "Karma"], "correctAnswer": "Brahman" }
-      ]},
-      { "level6": [
-          { "question": "Who is the god of fire in Hindu mythology?", "options": ["Indra", "Varuna", "Agni", "Vayu"], "correctAnswer": "Agni" },
-          { "question": "The sacred city of Ayodhya is believed to be the birthplace of which Hindu deity?", "options": ["Lord Krishna", "Lord Rama", "Lord Shiva", "Lord Ganesha"], "correctAnswer": "Lord Rama" },
-          { "question": "Which Hindu deity is depicted as half-man, half-lion, an avatar of Vishnu?", "options": ["Varaha", "Matsya", "Narasimha", "Parashurama"], "correctAnswer": "Narasimha" },
-          { "question": "What is the Hindu concept of 'spiritual devotion' or 'loving adoration' of a deity?", "options": ["Jnana Yoga", "Karma Yoga", "Bhakti Yoga", "Raja Yoga"], "correctAnswer": "Bhakti Yoga" },
-          { "question": "The festival of 'Navratri' celebrates the various forms of which goddess?", "options": ["Lakshmi", "Saraswati", "Parvati", "Durga"], "correctAnswer": "Durga" },
-          { "question": "Who is the celestial musician and sage in Hindu mythology?", "options": ["Narada", "Vishwamitra", "Kapila", "Vyasa"], "correctAnswer": "Narada" },
-          { "question": "The 'Upanishads' are primarily concerned with which aspect of Hinduism?", "options": ["Rituals and sacrifices", "Stories of gods", "Philosophical concepts and spiritual knowledge", "Hymns and prayers"], "correctAnswer": "Philosophical concepts and spiritual knowledge" },
-          { "question": "Which Hindu deity is known as the 'Blue-Throated God' due to consuming poison?", "options": ["Vishnu", "Brahma", "Shiva", "Indra"], "correctAnswer": "Shiva" },
-          { "question": "What is the Hindu concept of 'righteous conduct' and 'moral living'?", "options": ["Artha", "Kama", "Dharma", "Moksha"], "correctAnswer": "Dharma" },
-          { "question": "Which ancient city is considered one of the seven sacred cities (Sapta Puri) of Hinduism?", "options": ["Delhi", "Mumbai", "Mathura", "Bengaluru"], "correctAnswer": "Mathura" }
-      ]}
+      {
+        "level5": [
+          {
+            "question": "Who is the Hindu god of fire?",
+            "options": ["Indra", "Varuna", "Agni", "Vayu"],
+            "correctAnswer": "Agni"
+          },
+          {
+            "question": "The concept of 'Dharma' in Hinduism refers to what?",
+            "options": ["Wealth", "Righteous conduct, duty, moral law", "Pleasure", "Liberation"],
+            "correctAnswer": "Righteous conduct, duty, moral law"
+          },
+          {
+            "question": "Which Hindu deity is often depicted riding a peacock?",
+            "options": ["Ganesha", "Kartikeya", "Indra", "Surya"],
+            "correctAnswer": "Kartikeya"
+          },
+          {
+            "question": "What is the name of the traditional Hindu marriage ceremony?",
+            "options": ["Engagement", "Sangeet", "Vivah", "Haldi"],
+            "correctAnswer": "Vivah"
+          },
+          {
+            "question": "Which epic describes the story of the Pandavas and Kauravas?",
+            "options": ["Ramayana", "Mahabharata", "Puranas", "Vedas"],
+            "correctAnswer": "Mahabharata"
+          },
+          {
+            "question": "Who is the goddess of wealth and prosperity?",
+            "options": ["Saraswati", "Parvati", "Durga", "Lakshmi"],
+            "correctAnswer": "Lakshmi"
+          },
+          {
+            "question": "The 'Guru Purnima' festival is dedicated to whom?",
+            "options": ["Lord Rama", "Lord Krishna", "Gurus/Teachers", "Ancestors"],
+            "correctAnswer": "Gurus/Teachers"
+          },
+          {
+            "question": "What is the sacred thread worn by Brahmin males in some Hindu traditions called?",
+            "options": ["Rudraksha", "Tulasi Mala", "Yajnopavita (Janeu)", "Mangalsutra"],
+            "correctAnswer": "Yajnopavita (Janeu)"
+          },
+          {
+            "question": "Which Hindu festival involves fasting and worshipping the moon?",
+            "options": ["Diwali", "Holi", "Karva Chauth", "Raksha Bandhan"],
+            "correctAnswer": "Karva Chauth"
+          },
+          {
+            "question": "What is the name of the divine vehicle of Lord Vishnu, depicted as a large bird?",
+            "options": ["Nandi", "Garuda", "Mushika", "Mayura"],
+            "correctAnswer": "Garuda"
+          }
+        ]
+      },
+      {
+        "level6": [
+          {
+            "question": "Who is the Hindu god of wind?",
+            "options": ["Agni", "Varuna", "Vayu", "Indra"],
+            "correctAnswer": "Vayu"
+          },
+          {
+            "question": "The concept of 'Moksha' is often associated with breaking free from which cycle?",
+            "options": ["Karma", "Samsara (cycle of rebirth)", "Dharma", "Artha"],
+            "correctAnswer": "Samsara (cycle of rebirth)"
+          },
+          {
+            "question": "Which goddess is known as the divine mother and represents cosmic energy?",
+            "options": ["Lakshmi", "Saraswati", "Parvati (or Shakti/Durga)", "Sita"],
+            "correctAnswer": "Parvati (or Shakti/Durga)"
+          },
+          {
+            "question": "What is the name of the traditional Hindu funeral pyre?",
+            "options": ["Stupa", "Mandir", "Cremation Ghat", "Ashram"],
+            "correctAnswer": "Cremation Ghat"
+          },
+          {
+            "question": "Which Hindu epic describes the journey of Rama to rescue Sita from Ravana?",
+            "options": ["Mahabharata", "Ramayana", "Puranas", "Vedas"],
+            "correctAnswer": "Ramayana"
+          },
+          {
+            "question": "Who is the Hindu god of death and justice?",
+            "options": ["Indra", "Kubera", "Yama", "Varuna"],
+            "correctAnswer": "Yama"
+          },
+          {
+            "question": "The 'Ashrama' system in Hinduism divides life into how many stages?",
+            "options": ["2", "3", "4", "5"],
+            "correctAnswer": "4"
+          },
+          {
+            "question": "Which Hindu festival celebrates the bond between brothers and sisters?",
+            "options": ["Diwali", "Holi", "Raksha Bandhan", "Dussehra"],
+            "correctAnswer": "Raksha Bandhan"
+          },
+          {
+            "question": "What is the name of the sacred collection of hymns from ancient India?",
+            "options": ["Upanishads", "Puranas", "Vedas", "Sutras"],
+            "correctAnswer": "Vedas"
+          },
+          {
+            "question": "Which Hindu deity is often depicted with a blue body and a flute?",
+            "options": ["Lord Rama", "Lord Shiva", "Lord Krishna", "Lord Ganesha"],
+            "correctAnswer": "Lord Krishna"
+          }
+        ]
+      }
     ],
     "Indian Politics": [
       {
         "level1": [
           {
-            "question": "What is the minimum age to be eligible to become the President of India?",
+            "question": "Who is the current Prime Minister of India?",
+            "options": ["Rahul Gandhi", "Narendra Modi", "Amit Shah", "Arvind Kejriwal"],
+            "correctAnswer": "Narendra Modi"
+          },
+          {
+            "question": "What is the minimum age to become the President of India?",
             "options": ["25 years", "30 years", "35 years", "40 years"],
             "correctAnswer": "35 years"
           },
           {
-            "question": "How many members are there in the Lok Sabha (House of the People)?",
-            "options": ["540", "543", "550", "552"],
-            "correctAnswer": "543"
+            "question": "The Parliament of India consists of which houses?",
+            "options": ["Lok Sabha and Vidhan Sabha", "Rajya Sabha and Vidhan Parishad", "Lok Sabha and Rajya Sabha", "Vidhan Sabha and Vidhan Parishad"],
+            "correctAnswer": "Lok Sabha and Rajya Sabha"
           },
           {
-            "question": "Who appoints the Chief Justice of India?",
-            "options": ["Prime Minister", "President", "Vice President", "Speaker of Lok Sabha"],
+            "question": "Who is the head of the Indian Union's Executive Branch?",
+            "options": ["Prime Minister", "Chief Justice of India", "President", "Speaker of Lok Sabha"],
             "correctAnswer": "President"
+          },
+          {
+            "question": "The Indian Constitution was adopted on which date?",
+            "options": ["15 August 1947", "26 January 1950", "2 October 1948", "14 November 1949"],
+            "correctAnswer": "26 January 1950"
+          },
+          {
+            "question": "What is the term of office for a Member of Parliament (Lok Sabha)?",
+            "options": ["4 years", "5 years", "6 years", "No fixed term"],
+            "correctAnswer": "5 years"
+          },
+          {
+            "question": "Who is the highest law officer of the Union Government of India?",
+            "options": ["Attorney General of India", "Solicitor General of India", "Chief Justice of India", "Law Minister"],
+            "correctAnswer": "Attorney General of India"
+          },
+          {
+            "question": "The Fundamental Rights in the Indian Constitution are inspired by the constitution of which country?",
+            "options": ["UK", "USA", "Canada", "Australia"],
+            "correctAnswer": "USA"
+          },
+          {
+            "question": "What is the maximum strength of the Lok Sabha?",
+            "options": ["540", "545", "550", "552"],
+            "correctAnswer": "550"
+          },
+          {
+            "question": "Which schedule of the Indian Constitution deals with the allocation of seats in the Rajya Sabha?",
+            "options": ["Third Schedule", "Fourth Schedule", "Fifth Schedule", "Sixth Schedule"],
+            "correctAnswer": "Fourth Schedule"
+          }
+        ]
+      },
+      {
+        "level2": [
+          {
+            "question": "Who appoints the Chief Justice of India?",
+            "options": ["Prime Minister", "Vice President", "President", "Collegium of Judges"],
+            "correctAnswer": "President"
+          },
+          {
+            "question": "The Directive Principles of State Policy (DPSP) in the Indian Constitution are borrowed from which country?",
+            "options": ["UK", "USA", "Ireland", "Germany"],
+            "correctAnswer": "Ireland"
+          },
+          {
+            "question": "What is the minimum age to be a member of the Rajya Sabha?",
+            "options": ["25 years", "30 years", "35 years", "21 years"],
+            "correctAnswer": "30 years"
           },
           {
             "question": "Which article of the Indian Constitution deals with the Right to Equality?",
@@ -530,134 +1382,270 @@
             "correctAnswer": "Article 14"
           },
           {
-            "question": "What is the tenure of a Member of Parliament (MP) in the Lok Sabha?",
-            "options": ["4 years", "5 years", "6 years", "No fixed tenure"],
-            "correctAnswer": "5 years"
+            "question": "Who is the ex-officio Chairman of the Rajya Sabha?",
+            "options": ["President", "Prime Minister", "Vice President", "Speaker of Lok Sabha"],
+            "correctAnswer": "Vice President"
           },
           {
-            "question": "Who is the head of the Indian government?",
-            "options": ["President", "Prime Minister", "Chief Justice", "Vice President"],
-            "correctAnswer": "Prime Minister"
+            "question": "The concept of 'Concurrent List' in the Indian Constitution is taken from the constitution of which country?",
+            "options": ["Canada", "Australia", "South Africa", "Japan"],
+            "correctAnswer": "Australia"
           },
           {
-            "question": "The concept of 'Fundamental Duties' in the Indian Constitution was borrowed from which country's constitution?",
-            "options": ["USA", "UK", "Russia (USSR)", "Canada"],
-            "correctAnswer": "Russia (USSR)"
+            "question": "What is the maximum strength of the Rajya Sabha?",
+            "options": ["245", "250", "260", "275"],
+            "correctAnswer": "250"
           },
           {
-            "question": "How many schedules are there in the Indian Constitution?",
-            "options": ["8", "10", "12", "14"],
-            "correctAnswer": "12"
+            "question": "Which part of the Indian Constitution deals with Fundamental Duties?",
+            "options": ["Part II", "Part III", "Part IVA", "Part V"],
+            "correctAnswer": "Part IVA"
           },
           {
-            "question": "Who among the following is NOT a part of the Indian Parliament?",
-            "options": ["President", "Lok Sabha", "Rajya Sabha", "Supreme Court Judges"],
-            "correctAnswer": "Supreme Court Judges"
+            "question": "Who can dissolve the Lok Sabha before the completion of its term?",
+            "options": ["Chief Justice of India", "Speaker of Lok Sabha", "President (on the advice of PM)", "Vice President"],
+            "correctAnswer": "President (on the advice of PM)"
           },
           {
-            "question": "The Power to issue 'writs' for the enforcement of Fundamental Rights is vested in?",
-            "options": ["Supreme Court and High Courts", "President", "Parliament", "Prime Minister"],
-            "correctAnswer": "Supreme Court and High Courts"
+            "question": "The idea of 'single citizenship' in the Indian Constitution is borrowed from which country?",
+            "options": ["USA", "UK", "Canada", "France"],
+            "correctAnswer": "UK"
           }
         ]
       },
-      { "level2": [
-          { "question": "The 'Preamble' to the Indian Constitution is based on the 'Objective Resolution' moved by whom?", "options": ["Dr. B.R. Ambedkar", "Jawaharlal Nehru", "Sardar Vallabhbhai Patel", "Rajendra Prasad"], "correctAnswer": "Jawaharlal Nehru" },
-          { "question": "What is the maximum strength of the Rajya Sabha (Council of States)?", "options": ["245", "250", "260", "275"], "correctAnswer": "250" },
-          { "question": "The President of India can declare a National Emergency under which Article?", "options": ["Article 352", "Article 356", "Article 360", "Article 370"], "correctAnswer": "Article 352" },
-          { "question": "Who is the ex-officio Chairman of the Rajya Sabha?", "options": ["President", "Vice President", "Prime Minister", "Speaker"], "correctAnswer": "Vice President" },
-          { "question": "The age of retirement for a High Court judge in India is?", "options": ["60 years", "62 years", "65 years", "68 years"], "correctAnswer": "62 years" },
-          { "question": "Which part of the Indian Constitution deals with Fundamental Rights?", "options": ["Part II", "Part III", "Part IV", "Part V"], "correctAnswer": "Part III" },
-          { "question": "What is a 'Zero Hour' in the Indian Parliament?", "options": ["The first hour of a session", "The hour after the Question Hour", "The last hour of a session", "When a no-confidence motion is debated"], "correctAnswer": "The hour after the Question Hour" },
-          { "question": "The idea of 'Directive Principles of State Policy' was borrowed from which country's constitution?", "options": ["USA", "Ireland", "UK", "Germany"], "correctAnswer": "Ireland" },
-          { "question": "Who among the following has the power to pardon a death sentence in India?", "options": ["Chief Justice of India", "Prime Minister", "President", "Governor of the State"], "correctAnswer": "President" },
-          { "question": "Which constitutional amendment reduced the voting age from 21 to 18 years?", "options": ["42nd Amendment", "44th Amendment", "61st Amendment", "73rd Amendment"], "correctAnswer": "61st Amendment" }
-      ]},
-      { "level3": [
-          { "question": "The 'Right to Constitutional Remedies' is guaranteed under which Article?", "options": ["Article 21", "Article 28", "Article 32", "Article 36"], "correctAnswer": "Article 32" },
-          { "question": "Who presides over the joint sitting of both Houses of Parliament in India?", "options": ["President", "Vice President", "Speaker of Lok Sabha", "Prime Minister"], "correctAnswer": "Speaker of Lok Sabha" },
-          { "question": "The concept of 'Judicial Review' in India is taken from which country?", "options": ["UK", "USA", "Canada", "Australia"], "correctAnswer": "USA" },
-          { "question": "What is the minimum age to be eligible to become a member of the Rajya Sabha?", "options": ["25 years", "30 years", "35 years", "21 years"], "correctAnswer": "30 years" },
-          { "question": "The Panchayati Raj System in India was first adopted by which state?", "options": ["Rajasthan", "Andhra Pradesh", "Gujarat", "Uttar Pradesh"], "correctAnswer": "Rajasthan" },
-          { "question": "Who is the guardian of the Indian Constitution?", "options": ["President", "Prime Minister", "Supreme Court", "Parliament"], "correctAnswer": "Supreme Court" },
-          { "question": "A Money Bill in India can be introduced only in which house of Parliament?", "options": ["Rajya Sabha", "Lok Sabha", "Either House", "Joint Session"], "correctAnswer": "Lok Sabha" },
-          { "question": "Which Schedule of the Indian Constitution deals with the allocation of seats in the Rajya Sabha?", "options": ["Third Schedule", "Fourth Schedule", "Fifth Schedule", "Sixth Schedule"], "correctAnswer": "Fourth Schedule" },
-          { "question": "Who appoints the Chief Election Commissioner of India?", "options": ["Prime Minister", "President", "Chief Justice of India", "Parliament"], "correctAnswer": "President" },
-          { "question": "The 73rd and 74th Constitutional Amendment Acts are related to?", "options": ["Fundamental Rights", "Panchayati Raj and Municipalities", "Right to Education", "Goods and Services Tax"], "correctAnswer": "Panchayati Raj and Municipalities" }
-      ]},
-      { "level4": [
-          { "question": "The emergency provisions in the Indian Constitution are based on the constitution of which country?", "options": ["Canada", "Germany (Weimar Constitution)", "Australia", "Japan"], "correctAnswer": "Germany (Weimar Constitution)" },
-          { "question": "What is the maximum number of terms a person can serve as President of India?", "options": ["One term", "Two terms", "Unlimited terms", "Three terms"], "correctAnswer": "Unlimited terms" },
-          { "question": "Who decides on the disqualification of a Member of Parliament (MP) for defection?", "options": ["President", "Chief Justice of India", "Speaker/Chairman of the House", "Election Commission"], "correctAnswer": "Speaker/Chairman of the House" },
-          { "question": "The 'Right to Education' was made a Fundamental Right in India by which amendment?", "options": ["86th Amendment", "91st Amendment", "97th Amendment", "101st Amendment"], "correctAnswer": "86th Amendment" },
-          { "question": "The concept of a 'Welfare State' in the Indian Constitution is enshrined in?", "options": ["Preamble", "Fundamental Rights", "Directive Principles of State Policy", "Fundamental Duties"], "correctAnswer": "Directive Principles of State Policy" },
-          { "question": "What is the minimum age to be appointed as a Governor of a State in India?", "options": ["25 years", "30 years", "35 years", "40 years"], "correctAnswer": "35 years" },
-          { "question": "Which Article of the Indian Constitution deals with the abolition of untouchability?", "options": ["Article 15", "Article 16", "Article 17", "Article 18"], "correctAnswer": "Article 17" },
-          { "question": "Who administers the oath of office to the President of India?", "options": ["Prime Minister", "Chief Justice of India", "Vice President", "Speaker of Lok Sabha"], "correctAnswer": "Chief Justice of India" },
-          { "question": "The system of 'Proportional Representation' is primarily used for the election of which body in India?", "options": ["Lok Sabha", "State Legislative Assemblies", "Rajya Sabha", "Panchayats"], "correctAnswer": "Rajya Sabha" },
-          { "question": "Which committee recommended the establishment of the Panchayati Raj System in India?", "options": ["Ashok Mehta Committee", "Balwant Rai Mehta Committee", "L.M. Singhvi Committee", "G.V.K. Rao Committee"], "correctAnswer": "Balwant Rai Mehta Committee" }
-      ]},
-      { "level5": [
-          { "question": "Which constitutional amendment introduced the Goods and Services Tax (GST) in India?", "options": ["100th Amendment", "101st Amendment", "102nd Amendment", "103rd Amendment"], "correctAnswer": "101st Amendment" },
-          { "question": "Who is the final interpreter of the Indian Constitution?", "options": ["President", "Parliament", "Supreme Court", "Attorney General"], "correctAnswer": "Supreme Court" },
-          { "question": "The term of office of the Vice President of India is?", "options": ["4 years", "5 years", "6 years", "At the pleasure of the President"], "correctAnswer": "5 years" },
-          { "question": "Which Article allows the President to consult the Supreme Court?", "options": ["Article 132", "Article 143", "Article 148", "Article 152"], "correctAnswer": "Article 143" },
-          { "question": "The concept of 'Concurrent List' in the Indian Constitution is borrowed from which country?", "options": ["USA", "UK", "Australia", "Canada"], "correctAnswer": "Australia" },
-          { "question": "Who is the head of the State in India?", "options": ["Prime Minister", "Chief Minister", "President", "Governor"], "correctAnswer": "President" },
-          { "question": "A 'No-Confidence Motion' against the Council of Ministers can be moved only in which house?", "options": ["Rajya Sabha", "Lok Sabha", "Either House", "Joint Session"], "correctAnswer": "Lok Sabha" },
-          { "question": "Which part of the Indian Constitution deals with the Union Territories?", "options": ["Part VI", "Part VII", "Part VIII", "Part IX"], "correctAnswer": "Part VIII" },
-          { "question": "The Speaker of the Lok Sabha submits his resignation to whom?", "options": ["President", "Prime Minister", "Deputy Speaker", "Chief Justice of India"], "correctAnswer": "Deputy Speaker" },
-          { "question": "The 'Right to Property' was removed from the list of Fundamental Rights by which amendment?", "options": ["42nd Amendment", "44th Amendment", "52nd Amendment", "86th Amendment"], "correctAnswer": "44th Amendment" }
-      ]},
-      { "level6": [
-          { "question": "The President's Rule in a state can be imposed under which Article?", "options": ["Article 352", "Article 356", "Article 360", "Article 368"], "correctAnswer": "Article 356" },
-          { "question": "Who is the principal legal advisor to the Government of India?", "options": ["Solicitor General", "Attorney General of India", "Chief Justice of India", "Law Minister"], "correctAnswer": "Attorney General of India" },
-          { "question": "The minimum number of judges of the Supreme Court required to hear any case involving interpretation of the Constitution is?", "options": ["3", "5", "7", "9"], "correctAnswer": "5" },
-          { "question": "Which Schedule of the Indian Constitution lists the officially recognized languages?", "options": ["Sixth Schedule", "Seventh Schedule", "Eighth Schedule", "Ninth Schedule"], "correctAnswer": "Eighth Schedule" },
-          { "question": "The 'Comptroller and Auditor General of India' (CAG) is appointed by whom?", "options": ["Prime Minister", "President", "Parliament", "Chief Justice of India"], "correctAnswer": "President" },
-          { "question": "What is the maximum gap allowed between two sessions of Parliament in India?", "options": ["3 months", "4 months", "6 months", "1 year"], "correctAnswer": "6 months" },
-          { "question": "Which type of emergency has been declared maximum number of times in India?", "options": ["National Emergency", "State Emergency (President's Rule)", "Financial Emergency", "None of the above"], "correctAnswer": "State Emergency (President's Rule)" },
-          { "question": "The concept of 'Single Citizenship' in India is borrowed from which country?", "options": ["USA", "Canada", "UK", "France"], "correctAnswer": "UK" },
-          { "question": "Who acts as the Chairman of the National Development Council?", "options": ["President", "Vice President", "Prime Minister", "Finance Minister"], "correctAnswer": "Prime Minister" },
-          { "question": "Which Article of the Indian Constitution provides for the establishment of the Election Commission?", "options": ["Article 320", "Article 324", "Article 326", "Article 328"], "correctAnswer": "Article 324" }
-      ]}
+      {
+        "level3": [
+          {
+            "question": "Who is the final interpreter of the Indian Constitution?",
+            "options": ["President", "Parliament", "Supreme Court", "Prime Minister"],
+            "correctAnswer": "Supreme Court"
+          },
+          {
+            "question": "The concept of 'Judicial Review' in India is taken from which country?",
+            "options": ["UK", "USA", "Canada", "Germany"],
+            "correctAnswer": "USA"
+          },
+          {
+            "question": "What is the minimum age to become a member of the Legislative Assembly (MLA)?",
+            "options": ["18 years", "21 years", "25 years", "30 years"],
+            "correctAnswer": "25 years"
+          },
+          {
+            "question": "Which article deals with the 'Right to Constitutional Remedies'?",
+            "options": ["Article 16", "Article 20", "Article 32", "Article 40"],
+            "correctAnswer": "Article 32"
+          },
+          {
+            "question": "Who presides over the joint sitting of both Houses of Parliament?",
+            "options": ["President", "Vice President", "Speaker of Lok Sabha", "Prime Minister"],
+            "correctAnswer": "Speaker of Lok Sabha"
+          },
+          {
+            "question": "The procedure for amendment of the Indian Constitution is taken from which country?",
+            "options": ["USA", "UK", "South Africa", "Australia"],
+            "correctAnswer": "South Africa"
+          },
+          {
+            "question": "What is the maximum duration between two sessions of Parliament?",
+            "options": ["3 months", "4 months", "6 months", "1 year"],
+            "correctAnswer": "6 months"
+          },
+          {
+            "question": "Which part of the Indian Constitution deals with the Union Territories?",
+            "options": ["Part VI", "Part VII", "Part VIII", "Part IX"],
+            "correctAnswer": "Part VIII"
+          },
+          {
+            "question": "Who is the Chairperson of the NITI Aayog?",
+            "options": ["President", "Prime Minister", "Finance Minister", "Home Minister"],
+            "correctAnswer": "Prime Minister"
+          },
+          {
+            "question": "The concept of 'President's Rule' in a state is provided under which article?",
+            "options": ["Article 352", "Article 356", "Article 360", "Article 368"],
+            "correctAnswer": "Article 356"
+          }
+        ]
+      },
+      {
+        "level4": [
+          {
+            "question": "Who was the first President of India?",
+            "options": ["Jawaharlal Nehru", "Sardar Vallabhbhai Patel", "Dr. Rajendra Prasad", "Dr. S. Radhakrishnan"],
+            "correctAnswer": "Dr. Rajendra Prasad"
+          },
+          {
+            "question": "The 'Preamble' to the Indian Constitution is taken from the constitution of which country?",
+            "options": ["UK", "USA", "Canada", "France"],
+            "correctAnswer": "USA"
+          },
+          {
+            "question": "What is the minimum age to be a voter in India?",
+            "options": ["16 years", "18 years", "21 years", "25 years"],
+            "correctAnswer": "18 years"
+          },
+          {
+            "question": "Which article of the Indian Constitution abolishes untouchability?",
+            "options": ["Article 15", "Article 16", "Article 17", "Article 18"],
+            "correctAnswer": "Article 17"
+          },
+          {
+            "question": "Who administers the oath of office to the President of India?",
+            "options": ["Vice President", "Prime Minister", "Chief Justice of India", "Speaker of Lok Sabha"],
+            "correctAnswer": "Chief Justice of India"
+          },
+          {
+            "question": "The 'cabinet form of government' in India is borrowed from which country?",
+            "options": ["USA", "Canada", "UK", "Germany"],
+            "correctAnswer": "UK"
+          },
+          {
+            "question": "What is the financial emergency provided under which article?",
+            "options": ["Article 352", "Article 356", "Article 360", "Article 368"],
+            "correctAnswer": "Article 360"
+          },
+          {
+            "question": "Which part of the Indian Constitution deals with Panchayats?",
+            "options": ["Part IX", "Part X", "Part XI", "Part XII"],
+            "correctAnswer": "Part IX"
+          },
+          {
+            "question": "Who is the legal advisor to the State Government?",
+            "options": ["Advocate General", "Attorney General", "Solicitor General", "Chief Secretary"],
+            "correctAnswer": "Advocate General"
+          },
+          {
+            "question": "The concept of 'Adult Franchise' in India means what?",
+            "options": ["Right to vote for adults above 21", "Right to vote for all citizens above 18 without discrimination", "Right to vote only for literate adults", "Right to vote only for property owners"],
+            "correctAnswer": "Right to vote for all citizens above 18 without discrimination"
+          }
+        ]
+      },
+      {
+        "level5": [
+          {
+            "question": "Who is the Supreme Commander of the Indian Armed Forces?",
+            "options": ["Prime Minister", "Defence Minister", "President", "Chief of Defence Staff"],
+            "correctAnswer": "President"
+          },
+          {
+            "question": "The 'procedure for election of the President' in India is borrowed from which country?",
+            "options": ["USA", "Ireland", "Canada", "Germany"],
+            "correctAnswer": "Ireland"
+          },
+          {
+            "question": "What is the maximum number of members in a State Legislative Assembly?",
+            "options": ["400", "450", "500", "550"],
+            "correctAnswer": "500"
+          },
+          {
+            "question": "Which article deals with 'Protection of life and personal liberty'?",
+            "options": ["Article 19", "Article 20", "Article 21", "Article 22"],
+            "correctAnswer": "Article 21"
+          },
+          {
+            "question": "Who acts as the President of India when both the President and Vice President are absent?",
+            "options": ["Prime Minister", "Chief Justice of India", "Speaker of Lok Sabha", "Senior-most Governor"],
+            "correctAnswer": "Chief Justice of India"
+          },
+          {
+            "question": "The concept of 'Equality, Liberty, and Fraternity' in the Preamble of the Indian Constitution is inspired by which revolution?",
+            "options": ["American Revolution", "French Revolution", "Russian Revolution", "Glorious Revolution"],
+            "correctAnswer": "French Revolution"
+          },
+          {
+            "question": "What is the minimum number of members required to be present in a house of Parliament to conduct its business (Quorum)?",
+            "options": ["One-tenth of the total members", "One-fifth of the total members", "One-third of the total members", "One-fourth of the total members"],
+            "correctAnswer": "One-tenth of the total members"
+          },
+          {
+            "question": "Which part of the Indian Constitution deals with Emergency Provisions?",
+            "options": ["Part XV", "Part XVI", "Part XVII", "Part XVIII"],
+            "correctAnswer": "Part XVIII"
+          },
+          {
+            "question": "Who decides the disputes regarding the election of the President and Vice President of India?",
+            "options": ["Election Commission", "Parliament", "Supreme Court", "High Court"],
+            "correctAnswer": "Supreme Court"
+          },
+          {
+            "question": "The 'Advisory Jurisdiction of the Supreme Court' is provided under which article?",
+            "options": ["Article 143", "Article 132", "Article 136", "Article 139"],
+            "correctAnswer": "Article 143"
+          }
+        ]
+      },
+      {
+        "level6": [
+          {
+            "question": "Who was the first Vice President of India?",
+            "options": ["Jawaharlal Nehru", "Dr. Rajendra Prasad", "Dr. S. Radhakrishnan", "Sardar Vallabhbhai Patel"],
+            "correctAnswer": "Dr. S. Radhakrishnan"
+          },
+          {
+            "question": "The 'suspension of Fundamental Rights during emergency' in India is inspired by which country?",
+            "options": ["USA", "Germany (Weimar Constitution)", "UK", "Japan"],
+            "correctAnswer": "Germany (Weimar Constitution)"
+          },
+          {
+            "question": "What is the maximum number of members in a State Legislative Council (Vidhan Parishad)?",
+            "options": ["One-third of the total members of the Assembly", "One-fourth of the total members of the Assembly", "Half of the total members of the Assembly", "Two-thirds of the total members of the Assembly"],
+            "correctAnswer": "One-third of the total members of the Assembly"
+          },
+          {
+            "question": "Which article deals with 'Freedom of Speech and Expression'?",
+            "options": ["Article 14", "Article 19", "Article 21", "Article 22"],
+            "correctAnswer": "Article 19"
+          },
+          {
+            "question": "Who is the Chairperson of the Inter-State Council?",
+            "options": ["President", "Prime Minister", "Home Minister", "Chief Justice of India"],
+            "correctAnswer": "Prime Minister"
+          },
+          {
+            "question": "The 'Joint Sitting of Parliament' in India is borrowed from which country?",
+            "options": ["UK", "USA", "Australia", "Canada"],
+            "correctAnswer": "Australia"
+          },
+          {
+            "question": "What is the maximum strength of the Supreme Court judges (including CJI)?",
+            "options": ["31", "34", "30", "33"],
+            "correctAnswer": "34"
+          },
+          {
+            "question": "Which part of the Indian Constitution deals with Official Language?",
+            "options": ["Part XIV", "Part XV", "Part XVI", "Part XVII"],
+            "correctAnswer": "Part XVII"
+          },
+          {
+            "question": "Who appoints the Governor of a state?",
+            "options": ["Prime Minister", "Chief Minister", "President", "Chief Justice of High Court"],
+            "correctAnswer": "President"
+          },
+          {
+            "question": "The 'Writ Jurisdiction' of the Supreme Court and High Courts is provided under which articles?",
+            "options": ["Article 32 & Article 226", "Article 131 & Article 132", "Article 136 & Article 139", "Article 141 & Article 142"],
+            "correctAnswer": "Article 32 & Article 226"
+          }
+        ]
+      }
     ],
     "World History": [
       {
         "level1": [
-          {
-            "question": "Which ancient civilization built the pyramids of Giza?",
-            "options": ["Roman", "Greek", "Egyptian", "Mayan"],
-            "correctAnswer": "Egyptian"
-          },
-          {
-            "question": "Who was the first emperor of Rome?",
-            "options": ["Julius Caesar", "Nero", "Augustus", "Constantine the Great"],
-            "correctAnswer": "Augustus"
-          },
           {
             "question": "In which year did World War I begin?",
             "options": ["1905", "1914", "1918", "1939"],
             "correctAnswer": "1914"
           },
           {
-            "question": "Who invented the printing press?",
-            "options": ["Leonardo da Vinci", "Johannes Gutenberg", "Isaac Newton", "Galileo Galilei"],
-            "correctAnswer": "Johannes Gutenberg"
-          },
-          {
-            "question": "The fall of the Berlin Wall symbolized the end of which major global conflict?",
-            "options": ["World War II", "Vietnam War", "Cold War", "Korean War"],
-            "correctAnswer": "Cold War"
-          },
-          {
-            "question": "Which famous explorer is credited with the first circumnavigation of the Earth?",
-            "options": ["Christopher Columbus", "Vasco da Gama", "Ferdinand Magellan", "James Cook"],
-            "correctAnswer": "Ferdinand Magellan"
+            "question": "Who was the first Roman Emperor?",
+            "options": ["Julius Caesar", "Augustus", "Nero", "Constantine"],
+            "correctAnswer": "Augustus"
           },
           {
             "question": "The French Revolution began in which year?",
-            "options": ["1776", "1789", "1800", "1815"],
+            "options": ["1776", "1789", "1804", "1815"],
             "correctAnswer": "1789"
           },
           {
@@ -666,77 +1654,307 @@
             "correctAnswer": "Adolf Hitler"
           },
           {
-            "question": "Which ancient city was buried by the eruption of Mount Vesuvius in 79 AD?",
-            "options": ["Athens", "Rome", "Pompeii", "Troy"],
-            "correctAnswer": "Pompeii"
+            "question": "The ancient city of Rome was founded on which river?",
+            "options": ["Nile", "Tiber", "Rhine", "Seine"],
+            "correctAnswer": "Tiber"
           },
           {
-            "question": "The Magna Carta was signed in which country?",
-            "options": ["France", "Germany", "England", "Italy"],
-            "correctAnswer": "England"
+            "question": "Which country built the first pyramids?",
+            "options": ["Egypt", "Greece", "China", "Mexico"],
+            "correctAnswer": "Egypt"
+          },
+          {
+            "question": "Who discovered America in 1492?",
+            "options": ["Vasco da Gama", "Ferdinand Magellan", "Christopher Columbus", "Marco Polo"],
+            "correctAnswer": "Christopher Columbus"
+          },
+          {
+            "question": "The Fall of the Berlin Wall occurred in which year?",
+            "options": ["1985", "1989", "1991", "1995"],
+            "correctAnswer": "1989"
+          },
+          {
+            "question": "Which empire was ruled by Genghis Khan?",
+            "options": ["Roman Empire", "Ottoman Empire", "Mongol Empire", "Persian Empire"],
+            "correctAnswer": "Mongol Empire"
+          },
+          {
+            "question": "The Renaissance period originated in which country?",
+            "options": ["France", "England", "Italy", "Germany"],
+            "correctAnswer": "Italy"
           }
         ]
       },
-      { "level2": [
-          { "question": "Who was the Roman Emperor who made Christianity the state religion?", "options": ["Nero", "Diocletian", "Constantine the Great", "Augustus"], "correctAnswer": "Constantine the Great" },
-          { "question": "The Industrial Revolution originated in which country?", "options": ["France", "Germany", "Great Britain", "United States"], "correctAnswer": "Great Britain" },
-          { "question": "Which historical event is associated with the phrase 'Boston Tea Party'?", "options": ["American Civil War", "American Revolution", "War of 1812", "French and Indian War"], "correctAnswer": "American Revolution" },
-          { "question": "Who was the leader of the Soviet Union during World War II?", "options": ["Vladimir Lenin", "Leon Trotsky", "Joseph Stalin", "Nikita Khrushchev"], "correctAnswer": "Joseph Stalin" },
-          { "question": "The ancient Olympic Games were held in which country?", "options": ["Rome", "Egypt", "Greece", "China"], "correctAnswer": "Greece" },
-          { "question": "Which empress ruled Russia for over 30 years in the 18th century?", "options": ["Elizabeth I", "Catherine the Great", "Maria Theresa", "Victoria"], "correctAnswer": "Catherine the Great" },
-          { "question": "The construction of the Great Wall of China began during which dynasty?", "options": ["Han Dynasty", "Ming Dynasty", "Qin Dynasty", "Tang Dynasty"], "correctAnswer": "Qin Dynasty" },
-          { "question": "Who wrote 'The Communist Manifesto' with Friedrich Engels?", "options": ["Vladimir Lenin", "Mao Zedong", "Karl Marx", "Che Guevara"], "correctAnswer": "Karl Marx" },
-          { "question": "Which famous battle ended Napoleon Bonaparte's reign?", "options": ["Battle of Austerlitz", "Battle of Trafalgar", "Battle of Waterloo", "Battle of Leipzig"], "correctAnswer": "Battle of Waterloo" },
-          { "question": "The Renaissance period originated in which country?", "options": ["France", "England", "Italy", "Germany"], "correctAnswer": "Italy" }
-      ]},
-      { "level3": [
-          { "question": "Which ancient civilization developed the concept of zero?", "options": ["Egyptian", "Greek", "Indian", "Babylonian"], "correctAnswer": "Indian" },
-          { "question": "Who was the first President of the United States?", "options": ["Thomas Jefferson", "Abraham Lincoln", "George Washington", "John Adams"], "correctAnswer": "George Washington" },
-          { "question": "The discovery of America by Christopher Columbus happened in which year?", "options": ["1490", "1492", "1500", "1520"], "correctAnswer": "1492" },
-          { "question": "Which event is considered the start of World War II?", "options": ["Bombing of Pearl Harbor", "Invasion of Poland", "Battle of Britain", "Fall of France"], "correctAnswer": "Invasion of Poland" },
-          { "question": "Who was the last pharaoh of ancient Egypt?", "options": ["Hatshepsut", "Nefertiti", "Cleopatra VII", "Tutankhamun"], "correctAnswer": "Cleopatra VII" },
-          { "question": "The Ottoman Empire was dissolved after which major war?", "options": ["Crimean War", "World War I", "Balkan Wars", "Russo-Turkish War"], "correctAnswer": "World War I" },
-          { "question": "The 'Black Death' (Bubonic Plague) originated in which continent?", "options": ["Africa", "Asia", "Europe", "North America"], "correctAnswer": "Asia" },
-          { "question": "Who was the leader of the Soviet Union when the Berlin Wall fell?", "options": ["Leonid Brezhnev", "Mikhail Gorbachev", "Boris Yeltsin", "Vladimir Putin"], "correctAnswer": "Mikhail Gorbachev" },
-          { "question": "Which ancient civilization is known for its advanced water supply system (aqueducts)?", "options": ["Greek", "Roman", "Persian", "Chinese"], "correctAnswer": "Roman" },
-          { "question": "The 'Storming of the Bastille' is a key event in which revolution?", "options": ["American Revolution", "Russian Revolution", "French Revolution", "Glorious Revolution"], "correctAnswer": "French Revolution" }
-      ]},
-      { "level4": [
-          { "question": "Which Roman emperor divided the Roman Empire into two parts?", "options": ["Julius Caesar", "Constantine", "Diocletian", "Theodosius I"], "correctAnswer": "Diocletian" },
-          { "question": "The Cold War was primarily a geopolitical rivalry between the USA and which country?", "options": ["China", "Germany", "Soviet Union", "Japan"], "correctAnswer": "Soviet Union" },
-          { "question": "Who was the primary author of the American Declaration of Independence?", "options": ["George Washington", "Benjamin Franklin", "Thomas Jefferson", "John Adams"], "correctAnswer": "Thomas Jefferson" },
-          { "question": "Which European city was divided by a wall from 1961 to 1989?", "options": ["Paris", "London", "Berlin", "Vienna"], "correctAnswer": "Berlin" },
-          { "question": "The 'Silk Road' was an ancient network of trade routes connecting the East and West. Which emperor initiated its expansion?", "options": ["Emperor Qin Shi Huang", "Emperor Wu of Han", "Kublai Khan", "Genghis Khan"], "correctAnswer": "Emperor Wu of Han" },
-          { "question": "Who was the first woman to fly solo across the Atlantic Ocean?", "options": ["Amelia Earhart", "Bessie Coleman", "Jacqueline Cochran", "Harriet Quimby"], "correctAnswer": "Amelia Earhart" },
-          { "question": "The fall of Constantinople in 1453 marked the end of which empire?", "options": ["Roman Empire", "Byzantine Empire", "Ottoman Empire", "Sassanian Empire"], "correctAnswer": "Byzantine Empire" },
-          { "question": "Which conflict is often referred to as the 'War to end all Wars'?", "options": ["World War II", "Korean War", "World War I", "Vietnam War"], "correctAnswer": "World War I" },
-          { "question": "Who was the famous Greek philosopher who tutored Alexander the Great?", "options": ["Socrates", "Plato", "Aristotle", "Pythagoras"], "correctAnswer": "Aristotle" },
-          { "question": "The 'Meiji Restoration' occurred in which country?", "options": ["China", "Korea", "Japan", "Vietnam"], "correctAnswer": "Japan" }
-      ]},
-      { "level5": [
-          { "question": "Which Queen of England reigned for over 63 years, during a period of great industrial and imperial expansion?", "options": ["Elizabeth I", "Mary I", "Victoria", "Anne"], "correctAnswer": "Victoria" },
-          { "question": "The ancient city of Troy is located in which modern-day country?", "options": ["Greece", "Italy", "Turkey", "Egypt"], "correctAnswer": "Turkey" },
-          { "question": "Who was the leader of the Soviet Union who initiated the policies of 'Glasnost' and 'Perestroika'?", "options": ["Leonid Brezhnev", "Mikhail Gorbachev", "Boris Yeltsin", "Nikita Khrushchev"], "correctAnswer": "Mikhail Gorbachev" },
-          { "question": "The 'Boston Massacre' was a key event leading up to which revolution?", "options": ["French Revolution", "American Revolution", "Russian Revolution", "Glorious Revolution"], "correctAnswer": "American Revolution" },
-          { "question": "Which empire was founded by Cyrus the Great?", "options": ["Roman Empire", "Greek Empire", "Persian Empire", "Egyptian Empire"], "correctAnswer": "Persian Empire" },
-          { "question": "Who was the first man to step on the Moon?", "options": ["Buzz Aldrin", "Michael Collins", "Neil Armstrong", "Yuri Gagarin"], "correctAnswer": "Neil Armstrong" },
-          { "question": "The 'Reign of Terror' was a period during which revolution?", "options": ["American Revolution", "Russian Revolution", "French Revolution", "Chinese Revolution"], "correctAnswer": "French Revolution" },
-          { "question": "Which Roman emperor is known for persecuting Christians and allegedly 'fiddling while Rome burned'?", "options": ["Augustus", "Tiberius", "Nero", "Caligula"], "correctAnswer": "Nero" },
-          { "question": "The 'Opium Wars' were fought between China and which country?", "options": ["Japan", "USA", "Great Britain", "France"], "correctAnswer": "Great Britain" },
-          { "question": "Which historical figure is associated with the phrase 'I have a dream'?", "options": ["Nelson Mandela", "Martin Luther King Jr.", "Abraham Lincoln", "Malcolm X"], "correctAnswer": "Martin Luther King Jr." }
-      ]},
-      { "level6": [
-          { "question": "The 'Treaty of Versailles' officially ended which major war?", "options": ["World War II", "Cold War", "World War I", "Korean War"], "correctAnswer": "World War I" },
-          { "question": "Who was the last Tsar of Russia?", "options": ["Peter the Great", "Ivan the Terrible", "Nicholas II", "Alexander II"], "correctAnswer": "Nicholas II" },
-          { "question": "Which ancient wonder was a massive lighthouse located in Egypt?", "options": ["Pyramids of Giza", "Hanging Gardens of Babylon", "Lighthouse of Alexandria", "Colossus of Rhodes"], "correctAnswer": "Lighthouse of Alexandria" },
-          { "question": "The 'Cuban Missile Crisis' involved the USA, Cuba, and which other country?", "options": ["China", "Soviet Union", "North Korea", "Vietnam"], "correctAnswer": "Soviet Union" },
-          { "question": "Who led the Protestant Reformation?", "options": ["John Calvin", "Martin Luther", "Henry VIII", "Jan Hus"], "correctAnswer": "Martin Luther" },
-          { "question": "Which historical figure is known for leading the Mongol Empire?", "options": ["Attila the Hun", "Genghis Khan", "Tamerlane", "Kublai Khan"], "correctAnswer": "Genghis Khan" },
-          { "question": "The 'Declaration of the Rights of Man and of the Citizen' was a key document of which revolution?", "options": ["American Revolution", "French Revolution", "Russian Revolution", "Haitian Revolution"], "correctAnswer": "French Revolution" },
-          { "question": "Who was the first female Prime Minister of the United Kingdom?", "options": ["Theresa May", "Margaret Thatcher", "Liz Truss", "Jacinda Ardern"], "correctAnswer": "Margaret Thatcher" },
-          { "question": "Which event is widely considered to have started the 'Space Race'?", "options": ["First man on the moon", "Launch of Sputnik 1", "Creation of NASA", "Challenger disaster"], "correctAnswer": "Launch of Sputnik 1" },
-          { "question": "The 'Enlightenment' was an intellectual movement primarily associated with which century?", "options": ["16th century", "17th century", "18th century", "19th century"], "correctAnswer": "18th century" }
-      ]}
+      {
+        "level2": [
+          {
+            "question": "Which event is considered the start of World War II?",
+            "options": ["Attack on Pearl Harbor", "Invasion of Poland", "Battle of Stalingrad", "D-Day"],
+            "correctAnswer": "Invasion of Poland"
+          },
+          {
+            "question": "Who wrote 'The Communist Manifesto' with Friedrich Engels?",
+            "options": ["Vladimir Lenin", "Joseph Stalin", "Karl Marx", "Mao Zedong"],
+            "correctAnswer": "Karl Marx"
+          },
+          {
+            "question": "The ancient Greek Olympics were held in honor of which god?",
+            "options": ["Poseidon", "Apollo", "Zeus", "Ares"],
+            "correctAnswer": "Zeus"
+          },
+          {
+            "question": "The invention of the printing press is credited to whom?",
+            "options": ["Leonardo da Vinci", "Johannes Gutenberg", "Isaac Newton", "Galileo Galilei"],
+            "correctAnswer": "Johannes Gutenberg"
+          },
+          {
+            "question": "Which famous battle ended Napoleon Bonaparte's reign?",
+            "options": ["Battle of Trafalgar", "Battle of Austerlitz", "Battle of Waterloo", "Battle of Leipzig"],
+            "correctAnswer": "Battle of Waterloo"
+          },
+          {
+            "question": "The 'Cold War' was primarily a geopolitical rivalry between the USA and which other power?",
+            "options": ["China", "Soviet Union", "Germany", "Japan"],
+            "correctAnswer": "Soviet Union"
+          },
+          {
+            "question": "Who was the last Tsar of Russia?",
+            "options": ["Peter the Great", "Ivan the Terrible", "Nicholas II", "Alexander I"],
+            "correctAnswer": "Nicholas II"
+          },
+          {
+            "question": "The 'Magna Carta' was signed in which year?",
+            "options": ["1066", "1215", "1492", "1776"],
+            "correctAnswer": "1215"
+          },
+          {
+            "question": "Which ancient civilization developed the concept of democracy?",
+            "options": ["Roman", "Egyptian", "Greek", "Persian"],
+            "correctAnswer": "Greek"
+          },
+          {
+            "question": "The 'Industrial Revolution' began in which country?",
+            "options": ["France", "Germany", "United States", "Great Britain"],
+            "correctAnswer": "Great Britain"
+          }
+        ]
+      },
+      {
+        "level3": [
+          {
+            "question": "Who was the primary author of the American Declaration of Independence?",
+            "options": ["George Washington", "Benjamin Franklin", "Thomas Jefferson", "John Adams"],
+            "correctAnswer": "Thomas Jefferson"
+          },
+          {
+            "question": "The 'Black Death' pandemic occurred in which century?",
+            "options": ["12th", "13th", "14th", "15th"],
+            "correctAnswer": "14th"
+          },
+          {
+            "question": "Which explorer was the first to circumnavigate the Earth?",
+            "options": ["Christopher Columbus", "Vasco da Gama", "Ferdinand Magellan", "James Cook"],
+            "correctAnswer": "Ferdinand Magellan"
+          },
+          {
+            "question": "The ancient civilization of Mesopotamia was located between which two rivers?",
+            "options": ["Nile and Amazon", "Indus and Ganges", "Tigris and Euphrates", "Yellow and Yangtze"],
+            "correctAnswer": "Tigris and Euphrates"
+          },
+          {
+            "question": "Who led the Soviet Union during World War II?",
+            "options": ["Vladimir Lenin", "Leon Trotsky", "Joseph Stalin", "Nikita Khrushchev"],
+            "correctAnswer": "Joseph Stalin"
+          },
+          {
+            "question": "The 'Fall of Constantinople' (to the Ottoman Turks) occurred in which year?",
+            "options": ["1353", "1453", "1553", "1653"],
+            "correctAnswer": "1453"
+          },
+          {
+            "question": "Which Roman emperor made Christianity the state religion?",
+            "options": ["Augustus", "Nero", "Diocletian", "Constantine the Great"],
+            "correctAnswer": "Constantine the Great"
+          },
+          {
+            "question": "The 'Opium Wars' were fought primarily between Great Britain and which country?",
+            "options": ["India", "Japan", "China", "Russia"],
+            "correctAnswer": "China"
+          },
+          {
+            "question": "Who was the leader of the Soviet Union when the Berlin Wall fell?",
+            "options": ["Leonid Brezhnev", "Yuri Andropov", "Mikhail Gorbachev", "Boris Yeltsin"],
+            "correctAnswer": "Mikhail Gorbachev"
+          },
+          {
+            "question": "The 'Meiji Restoration' took place in which country?",
+            "options": ["China", "Korea", "Japan", "Vietnam"],
+            "correctAnswer": "Japan"
+          }
+        ]
+      },
+      {
+        "level4": [
+          {
+            "question": "Which European country initiated the 'Age of Discovery'?",
+            "options": ["Spain", "Portugal", "England", "France"],
+            "correctAnswer": "Portugal"
+          },
+          {
+            "question": "The 'Battle of Gettysburg' was a turning point in which war?",
+            "options": ["American Revolutionary War", "War of 1812", "American Civil War", "Mexican-American War"],
+            "correctAnswer": "American Civil War"
+          },
+          {
+            "question": "Who was the legendary founder of the city of Rome?",
+            "options": ["Julius Caesar", "Romulus", "Remus", "Augustus"],
+            "correctAnswer": "Romulus"
+          },
+          {
+            "question": "The 'Berlin Blockade' was imposed by the Soviet Union on which city?",
+            "options": ["Paris", "London", "Berlin", "Vienna"],
+            "correctAnswer": "Berlin"
+          },
+          {
+            "question": "Which civilization built Machu Picchu?",
+            "options": ["Aztec", "Maya", "Inca", "Olmec"],
+            "correctAnswer": "Inca"
+          },
+          {
+            "question": "Who was the Queen of England during the Spanish Armada's defeat?",
+            "options": ["Mary I", "Victoria", "Elizabeth I", "Anne Boleyn"],
+            "correctAnswer": "Elizabeth I"
+          },
+          {
+            "question": "The 'Cuban Missile Crisis' involved the USA, Cuba, and which other country?",
+            "options": ["China", "Soviet Union", "North Korea", "Vietnam"],
+            "correctAnswer": "Soviet Union"
+          },
+          {
+            "question": "Who led the Protestant Reformation?",
+            "options": ["John Calvin", "Martin Luther", "Henry VIII", "Jan Hus"],
+            "correctAnswer": "Martin Luther"
+          },
+          {
+            "question": "Which historical figure is known for leading the Mongol Empire?",
+            "options": ["Attila the Hun", "Genghis Khan", "Tamerlane", "Kublai Khan"],
+            "correctAnswer": "Genghis Khan"
+          },
+          {
+            "question": "The 'Declaration of the Rights of Man and of the Citizen' was a key document of which revolution?",
+            "options": ["American Revolution", "French Revolution", "Russian Revolution", "Haitian Revolution"],
+            "correctAnswer": "French Revolution"
+          }
+        ]
+      },
+      {
+        "level5": [
+          {
+            "question": "Who was the first female Prime Minister of the United Kingdom?",
+            "options": ["Theresa May", "Margaret Thatcher", "Liz Truss", "Jacinda Ardern"],
+            "correctAnswer": "Margaret Thatcher"
+          },
+          {
+            "question": "Which event is widely considered to have started the 'Space Race'?",
+            "options": ["First man on the moon", "Launch of Sputnik 1", "Creation of NASA", "Challenger disaster"],
+            "correctAnswer": "Launch of Sputnik 1"
+          },
+          {
+            "question": "The 'Enlightenment' was an intellectual movement primarily associated with which century?",
+            "options": ["16th century", "17th century", "18th century", "19th century"],
+            "correctAnswer": "18th century"
+          },
+          {
+            "question": "Who was the last pharaoh of ancient Egypt?",
+            "options": ["Hatshepsut", "Tutankhamun", "Cleopatra VII", "Ramesses II"],
+            "correctAnswer": "Cleopatra VII"
+          },
+          {
+            "question": "The 'Great Famine' of Ireland was caused by a blight affecting which crop?",
+            "options": ["Wheat", "Barley", "Potato", "Corn"],
+            "correctAnswer": "Potato"
+          },
+          {
+            "question": "Which major war was fought between the British and the Boers in South Africa?",
+            "options": ["Zulu Wars", "Boer Wars", "Xhosa Wars", "Anglo-Egyptian War"],
+            "correctAnswer": "Boer Wars"
+          },
+          {
+            "question": "Who invented the telephone?",
+            "options": ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Guglielmo Marconi"],
+            "correctAnswer": "Alexander Graham Bell"
+          },
+          {
+            "question": "The 'Cultural Revolution' was a sociopolitical movement in which country?",
+            "options": ["Russia", "Vietnam", "China", "North Korea"],
+            "correctAnswer": "China"
+          },
+          {
+            "question": "Which ancient wonder of the world was located in Alexandria, Egypt?",
+            "options": ["Hanging Gardens of Babylon", "Colossus of Rhodes", "Lighthouse of Alexandria", "Statue of Zeus at Olympia"],
+            "correctAnswer": "Lighthouse of Alexandria"
+          },
+          {
+            "question": "Who led the Bolshevik Revolution in Russia?",
+            "options": ["Joseph Stalin", "Leon Trotsky", "Vladimir Lenin", "Mikhail Gorbachev"],
+            "correctAnswer": "Vladimir Lenin"
+          }
+        ]
+      },
+      {
+        "level6": [
+          {
+            "question": "The 'Treaty of Versailles' officially ended which war?",
+            "options": ["World War II", "Franco-Prussian War", "World War I", "Korean War"],
+            "correctAnswer": "World War I"
+          },
+          {
+            "question": "Which Roman emperor is famous for 'fiddling while Rome burned'?",
+            "options": ["Augustus", "Caligula", "Nero", "Trajan"],
+            "correctAnswer": "Nero"
+          },
+          {
+            "question": "Who was the influential figure known as the 'Father of Modern Economics'?",
+            "options": ["John Maynard Keynes", "Adam Smith", "Milton Friedman", "David Ricardo"],
+            "correctAnswer": "Adam Smith"
+          },
+          {
+            "question": "The 'Silk Road' was an ancient trade route connecting which two major regions?",
+            "options": ["Europe and Africa", "Europe and Asia", "Africa and Asia", "North America and South America"],
+            "correctAnswer": "Europe and Asia"
+          },
+          {
+            "question": "Which country was divided into East and West after World War II?",
+            "options": ["Japan", "Korea", "Germany", "Vietnam"],
+            "correctAnswer": "Germany"
+          },
+          {
+            "question": "Who led the non-violent resistance movement in India against British rule?",
+            "options": ["Jawaharlal Nehru", "Subhas Chandra Bose", "Mahatma Gandhi", "Sardar Vallabhbhai Patel"],
+            "correctAnswer": "Mahatma Gandhi"
+          },
+          {
+            "question": "The 'Punic Wars' were fought between Rome and which rival city-state?",
+            "options": ["Athens", "Sparta", "Carthage", "Babylon"],
+            "correctAnswer": "Carthage"
+          },
+          {
+            "question": "Which ancient civilization developed hieroglyphics?",
+            "options": ["Greek", "Roman", "Egyptian", "Mesopotamian"],
+            "correctAnswer": "Egyptian"
+          },
+          {
+            "question": "Who was the famous Queen of France executed during the French Revolution?",
+            "options": ["Catherine the Great", "Elizabeth I", "Marie Antoinette", "Joan of Arc"],
+            "correctAnswer": "Marie Antoinette"
+          },
+          {
+            "question": "The 'Truman Doctrine' was a foreign policy initiative by which country?",
+            "options": ["United Kingdom", "Soviet Union", "United States", "France"],
+            "correctAnswer": "United States"
+          }
+        ]
+      }
     ]
   }
 }
