@@ -382,22 +382,24 @@
         // Quiz State Variables
         let currentLang = 'en'; // Default language
         let currentCategory = '';
-        let currentLevel = 1; // Tracks current level within a category (1 to 6)
-        let currentQuestionIndex = 0; // Tracks question index within the current level's 10 questions
+        let currentLevel = 1; // Tracks current level within a category
+        let currentQuestionIndex = 0; // Tracks question index within the current level's questions
         let score = 0;
         let correctAnswersCount = 0;
         let incorrectAnswersCount = 0;
         let timerId;
         const TIME_PER_QUESTION = 25; // seconds
         let timeLeft = TIME_PER_QUESTION;
-        let selectedQuestions = {}; // Will hold either englishQuestions or hindiQuestions
+        let selectedQuestions = {}; // Will hold either externalQuestions or hindiQuestions
         let currentLevelQuestions = []; // Questions for the current category and level
-        let askedQuestionGlobalIndices = new Set(); // To keep track of asked questions for "All Sections"
+        let askedQuestionGlobalIds = new Set(); // To keep track of asked questions for "All Sections"
 
         // Global variable to store questions from JSON
         let externalQuestions = {}; // Will be loaded from questions.json
 
         // Hindi Questions (Original content, will be preserved)
+        // Note: These questions are hardcoded with direct 'question' and 'answer' strings.
+        // The externalQuestions (from JSON) are also expected to have direct strings now.
         const hindiQuestions = {
             "विज्ञान": [
                 {
@@ -1247,11 +1249,9 @@
             document.body.classList.add(`lang-${lang}`);
 
             // Set questions based on language
-            if (currentLang === 'en') {
-                selectedQuestions = externalQuestions; // Use loaded JSON questions for English
-            } else {
-                selectedQuestions = hindiQuestions; // Use hardcoded questions for Hindi
-            }
+            // For English, use externalQuestions (from JSON). For Hindi, use hardcoded.
+            // The structure of questions (question, options, answer) is assumed to be consistent.
+            selectedQuestions = (currentLang === 'en') ? externalQuestions : hindiQuestions;
 
             updateTextsForLanguage();
             displayCategories(); // Redraw categories based on selected language's available questions
@@ -1263,7 +1263,7 @@
                 startTitle.textContent = "ProQuiz Challenge";
                 startSubtitle.textContent = "Test your knowledge across various domains!";
                 categorySelectTitle.textContent = "Select a Category:";
-                allSectionsButton.textContent = "Play All Categories (English)";
+                allSectionsButton.textContent = "All Sections (Mixed)";
                 changeLanguageButton.textContent = "Change Language";
                 resultsTitle.textContent = "Quiz Results";
                 quitQuizButton.textContent = "Quit Quiz";
@@ -1272,11 +1272,11 @@
                 showAnswersButton.textContent = "Show Answers";
                 tryDiffCatButton.textContent = "Try Different Category";
                 homeButton.textContent = "Home";
-            } else {
+            } else { // Hindi
                 startTitle.textContent = "प्रोक्विज़ चैलेंज";
                 startSubtitle.textContent = "विभिन्न विषयों पर अपने ज्ञान का परीक्षण करें!";
                 categorySelectTitle.textContent = "एक श्रेणी चुनें:";
-                allSectionsButton.textContent = "सभी श्रेणी खेलें (हिंदी)";
+                allSectionsButton.textContent = "सभी अनुभाग (मिश्रित)";
                 changeLanguageButton.textContent = "भाषा बदलें";
                 resultsTitle.textContent = "क्विज़ परिणाम";
                 quitQuizButton.textContent = "क्विज़ छोड़ें";
@@ -1290,7 +1290,11 @@
 
         function displayCategories() {
             categorySelection.innerHTML = ''; // Clear existing buttons
+            // Add category buttons for categories found in selectedQuestions (either external or hindi)
             for (const category in selectedQuestions) {
+                // Skip "All Sections" from dynamic category buttons if it's a special case
+                if (category === "All Sections") continue;
+
                 const button = document.createElement('button');
                 button.classList.add('action-button');
                 button.textContent = category;
@@ -1300,38 +1304,96 @@
             }
         }
 
+        // Constants for "All Sections" mode
+        const ALL_SECTIONS_QUESTIONS_PER_LEVEL = 36;
+        const ALL_SECTIONS_TOTAL_LEVELS = 10;
+        const ALL_SECTIONS_PASSING_SCORE = 30; // Correct answers needed to pass
+
         function startGame(categoryName) {
             currentCategory = categoryName;
             currentLevel = 1;
             score = 0;
             correctAnswersCount = 0;
             incorrectAnswersCount = 0;
-            askedQuestionGlobalIndices.clear(); // Reset for a new game
+            askedQuestionGlobalIds.clear(); // Reset for a new game/category
 
-            loadLevelQuestions(); // Load questions for the first level of the selected category
+            loadLevelQuestions();
             startQuizTimer();
             switchScreen('quiz-screen');
         }
 
         function loadLevelQuestions() {
-            if (selectedQuestions[currentCategory] && selectedQuestions[currentCategory].length > 0) {
-                // Find the level object
-                const levelData = selectedQuestions[currentCategory].find(l => l.level === currentLevel);
-
-                if (levelData) {
-                    currentLevelQuestions = shuffleArray([...levelData.questions]); // Shuffle questions for the current level
-                    currentQuestionIndex = 0; // Start from the first question of the new level
-                    loadQuestion();
-                } else {
-                    // This means all levels for the category are completed, or invalid level
-                    endQuiz(true); // Treat as category completion
+            if (currentCategory === "All Sections") {
+                // For "All Sections", get random questions from all categories
+                currentLevelQuestions = getRandomQuestionsFromAllCategories(ALL_SECTIONS_QUESTIONS_PER_LEVEL);
+                if (currentLevelQuestions.length === 0) {
+                    showMessageBox("Not enough unique questions available for 'All Sections' mode. Please try again later or select a specific category.");
+                    switchScreen('start-screen');
+                    return;
                 }
             } else {
-                showMessageBox("No questions available for this category.");
-                switchScreen('start-screen');
+                // For specific categories, use the level-based structure from JSON or hardcoded
+                if (selectedQuestions[currentCategory] && selectedQuestions[currentCategory].length > 0) {
+                    const levelData = selectedQuestions[currentCategory].find(l => l.level === currentLevel);
+
+                    if (levelData) {
+                        currentLevelQuestions = shuffleArray([...levelData.questions]); // Shuffle questions for the current level
+                    } else {
+                        // This means all 6 levels for the category are completed
+                        endQuiz(true); // Treat as category completion
+                        return; // Exit to prevent further execution
+                    }
+                } else {
+                    showMessageBox("No questions available for this category or level.");
+                    switchScreen('start-screen');
+                    return; // Exit
+                }
             }
+            currentQuestionIndex = 0; // Start from the first question of the new level/set
+            loadQuestion();
         }
 
+        function getRandomQuestionsFromAllCategories(count) {
+            let allAvailableQuestions = [];
+            for (const category in externalQuestions) { // Always use externalQuestions for "All Sections"
+                if (externalQuestions.hasOwnProperty(category)) {
+                    externalQuestions[category].forEach(levelData => {
+                        allAvailableQuestions.push(...levelData.questions);
+                    });
+                }
+            }
+
+            // Filter out questions already asked in the current "All Sections" session
+            let poolOfNewQuestions = allAvailableQuestions.filter(q => !askedQuestionGlobalIds.has(q.id));
+
+            // If we don't have enough *new* questions, and if there are enough total questions,
+            // we can reset the 'asked' set to allow questions to be reused.
+            // This prevents the quiz from stopping prematurely if the user plays many mixed levels.
+            if (poolOfNewQuestions.length < count && allAvailableQuestions.length >= count) {
+                console.warn("Not enough unique questions for 'All Sections' level. Reusing questions.");
+                askedQuestionGlobalIds.clear(); // Clear all asked questions for "All Sections"
+                poolOfNewQuestions = [...allAvailableQuestions]; // Reset the pool
+            } else if (poolOfNewQuestions.length < count && allAvailableQuestions.length < count) {
+                // If even the total available questions are less than required for one level, show error
+                console.error("Critical: Total questions available are less than required for one 'All Sections' level.");
+                return []; // Return empty array to signal failure
+            }
+
+
+            const selected = [];
+            for (let i = 0; i < count; i++) {
+                if (poolOfNewQuestions.length === 0) {
+                    // This case should ideally be caught by the check above, but as a safeguard
+                    console.warn("Ran out of questions while selecting for 'All Sections'.");
+                    break;
+                }
+                const randomIndex = Math.floor(Math.random() * poolOfNewQuestions.length);
+                const question = poolOfNewQuestions.splice(randomIndex, 1)[0];
+                selected.push(question);
+                askedQuestionGlobalIds.add(question.id); // Mark this question as asked
+            }
+            return selected;
+        }
 
         function loadQuestion() {
             clearTimeout(timerId); // Clear any previous timer
@@ -1343,6 +1405,7 @@
 
             if (currentQuestionIndex < currentLevelQuestions.length) {
                 const questionData = currentLevelQuestions[currentQuestionIndex];
+                // IMPORTANT FIX: Access question and answer directly as they are strings in JSON
                 questionText.textContent = questionData.question;
                 optionsContainer.innerHTML = '';
 
@@ -1351,12 +1414,19 @@
                     button.classList.add('action-button', 'option');
                     button.textContent = option;
                     button.dataset.index = index; // Store original index for animation delay
+                    // IMPORTANT FIX: Pass questionData.answer directly
                     button.onclick = () => checkAnswer(option, questionData.answer);
                     optionsContainer.appendChild(button);
                 });
 
-                currentLevelTopic.textContent = `${currentCategory} - Level ${currentLevel}`;
-                questionCounter.textContent = `${currentQuestionIndex + 1} / ${currentLevelQuestions.length}`;
+                // Update topic display based on mode
+                if (currentCategory === "All Sections") {
+                    currentLevelTopic.textContent = `${currentLang === 'en' ? 'Mixed Categories' : 'मिश्रित श्रेणियाँ'} - Level ${currentLevel}`;
+                    questionCounter.textContent = `${currentQuestionIndex + 1} / ${ALL_SECTIONS_QUESTIONS_PER_LEVEL}`;
+                } else {
+                    currentLevelTopic.textContent = `${currentCategory} - Level ${currentLevel}`;
+                    questionCounter.textContent = `${currentQuestionIndex + 1} / ${currentLevelQuestions.length}`;
+                }
                 startQuizTimer();
             } else {
                 // All questions in the current level answered
@@ -1382,6 +1452,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerId);
                     incorrectAnswersCount++;
+                    // Update score display immediately for visual feedback
                     scoreDisplay.querySelector('span:first-child').textContent = correctAnswersCount;
                     scoreDisplay.querySelector('span:last-child').textContent = correctAnswersCount + incorrectAnswersCount;
                     // Automatically move to next question if time runs out
@@ -1424,35 +1495,47 @@
             clearTimeout(timerId);
             switchScreen('results-screen');
 
+            let totalQuestionsInLevel;
+            let passingScore;
+            let totalLevelsForMode;
+
+            if (currentCategory === "All Sections") {
+                totalQuestionsInLevel = ALL_SECTIONS_QUESTIONS_PER_LEVEL;
+                passingScore = ALL_SECTIONS_PASSING_SCORE;
+                totalLevelsForMode = ALL_SECTIONS_TOTAL_LEVELS;
+            } else {
+                totalQuestionsInLevel = currentLevelQuestions.length;
+                passingScore = 7; // Assuming 70% for 10 questions/level (7 correct)
+                totalLevelsForMode = selectedQuestions[currentCategory].length; // 6 levels per category
+            }
+
+
             // Update scores
             scoreDisplay.querySelector('span:first-child').textContent = correctAnswersCount;
-            scoreDisplay.querySelector('span:last-child').textContent = currentLevelQuestions.length; // Total questions for the level
+            scoreDisplay.querySelector('span:last-child').textContent = totalQuestionsInLevel;
 
-            // Level completion status
-            const totalQuestionsInLevel = currentLevelQuestions.length;
             const percentage = (correctAnswersCount / totalQuestionsInLevel) * 100;
-            const passingScore = 70; // Example: 70% to pass the level
 
             let statusMessage = "";
             let nextLevelPossible = false;
             let currentLevelTopicText = "";
 
-            if (currentLang === 'en') {
-                currentLevelTopicText = `${currentCategory} - Level ${currentLevel}`;
-                if (percentage >= passingScore) {
-                    statusMessage = `Congratulations! You passed Level ${currentLevel} of ${currentCategory} with <span class="correct">${percentage.toFixed(0)}%</span> accuracy.`;
-                    nextLevelPossible = true; // Allow moving to next level
-                } else {
-                    statusMessage = `You completed Level ${currentLevel} of ${currentCategory} with <span class="wrong">${percentage.toFixed(0)}%</span> accuracy. You need to score at least ${passingScore}% to unlock the next level.`;
-                    nextLevelPossible = false; // Do not allow moving to next level
-                }
-            } else { // Hindi
-                currentLevelTopicText = `${currentCategory} - स्तर ${currentLevel}`;
-                if (percentage >= passingScore) {
-                    statusMessage = `बधाई हो! आपने ${currentCategory} के स्तर ${currentLevel} को <span class="correct">${percentage.toFixed(0)}%</span> सटीकता के साथ पास किया।`;
+            if (currentCategory === "All Sections") {
+                currentLevelTopicText = `${currentLang === 'en' ? 'Mixed Categories' : 'मिश्रित श्रेणियाँ'} - Level ${currentLevel}`;
+                if (correctAnswersCount >= passingScore) {
+                    statusMessage = `${currentLang === 'en' ? 'Congratulations! You passed Level' : 'बधाई हो! आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of Mixed Categories with' : 'मिश्रित श्रेणियों के साथ'} <span class="correct">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy.' : 'सटीकता।'}`;
                     nextLevelPossible = true;
                 } else {
-                    statusMessage = `आपने ${currentCategory} के स्तर ${currentLevel} को <span class="wrong">${percentage.toFixed(0)}%</span> सटीकता के साथ पूरा किया। अगले स्तर को अनलॉक करने के लिए आपको कम से कम ${passingScore}% स्कोर करने की आवश्यकता है।`;
+                    statusMessage = `${currentLang === 'en' ? 'You completed Level' : 'आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of Mixed Categories with' : 'मिश्रित श्रेणियों के साथ'} <span class="wrong">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy. You need' : 'सटीकता। आपको चाहिए'} ${passingScore} ${currentLang === 'en' ? 'correct answers to unlock the next level.' : 'सही उत्तर अगले स्तर को अनलॉक करने के लिए।'}`;
+                    nextLevelPossible = false;
+                }
+            } else { // Specific Category
+                currentLevelTopicText = `${currentCategory} - Level ${currentLevel}`;
+                if (percentage >= passingScore) {
+                    statusMessage = `${currentLang === 'en' ? 'Congratulations! You passed Level' : 'बधाई हो! आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of' : 'का'} ${currentCategory} ${currentLang === 'en' ? 'with' : 'के साथ'} <span class="correct">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy.' : 'सटीकता।'}`;
+                    nextLevelPossible = true;
+                } else {
+                    statusMessage = `${currentLang === 'en' ? 'You completed Level' : 'आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of' : 'का'} ${currentCategory} ${currentLang === 'en' ? 'with' : 'के साथ'} <span class="wrong">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy. You need to score at least' : 'सटीकता। आपको कम से कम स्कोर करने की आवश्यकता है'} ${passingScore}% ${currentLang === 'en' ? 'to unlock the next level.' : 'अगले स्तर को अनलॉक करने के लिए।'}`;
                     nextLevelPossible = false;
                 }
             }
@@ -1461,11 +1544,14 @@
             topicLevelDisplay.textContent = currentLevelTopicText;
 
             // Show/Hide Next Level button
-            const totalLevelsInCurrentCategory = selectedQuestions[currentCategory].length;
-            if (nextLevelPossible && currentLevel < totalLevelsInCurrentCategory) {
+            if (nextLevelPossible && currentLevel < totalLevelsForMode) {
                 nextLevelButton.style.display = 'inline-block';
             } else {
                 nextLevelButton.style.display = 'none';
+                if (currentLevel >= totalLevelsForMode && correctAnswersCount >= passingScore) {
+                    // All levels completed for the current mode/category
+                    levelCompletionStatus.innerHTML = `${currentLang === 'en' ? 'Fantastic! You have completed all levels for this mode!' : 'शानदार! आपने इस मोड के सभी स्तर पूरे कर लिए हैं!'}`;
+                }
             }
 
             // Always show retry, show answers, try different category, home
@@ -1480,12 +1566,12 @@
 
         function displayAnswers() {
             answersRevealContainer.innerHTML = '';
-            answersRevealContainer.innerHTML = '<h3>Answers for this Level:</h3>';
+            answersRevealContainer.innerHTML = `<h3>${currentLang === 'en' ? 'Answers for this Level:' : 'इस स्तर के उत्तर:'}</h3>`;
             currentLevelQuestions.forEach((q, index) => {
                 const p = document.createElement('p');
                 const qNum = index + 1;
                 const questionTextSnippet = q.question.length > 50 ? q.question.substring(0, 50) + '...' : q.question;
-                p.innerHTML = `<strong>Q${qNum}:</strong> ${questionTextSnippet}<br> <span style="color:#48bb78;">Correct Answer: ${q.answer}</span>`;
+                p.innerHTML = `<strong>Q${qNum}:</strong> ${questionTextSnippet}<br> <span style="color:#48bb78;">${currentLang === 'en' ? 'Correct Answer:' : 'सही उत्तर:'} ${q.answer}</span>`;
                 answersRevealContainer.appendChild(p);
             });
         }
@@ -1504,15 +1590,16 @@
             score = 0; // Reset score for retry
             correctAnswersCount = 0;
             incorrectAnswersCount = 0;
+            // For "All Sections", clear asked questions for a fresh retry of the level
+            if (currentCategory === "All Sections") {
+                askedQuestionGlobalIds.clear(); // Ensure fresh questions for retry
+            }
             loadLevelQuestions(); // Reload questions for the same level
             switchScreen('quiz-screen');
         });
 
         showAnswersButton.addEventListener('click', () => {
-            // This function is already called by endQuiz, but can be explicitly triggered if needed
-            // For now, it's just a placeholder as answers are shown by default on results screen.
-            // If the user wants a toggle, this would be where to implement it.
-            showMessageBox("Answers are displayed below the score summary.");
+            showMessageBox(currentLang === 'en' ? "Answers are displayed below the score summary." : "उत्तर स्कोर सारांश के नीचे प्रदर्शित किए गए हैं।");
         });
 
         tryDiffCatButton.addEventListener('click', () => {
@@ -1522,16 +1609,19 @@
 
         homeButton.addEventListener('click', () => {
             clearTimeout(timerId);
+            currentLevel = 1; // Reset level on going home
+            askedQuestionGlobalIds.clear(); // Clear on going home
             switchScreen('language-screen'); // Go back to language selection
         });
 
         quitQuizButton.addEventListener('click', () => {
             clearTimeout(timerId);
-            askedQuestionGlobalIndices.clear();
+            currentLevel = 1; // Reset level on quitting
+            askedQuestionGlobalIds.clear(); // Clear on quitting
             switchScreen('start-screen');
         });
 
-        // --- Initialization --
+        // --- Initialization ---
         // Fetch questions.json
         fetch('questions.json')
             .then(response => {
@@ -1548,7 +1638,7 @@
             })
             .catch(error => {
                 console.error("Error loading questions.json:", error);
-                showMessageBox("Failed to load quiz questions. Please check the 'questions.json' file.");
+                showMessageBox(currentLang === 'en' ? "Failed to load quiz questions. Please check the 'questions.json' file and ensure it's valid JSON." : "क्विज़ प्रश्न लोड करने में विफल। कृपया 'questions.json' फ़ाइल की जाँच करें और सुनिश्चित करें कि यह वैध JSON है।");
                 // Fallback or disable English quiz if JSON fails to load
                 langEnButton.disabled = true;
             });
@@ -1561,36 +1651,10 @@
             switchScreen('language-screen');
         });
 
-        // The "All Sections" button will now trigger a mode where questions are randomly picked from all categories
-        // For simplicity, I'll update it to just show all categories, and the user can pick.
-        // If "All Sections" means a mixed-category, mixed-level quiz, that would require more complex logic
-        // for tracking unique questions across categories/levels.
-        // Given the request for "6 levels per category, 10 questions per level", playing "All Sections"
-        // in a linear mixed-category, mixed-level fashion for 360 questions (36 levels) is
-        // not feasible in a simple quiz structure.
-        // I will make "All Sections" button behave as a general "Play all categories" which still lets user select.
-        // The current implementation displays categories on start screen, so this button can just be removed
-        // or re-purposed. Given the original HTML has it, I will assume it means selecting all categories at once.
-        // This is complex for the given level/category structure.
+        // Event listener for the "All Sections" button
+        allSectionsButton.addEventListener('click', () => startGame("All Sections"));
 
-        // Re-evaluating "all-sections-button": The initial HTML had it as `grid-column: 1 / -1;`,
-        // implying it's a prominent button, possibly for a full quiz.
-        // Given the new structure of categories and levels, a single "All Sections" button that plays all 360
-        // questions linearly is not practical without a much more complex state management
-        // (e.g., tracking current question out of 360, which category/level it belongs to, etc.).
-
-        // The user's request emphasized "6 levels per category, 10 questions per level".
-        // Therefore, I will make the "All Sections" button act as a general way to return to the
-        // category selection after starting in a specific category, or perhaps a button to
-        // just *list* all sections/categories available.
-        // For now, I will rename it to 'Play All Categories' and keep it simple. It will just trigger `displayCategories`
-        // if not already on the start screen. This button seems to be meant for selecting a category or all sections
-        // from the `start-screen`. The `displayCategories` function already shows buttons for each category.
-        // Let's remove the `all-sections-button` event listener, as the categories are now dynamically generated.
-        // It's still present in the HTML, so I'll set its text, but its functionality is now implicitly handled
-        // by the category buttons.
-
-        // The initial language screen is active, then it transitions to start screen.
+        // Initial screen setup
         switchScreen('language-screen');
         document.getElementById('lang-select-title').textContent = "Select Language / भाषा चुनें"; // Ensure this is set on load
     </script>
