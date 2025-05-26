@@ -287,7 +287,12 @@
 </head>
 <body>
     <div class="quiz-container">
-        <div id="language-screen" class="screen active">
+        <div id="intro-screen" class="screen active">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-sky-300 mb-6 font-orbitron">Shubham presents Quiz Challenge</h1>
+            <button id="start-intro-button" class="action-button language-select">Start Quiz</button>
+        </div>
+
+        <div id="language-screen" class="screen">
             <h1 id="lang-select-title">Select Language / भाषा चुनें</h1>
             <div class="grid-container mt-6">
                 <button id="lang-en" class="action-button language-select">English</button>
@@ -344,11 +349,13 @@
 
     <script>
         // DOM Elements
+        const introScreen = document.getElementById('intro-screen');
         const languageScreen = document.getElementById('language-screen');
         const startScreen = document.getElementById('start-screen');
         const quizScreen = document.getElementById('quiz-screen');
         const resultsScreen = document.getElementById('results-screen');
 
+        const startIntroButton = document.getElementById('start-intro-button');
         const langEnButton = document.getElementById('lang-en');
         const langHiButton = document.getElementById('lang-hi');
         const langSelectTitle = document.getElementById('lang-select-title');
@@ -388,17 +395,573 @@
         let correctAnswersCount = 0;
         let incorrectAnswersCount = 0;
         let timerId;
-        const TIME_PER_QUESTION = 25; // seconds
-        let timeLeft = TIME_PER_QUESTION;
+        const DEFAULT_TIME_PER_QUESTION = 25; // seconds for non-math questions
+        const MATH_TIME_PER_QUESTION = 40; // seconds for math questions
+        let timeLeft = DEFAULT_TIME_PER_QUESTION; // Initial value
+        let currentQuestionTimeLimit = DEFAULT_TIME_PER_QUESTION; // Stores the time limit for the current question
         let currentLevelQuestions = []; // Questions for the current category and level
         let askedQuestionGlobalIds = new Set(); // To keep track of asked questions for "All Sections"
 
-        // Global variable to store questions from JSON
-        let externalQuestions = {}; // Will be loaded from questions.json
+        // Global variable to store questions directly embedded
+        // ONLY the requested categories are included here.
+        const externalQuestions = {
+            "Space": [
+                {
+                    "level": 1,
+                    "questions": [
+                        {"id": "space_1_1", "question": "Which planet is known as the 'Red Planet'?", "options": ["Venus", "Mars", "Jupiter", "Saturn"], "answer": "Mars"},
+                        {"id": "space_1_2", "question": "What is the name of our galaxy?", "options": ["Andromeda", "Triangulum", "Milky Way", "Sombrero"], "answer": "Milky Way"},
+                        {"id": "space_1_3", "question": "Which celestial body orbits the Earth?", "options": ["Sun", "Mars", "Moon", "Venus"], "answer": "Moon"},
+                        {"id": "space_1_4", "question": "What force keeps planets in orbit around the Sun?", "options": ["Magnetism", "Gravity", "Friction", "Centrifugal force"], "answer": "Gravity"},
+                        {"id": "space_1_5", "question": "Which is the largest planet in our solar system?", "options": ["Earth", "Saturn", "Neptune", "Jupiter"], "answer": "Jupiter"},
+                        {"id": "space_1_6", "question": "What is a 'shooting star' actually?", "options": ["A distant star falling", "A comet", "A meteoroid burning up in atmosphere", "An asteroid"], "answer": "A meteoroid burning up in atmosphere"},
+                        {"id": "space_1_7", "question": "Which planet is famous for its prominent ring system?", "options": ["Jupiter", "Uranus", "Neptune", "Saturn"], "answer": "Saturn"},
+                        {"id": "space_1_8", "question": "What is the primary gas that makes up the Sun?", "options": ["Oxygen", "Nitrogen", "Hydrogen", "Helium"], "answer": "Hydrogen"},
+                        {"id": "space_1_9", "question": "The first human to walk on the Moon was:", "options": ["Buzz Aldrin", "Yuri Gagarin", "Neil Armstrong", "Michael Collins"], "answer": "Neil Armstrong"},
+                        {"id": "space_1_10", "question": "What is the term for a region of spacetime where gravity is so strong that nothing, not even light, can escape?", "options": ["White Dwarf", "Neutron Star", "Black Hole", "Red Giant"], "answer": "Black Hole"}
+                    ]
+                },
+                {
+                    "level": 2,
+                    "questions": [
+                        {"id": "space_2_1", "question": "Which spacecraft is currently exploring Mars?", "options": ["Voyager 1", "Perseverance Rover", "New Horizons", "Juno"], "answer": "Perseverance Rover"},
+                        {"id": "space_2_2", "question": "What is the name of the theory explaining the origin of the universe?", "options": ["Steady State Theory", "Big Bang Theory", "Pulsating Universe Theory", "Inflationary Universe Theory"], "answer": "Big Bang Theory"},
+                        {"id": "space_2_3", "question": "Apart from Earth, which other planet in our solar system is known to have liquid water on its surface?", "options": ["Mars", "Venus", "Europa (Moon of Jupiter)", "Enceladus (Moon of Saturn)"], "answer": "Mars"},
+                        {"id": "space_2_4", "question": "What is a 'light-year' a measure of?", "options": ["Time", "Speed", "Distance", "Brightness"], "answer": "Distance"},
+                        {"id": "space_2_5", "question": "Which space telescope primarily observes in the infrared spectrum and was launched in 2021?", "options": ["Hubble Space Telescope", "Chandra X-ray Observatory", "James Webb Space Telescope", "Kepler Space Telescope"], "answer": "James Webb Space Telescope"},
+                        {"id": "space_2_6", "question": "What phenomenon causes the 'northern lights' (Aurora Borealis)?", "options": ["Reflected sunlight", "Volcanic eruptions", "Solar wind interacting with Earth's magnetic field", "Atmospheric pollution"], "answer": "Solar wind interacting with Earth's magnetic field"},
+                        {"id": "space_2_7", "question": "Which dwarf planet was reclassified from a planet in 2006?", "options": ["Eris", "Makemake", "Haumea", "Pluto"], "answer": "Pluto"},
+                        {"id": "space_2_8", "question": "What is the name of the first artificial satellite launched into space?", "options": ["Explorer 1", "Vanguard 1", "Sputnik 1", "Telstar 1"], "answer": "Sputnik 1"},
+                        {"id": "space_2_9", "question": "The asteroid belt is located between which two planets?", "options": ["Earth and Mars", "Mars and Jupiter", "Jupiter and Saturn", "Saturn and Uranus"], "answer": "Mars and Jupiter"},
+                        {"id": "space_2_10", "question": "What type of star is our Sun?", "options": ["Red Giant", "White Dwarf", "Blue Supergiant", "Yellow Dwarf"], "answer": "Yellow Dwarf"}
+                    ]
+                },
+                {
+                    "level": 3,
+                    "questions": [
+                        {"id": "space_3_1", "question": "Which mission was the first to successfully land humans on the Moon?", "options": ["Apollo 8", "Apollo 11", "Apollo 13", "Gemini 4"], "answer": "Apollo 11"},
+                        {"id": "space_3_2", "question": "What are 'exoplanets'?", "options": ["Planets within our solar system", "Planets outside our solar system", "Moons of other planets", "Asteroids with atmospheres"], "answer": "Planets outside our solar system"},
+                        {"id": "space_3_3", "question": "Which space agency developed the Falcon 9 reusable rocket?", "options": ["NASA", "ESA", "Roscosmos", "SpaceX"], "answer": "SpaceX"},
+                        {"id": "space_3_4", "question": "What is the ultimate fate of a very massive star after a supernova?", "options": ["White Dwarf", "Red Giant", "Neutron Star or Black Hole", "Yellow Dwarf"], "answer": "Neutron Star or Black Hole"},
+                        {"id": "space_3_5", "question": "What is the name of the visible boundary of a black hole, beyond which nothing can escape?", "options": ["Singularity", "Ergosphere", "Event Horizon", "Accretion Disk"], "answer": "Event Horizon"},
+                        {"id": "space_3_6", "question": "Which celestial phenomenon is caused by a massive star collapsing under its own gravity, leading to a huge explosion?", "options": ["Nova", "Pulsar", "Quasar", "Supernova"], "answer": "Supernova"},
+                        {"id": "space_3_7", "question": "What is the primary objective of the Artemis program?", "options": ["Sending probes to Jupiter", "Establishing a permanent human presence on Mars", "Returning humans to the Moon and preparing for Mars", "Exploring beyond the solar system"], "answer": "Returning humans to the Moon and preparing for Mars"},
+                        {"id": "space_3_8", "question": "The concept of 'dark matter' and 'dark energy' is primarily used to explain what about the universe?", "options": ["The formation of stars", "The expansion and structure of the universe", "The behavior of black holes", "The origin of galaxies"], "answer": "The expansion and structure of the universe"},
+                        {"id": "space_3_9", "question": "What is the largest moon in our solar system, orbiting Jupiter?", "options": ["Titan", "Ganymede", "Callisto", "Io"], "answer": "Ganymede"},
+                        {"id": "space_3_10", "question": "Which mission was the first to send a probe to the outer planets (Jupiter, Saturn, Uranus, Neptune)?", "options": ["Pioneer 10", "Voyager 1", "New Horizons", "Cassini-Huygens"], "answer": "Voyager 1"}
+                    ]
+                },
+                {
+                    "level": 4,
+                    "questions": [
+                        {"id": "space_4_1", "question": "Which country successfully landed its Chang'e 4 probe on the far side of the Moon?", "options": ["USA", "Russia", "China", "India"], "answer": "China"},
+                        {"id": "space_4_2", "question": "What is the term for a small, rocky body orbiting the Sun, especially in the main belt between Mars and Jupiter?", "options": ["Comet", "Meteoroid", "Asteroid", "Planetoid"], "answer": "Asteroid"},
+                        {"id": "space_4_3", "question": "What phenomenon occurs when a celestial body passes directly between a larger body and an observer, obscuring the view of the larger body?", "options": ["Eclipse", "Occultation", "Transit", "Conjunction"], "answer": "Transit"},
+                        {"id": "space_4_4", "question": "Which space telescope was launched in 1990 and revolutionized our understanding of the universe through visible light observations?", "options": ["Chandra X-ray Observatory", "Spitzer Space Telescope", "Hubble Space Telescope", "Kepler Space Telescope"], "answer": "Hubble Space Telescope"},
+                        {"id": "space_4_5", "question": "What is the 'Oort Cloud' primarily composed of?", "options": ["Asteroids", "Gas and Dust", "Icy Planetesimals and Comets", "Small dwarf planets"], "answer": "Icy Planetesimals and Comets"},
+                        {"id": "space_4_6", "question": "Which probe recently completed a flyby of Pluto and is now heading into the Kuiper Belt?", "options": ["Voyager 1", "Juno", "New Horizons", "Cassini"], "answer": "New Horizons"},
+                        {"id": "space_4_7", "question": "What is the process by which stars generate energy?", "options": ["Nuclear Fission", "Chemical Reaction", "Gravitational Collapse", "Nuclear Fusion"], "answer": "Nuclear Fusion"},
+                        {"id": "space_4_8", "question": "Which of Jupiter's moons is considered the most volcanically active body in the solar system?", "options": ["Europa", "Ganymede", "Callisto", "Io"], "answer": "Io"},
+                        {"id": "space_4_9", "question": "What is the name of the spacecraft that successfully touched the Sun's upper atmosphere (corona) in 2021?", "options": ["Solar Orbiter", "Parker Solar Probe", "Helios 2", "Messenger"], "answer": "Parker Solar Probe"},
+                        {"id": "space_4_10", "question": "Which space phenomenon involves the intense emission of electromagnetic radiation, primarily from the magnetic poles of a rapidly rotating neutron star?", "options": ["Quasar", "Magnetar", "Pulsar", "Blazar"], "answer": "Pulsar"}
+                    ]
+                },
+                {
+                    "level": 5,
+                    "questions": [
+                        {"id": "space_5_1", "question": "What is the 'Cosmic Microwave Background' (CMB) considered evidence for?", "options": ["The existence of alien life", "The Big Bang theory", "The presence of dark matter", "The formation of galaxies"], "answer": "The Big Bang theory"},
+                        {"id": "space_5_2", "question": "Which mission specifically targets returning samples from the asteroid Bennu to Earth?", "options": ["Hayabusa2", "OSIRIS-REx", "Psyche", "Lucy"], "answer": "OSIRIS-REx"},
+                        {"id": "space_5_3", "question": "What is the hypothetical boundary around a black hole from which the effects of gravity propagate, rather than a point of no return?", "options": ["Event Horizon", "Acoustic Horizon", "Apparent Horizon", "Cauchy Horizon"], "answer": "Apparent Horizon"},
+                        {"id": "space_5_4", "question": "What type of galaxy is the Milky Way?", "options": ["Elliptical", "Irregular", "Spiral", "Lenticular"], "answer": "Spiral"},
+                        {"id": "space_5_5", "question": "Which concept describes the stretching of spacetime itself, leading to the expansion of the universe?", "options": ["Hubble's Law", "Gravitational Lensing", "Metric Expansion", "Spacetime Curvature"], "answer": "Metric Expansion"},
+                        {"id": "space_5_6", "question": "What is the 'Goldilocks Zone' in relation to exoplanets?", "options": ["The region where asteroids are found", "The ideal distance from a star for liquid water to exist", "The zone where planets are tidally locked", "The area with the highest concentration of dark matter"], "answer": "The ideal distance from a star for liquid water to exist"},
+                        {"id": "space_5_7", "question": "What is the primary method used by the Kepler Space Telescope to detect exoplanets?", "options": ["Direct Imaging", "Radial Velocity (Doppler Spectroscopy)", "Transit Method", "Gravitational Lensing"], "answer": "Transit Method"},
+                        {"id": "space_5_8", "question": "Which specific type of black hole is thought to reside at the center of most large galaxies, including the Milky Way?", "options": ["Stellar Black Hole", "Intermediate-Mass Black Hole", "Supermassive Black Hole", "Miniature Black Hole"], "answer": "Supermassive Black Hole"},
+                        {"id": "space_5_9", "question": "What is the main goal of the DART (Double Asteroid Redirection Test) mission?", "options": ["To study the composition of asteroids", "To test asteroid deflection technology", "To land on an asteroid and collect samples", "To observe binary asteroid systems"], "answer": "To test asteroid deflection technology"},
+                        {"id": "space_5_10", "question": "What is the term for the residual heat from the Big Bang that permeates all of space?", "options": ["Background Radiation", "Cosmic Noise", "Dark Energy Signature", "Cosmic Microwave Background (CMB)"], "answer": "Cosmic Microwave Background (CMB)"}
+                    ]
+                },
+                {
+                    "level": 6,
+                    "questions": [
+                        {"id": "space_6_1", "question": "Beyond the standard model of cosmology, what hypothetical type of matter is proposed to account for the rotational curves of galaxies and large-scale structure formation?", "options": ["Baryonic Matter", "Exotic Matter", "Dark Matter", "Anti-matter"], "answer": "Dark Matter"},
+                        {"id": "space_6_2", "question": "What is the term for a theoretical 'wormhole' that connects two separate points in spacetime, providing a shortcut?", "options": ["Singularity", "Event Horizon", "Einstein-Rosen Bridge", "Kerr Black Hole"], "answer": "Einstein-Rosen Bridge"},
+                        {"id": "space_6_3", "question": "Which proposed future telescope aims to directly image exoplanets and analyze their atmospheres for signs of life?", "options": ["Roman Space Telescope", "LUVOIR (Large Ultraviolet Optical Infrared Surveyor)", "ATHENA (Advanced Telescope for High ENergy Astrophysics)", "Euclid"], "answer": "LUVOIR (Large Ultraviolet Optical Infrared Surveyor)"},
+                        {"id": "space_6_4", "question": "What is the 'Fermi Paradox'?", "options": ["A paradox about quantum entanglement", "The apparent contradiction between the high probability of extraterrestrial life and the lack of evidence for it", "A paradox related to the expansion of the universe", "A problem in black hole thermodynamics"], "answer": "The apparent contradiction between the high probability of extraterrestrial life and the lack of evidence for it"},
+                        {"id": "space_6_5", "question": "What is the hypothetical end-state of the universe where expansion accelerates indefinitely, tearing apart galaxies, stars, and eventually atoms?", "options": ["Big Crunch", "Big Freeze (Heat Death)", "Big Rip", "Cyclic Universe"], "answer": "Big Rip"},
+                        {"id": "space_6_6", "question": "Which type of supernova, specifically resulting from the complete destruction of a white dwarf in a binary system, is used as a 'standard candle' for measuring cosmic distances?", "options": ["Type II Supernova", "Type Ia Supernova", "Hypernova", "Core-Collapse Supernova"], "answer": "Type Ia Supernova"},
+                        {"id": "space_6_7", "question": "What is the 'Cosmic Web'?", "options": ["A network of space stations", "The large-scale structure of the universe, consisting of filaments, sheets, and voids", "The interconnectedness of planetary systems", "A theory about quantum gravity"], "answer": "The large-scale structure of the universe, consisting of filaments, sheets, and voids"},
+                        {"id": "space_6_8", "question": "What is the term for the extremely rapid expansion of the universe theorized to have occurred immediately after the Big Bang?", "options": ["Inflation", "Deflation", "Acceleration", "Deceleration"], "answer": "Inflation"},
+                        {"id": "space_6_9", "question": "Which concept suggests that our observable universe is just one of many, possibly infinite, universes?", "options": ["Multiverse Theory", "Parallel Dimensions", "String Theory", "Quantum Foam"], "answer": "Multiverse Theory"},
+                        {"id": "space_6_10", "question": "What is the scientific term for the study of the origin, evolution, and large-scale structure of the universe?", "options": ["Astrophysics", "Astronomy", "Cosmology", "Exoplanetology"], "answer": "Cosmology"}
+                    ]
+                }
+            ],
+            "Artificial Intelligence": [
+                {
+                    "level": 1,
+                    "questions": [
+                        {"id": "ai_1_1", "question": "What does AI stand for?", "options": ["Automated Intelligence", "Artificial Information", "Advanced Interaction", "Artificial Intelligence"], "answer": "Artificial Intelligence"},
+                        {"id": "ai_1_2", "question": "Which field of AI allows machines to learn from data without explicit programming?", "options": ["Robotics", "Natural Language Processing", "Machine Learning", "Computer Vision"], "answer": "Machine Learning"},
+                        {"id": "ai_1_3", "question": "What is a common application of AI in everyday life?", "options": ["Calculating basic arithmetic", "Making toast", "Voice assistants (e.g., Siri, Alexa)", "Turning lights on/off manually"], "answer": "Voice assistants (e.g., Siri, Alexa)"},
+                        {"id": "ai_1_4", "question": "Which term refers to AI systems that can understand and generate human language?", "options": ["Image Recognition", "Natural Language Processing (NLP)", "Predictive Analytics", "Reinforcement Learning"], "answer": "Natural Language Processing (NLP)"},
+                        {"id": "ai_1_5", "question": "What is a 'chatbot'?", "options": ["A type of robot that chats", "A computer program designed to simulate conversation with human users", "A tool for analyzing large datasets", "A device for remote control"], "answer": "A computer program designed to simulate conversation with human users"},
+                        {"id": "ai_1_6", "question": "What kind of data is typically used to train AI models?", "options": ["Random numbers", "Structured and unstructured data (text, images, audio)", "Only text files", "Only numerical data"], "answer": "Structured and unstructured data (text, images, audio)"},
+                        {"id": "ai_1_7", "question": "What is the goal of 'Computer Vision' in AI?", "options": ["To help computers see in the dark", "To enable computers to interpret and understand visual information from the world", "To improve computer display quality", "To allow computers to create art"], "answer": "To enable computers to interpret and understand visual information from the world"},
+                        {"id": "ai_1_8", "question": "Which type of AI system learns by trial and error, receiving rewards for good actions?", "options": ["Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Deep Learning"], "answer": "Reinforcement Learning"},
+                        {"id": "ai_1_9", "question": "What is a 'neural network' inspired by?", "options": ["The internet", "The human brain", "A spider web", "A power grid"], "answer": "The human brain"},
+                        {"id": "ai_1_10", "question": "Which of these is NOT a common ethical concern regarding AI?", "options": ["Bias in algorithms", "Job displacement", "Lack of creativity in AI", "Privacy issues"], "answer": "Lack of creativity in AI"}
+                    ]
+                },
+                {
+                    "level": 2,
+                    "questions": [
+                        {"id": "ai_2_1", "question": "What is 'Deep Learning' a subfield of?", "options": ["Robotics", "Natural Language Processing", "Machine Learning", "Computer Vision"], "answer": "Machine Learning"},
+                        {"id": "ai_2_2", "question": "Which prominent AI technique involves training models on vast amounts of data using multiple layers of artificial neurons?", "options": ["Decision Trees", "Support Vector Machines", "Deep Neural Networks", "Linear Regression"], "answer": "Deep Neural Networks"},
+                        {"id": "ai_2_3", "question": "What does 'NLP' stand for in the context of AI?", "options": ["New Language Protocol", "Neural Logic Programming", "Natural Language Processing", "Network Learning Platform"], "answer": "Natural Language Processing"},
+                        {"id": "ai_2_4", "question": "In AI, what is 'training data' used for?", "options": ["To test the AI model's performance", "To provide information to the AI model so it can learn patterns", "To store the AI model's final output", "To clean up errors in the AI model"], "answer": "To provide information to the AI model so it can learn patterns"},
+                        {"id": "ai_2_5", "question": "Which AI application is used to recommend products on e-commerce websites?", "options": ["Fraud Detection", "Facial Recognition", "Recommendation Systems", "Autonomous Driving"], "answer": "Recommendation Systems"},
+                        {"id": "ai_2_6", "question": "What is the concept of 'AI Ethics' primarily concerned with?", "options": ["How to make AI more efficient", "Ensuring AI systems are developed and used responsibly and morally", "The cost-effectiveness of AI", "The speed of AI computations"], "answer": "Ensuring AI systems are developed and used responsibly and morally"},
+                        {"id": "ai_2_7", "question": "Which AI technique is often used for tasks like image classification and object detection?", "options": ["Recurrent Neural Networks (RNNs)", "Convolutional Neural Networks (CNNs)", "Generative Adversarial Networks (GANs)", "Long Short-Term Memory (LSTMs)"], "answer": "Convolutional Neural Networks (CNNs)"},
+                        {"id": "ai_2_8", "question": "What is 'supervised learning' characterized by?", "options": ["Learning without labeled data", "Learning with labeled data, where the model is given input and correct output", "Learning through trial and error", "Learning from interactions with an environment"], "answer": "Learning with labeled data, where the model is given input and correct output"},
+                        {"id": "ai_2_9", "question": "What is the Turing Test designed to assess?", "options": ["A robot's physical dexterity", "A machine's ability to exhibit intelligent behavior equivalent to, or indistinguishable from, that of a human", "The speed of a computer processor", "The accuracy of an AI model's predictions"], "answer": "A machine's ability to exhibit intelligent behavior equivalent to, or indistinguishable from, that of a human"},
+                        {"id": "ai_2_10", "question": "Which tech giant is known for its AI assistant 'Google Assistant'?", "options": ["Apple", "Microsoft", "Amazon", "Google"], "answer": "Google"}
+                    ]
+                },
+                {
+                    "level": 3,
+                    "questions": [
+                        {"id": "ai_3_1", "question": "What does 'GAN' stand for in the context of deep learning?", "options": ["General Adversarial Networks", "Generative AI Networks", "Graphical Analysis Networks", "Generative Adversarial Networks"], "answer": "Generative Adversarial Networks"},
+                        {"id": "ai_3_2", "question": "Which AI model architecture is particularly effective for sequential data like natural language and is used in translation and text generation?", "options": ["Convolutional Neural Networks (CNNs)", "Recurrent Neural Networks (RNNs)", "Support Vector Machines (SVMs)", "K-Means Clustering"], "answer": "Recurrent Neural Networks (RNNs)"},
+                        {"id": "ai_3_3", "question": "What is 'Reinforcement Learning' often used for?", "options": ["Image classification", "Predicting stock prices", "Training autonomous agents (e.g., in games, robotics)", "Clustering data points"], "answer": "Training autonomous agents (e.g., in games, robotics)"},
+                        {"id": "ai_3_4", "question": "In machine learning, what is 'overfitting'?", "options": ["When a model performs too well on new, unseen data", "When a model is too simple to capture the underlying patterns in the data", "When a model learns the training data too well, including noise, and performs poorly on new data", "When a model takes too long to train"], "answer": "When a model learns the training data too well, including noise, and performs poorly on new data"},
+                        {"id": "ai_3_5", "question": "Which AI subfield deals with creating systems that can reason and make decisions based on rules and knowledge?", "options": ["Perception", "Planning", "Knowledge Representation and Reasoning", "Learning"], "answer": "Knowledge Representation and Reasoning"},
+                        {"id": "ai_3_6", "question": "What is the primary purpose of a 'loss function' in machine learning?", "options": ["To calculate the overall accuracy of the model", "To measure the discrepancy between the predicted output and the actual output", "To speed up the training process", "To visualize the model's performance"], "answer": "To measure the discrepancy between the predicted output and the actual output"},
+                        {"id": "ai_3_7", "question": "What is 'Generative AI' primarily focused on?", "options": ["Analyzing existing data for insights", "Creating new, original data (e.g., images, text, audio) that resembles real data", "Classifying data into predefined categories", "Predicting future outcomes based on historical data"], "answer": "Creating new, original data (e.g., images, text, audio) that resembles real data"},
+                        {"id": "ai_3_8", "question": "Which concept allows an AI model to update its parameters during training to minimize the loss function?", "options": ["Feature Engineering", "Data Augmentation", "Optimization Algorithm (e.g., Gradient Descent)", "Cross-validation"], "answer": "Optimization Algorithm (e.g., Gradient Descent)"},
+                        {"id": "ai_3_9", "question": "What is 'transfer learning' in AI?", "options": ["Training a model from scratch on a new dataset", "Applying a pre-trained model on a new, related task", "Transferring data between different AI models", "Transferring knowledge from a human expert to an AI model"], "answer": "Applying a pre-trained model on a new, related task"},
+                        {"id": "ai_3_10", "question": "Which ethical concern relates to AI making decisions that are difficult to understand or explain?", "options": ["Bias", "Privacy", "Interpretability/Explainability", "Accountability"], "answer": "Interpretability/Explainability"}
+                    ]
+                },
+                {
+                    "level": 4,
+                    "questions": [
+                        {"id": "ai_4_1", "question": "What is the concept of 'Artificial General Intelligence' (AGI)?", "options": ["AI capable of performing a single, specific task exceptionally well", "AI that can learn, understand, and apply intelligence across a wide range of tasks, similar to human intelligence", "AI designed for military applications only", "AI that is purely theoretical and has no practical applications"], "answer": "AI that can learn, understand, and apply intelligence across a wide range of tasks, similar to human intelligence"},
+                        {"id": "ai_4_2", "question": "Which type of neural network is particularly suited for processing image data due to its ability to recognize patterns in spatially arranged data?", "options": ["Recurrent Neural Networks (RNNs)", "Long Short-Term Memory (LSTMs)", "Convolutional Neural Networks (CNNs)", "Generative Adversarial Networks (GANs)"], "answer": "Convolutional Neural Networks (CNNs)"},
+                        {"id": "ai_4_3", "question": "What is 'Natural Language Generation' (NLG) in NLP?", "options": ["Converting speech to text", "Translating text from one language to another", "Generating human-like text from structured data or other inputs", "Analyzing the sentiment of text"], "answer": "Generating human-like text from structured data or other inputs"},
+                        {"id": "ai_4_4", "question": "Which advanced AI model, developed by Google, is known for its ability to understand and generate text using a 'transformer' architecture?", "options": ["AlphaGo", "Deep Blue", "BERT", "GPT-3"], "answer": "BERT"},
+                        {"id": "ai_4_5", "question": "What is 'Federated Learning' in AI?", "options": ["Training a single AI model on a central server", "A decentralized machine learning approach where models are trained on local datasets and only updates are aggregated", "Learning from open-source datasets", "Training AI models using cloud computing resources"], "answer": "A decentralized machine learning approach where models are trained on local datasets and only updates are aggregated"},
+                        {"id": "ai_4_6", "question": "What is 'Explainable AI' (XAI) focused on?", "options": ["Making AI models run faster", "Developing AI models whose decisions can be understood and interpreted by humans", "Creating more complex AI models", "Automating the AI development process"], "answer": "Developing AI models whose decisions can be understood and interpreted by humans"},
+                        {"id": "ai_4_7", "question": "Which concept in reinforcement learning refers to the strategy an agent uses to decide its next action?", "options": ["Reward Function", "Value Function", "Policy", "State Space"], "answer": "Policy"},
+                        {"id": "ai_4_8", "question": "What is a 'Transformer' architecture, widely used in modern NLP models like GPT?", "options": ["A type of convolutional layer", "A neural network architecture that relies on self-attention mechanisms to process sequential data", "A framework for training GANs", "A method for reducing dimensionality in data"], "answer": "A neural network architecture that relies on self-attention mechanisms to process sequential data"},
+                        {"id": "ai_4_9", "question": "What is the primary challenge associated with 'unsupervised learning'?", "options": ["Requiring a large amount of labeled data", "Difficulty in interpreting the patterns discovered by the model", "The models are too slow to train", "They are prone to overfitting"], "answer": "Difficulty in interpreting the patterns discovered by the model"},
+                        {"id": "ai_4_10", "question": "Which AI application involves teaching robots to perform tasks in the physical world?", "options": ["Virtual Reality", "Robotics", "Quantum Computing", "Bioinformatics"], "answer": "Robotics"}
+                    ]
+                },
+                {
+                    "level": 5,
+                    "questions": [
+                        {"id": "ai_5_1", "question": "What is the primary difference between 'narrow AI' and 'general AI'?", "options": ["Narrow AI is for small businesses, General AI is for large enterprises", "Narrow AI performs specific tasks, General AI has human-like cognitive abilities across various tasks", "Narrow AI uses traditional programming, General AI uses machine learning", "Narrow AI is software, General AI is hardware"], "answer": "Narrow AI performs specific tasks, General AI has human-like cognitive abilities across various tasks"},
+                        {"id": "ai_5_2", "question": "Which concept describes the ability of an AI system to continuously learn and adapt after deployment, without explicit reprogramming?", "options": ["Static Learning", "Online Learning / Continuous Learning", "Batch Learning", "Offline Learning"], "answer": "Online Learning / Continuous Learning"},
+                        {"id": "ai_5_3", "question": "What is 'prompt engineering' in the context of large language models (LLMs)?", "options": ["Designing the hardware for LLMs", "Optimizing the training data for LLMs", "Crafting effective input queries to guide LLMs to produce desired outputs", "Debugging LLM code"], "answer": "Crafting effective input queries to guide LLMs to produce desired outputs"},
+                        {"id": "ai_5_4", "question": "Which significant AI milestone occurred when DeepMind's AlphaGo defeated the world champion Go player?", "options": ["It showed AI could beat humans in chess", "It demonstrated AI's ability to master highly complex strategic games", "It proved AI could generate creative art", "It was the first time AI controlled a robot"], "answer": "It demonstrated AI's ability to master highly complex strategic games"},
+                        {"id": "ai_5_5", "question": "What is 'Synthetic Data' in AI?", "options": ["Data collected from real-world sensors", "Data that has been cleaned and preprocessed", "Data generated artificially, often to augment real datasets or protect privacy", "Data used for testing purposes only"], "answer": "Data generated artificially, often to augment real datasets or protect privacy"},
+                        {"id": "ai_5_6", "question": "Which type of AI bias occurs when a model is trained on data that does not accurately represent the real-world population it will interact with?", "options": ["Algorithm Bias", "Measurement Bias", "Selection Bias", "Sampling Bias"], "answer": "Sampling Bias"},
+                        {"id": "ai_5_7", "question": "What is the 'embedding' of a word or concept in NLP?", "options": ["A graphical representation of the word", "A numerical vector representation that captures its meaning and relationships with other words", "The historical origin of the word", "The pronunciation of the word"], "answer": "A numerical vector representation that captures its meaning and relationships with other words"},
+                        {"id": "ai_5_8", "question": "Which deep learning technique is used to generate realistic images or videos by having two neural networks compete against each other?", "options": ["Recurrent Neural Networks (RNNs)", "Convolutional Neural Networks (CNNs)", "Generative Adversarial Networks (GANs)", "Autoencoders"], "answer": "Generative Adversarial Networks (GANs)"},
+                        {"id": "ai_5_9", "question": "What is the primary benefit of using 'transfer learning' in real-world AI applications?", "options": ["It always leads to perfectly accurate models", "It allows for faster training and requires less data for new tasks", "It completely eliminates the need for human supervision", "It only works for very simple tasks"], "answer": "It allows for faster training and requires less data for new tasks"},
+                        {"id": "ai_5_10", "question": "Which term describes the collective intelligence of many simple, interacting components, leading to complex emergent behavior in AI?", "options": ["Swarm Intelligence", "Supervised Intelligence", "Centralized Intelligence", "Isolated Intelligence"], "answer": "Swarm Intelligence"}
+                    ]
+                },
+                {
+                    "level": 6,
+                    "questions": [
+                        {"id": "ai_6_1", "question": "What is 'AI Alignment' concerned with?", "options": ["Ensuring AI models are perfectly aligned with human art styles", "Making sure AI systems pursue goals that are beneficial to humanity and consistent with human values", "Aligning AI systems with optimal hardware configurations", "Aligning AI models with specific industry standards"], "answer": "Making sure AI systems pursue goals that are beneficial to humanity and consistent with human values"},
+                        {"id": "ai_6_2", "question": "Which concept refers to AI systems that can explain their reasoning and decision-making process in an understandable way to humans?", "options": ["Black Box AI", "Transparent AI / Explainable AI (XAI)", "Autonomous AI", "Predictive AI"], "answer": "Transparent AI / Explainable AI (XAI)"},
+                        {"id": "ai_6_3", "question": "What is 'Reinforcement Learning from Human Feedback' (RLHF) being used for in modern LLMs?", "options": ["To make models faster at generating text", "To fine-tune LLMs to be more helpful, harmless, and honest based on human preferences", "To increase the vocabulary of LLMs", "To reduce the computational cost of training LLMs"], "answer": "To fine-tune LLMs to be more helpful, harmless, and honest based on human preferences"},
+                        {"id": "ai_6_4", "question": "Which of these is considered a 'frontier' in AI research beyond current capabilities?", "options": ["Developing more sophisticated recommendation systems", "Achieving Artificial General Intelligence (AGI)", "Improving image recognition accuracy", "Building more efficient chatbots"], "answer": "Achieving Artificial General Intelligence (AGI)"},
+                        {"id": "ai_6_5", "question": "What is the concept of 'AI Safety' primarily focused on?", "options": ["Protecting AI systems from cybersecurity threats", "Ensuring the long-term well-being of humanity in the face of increasingly powerful AI systems", "Making AI development more cost-effective", "Ensuring AI systems are easy to integrate with existing software"], "answer": "Ensuring the long-term well-being of humanity in the face of increasingly powerful AI systems"},
+                        {"id": "ai_6_6", "question": "Which cognitive bias can be amplified by AI systems if not carefully mitigated during design and training?", "options": ["Confirmation Bias", "Anchoring Bias", "Automation Bias", "All of the above"], "answer": "All of the above"},
+                        {"id": "ai_6_7", "question": "What does 'Few-shot Learning' refer to in the context of large language models?", "options": ["Training an LLM with only a few hundred data points", "The ability of an LLM to learn new tasks from a very small number of examples", "A technique to reduce the size of LLM models", "A method for making LLMs run on low-power devices"], "answer": "The ability of an LLM to learn new tasks from a very small number of examples"},
+                        {"id": "ai_6_8", "question": "Which ethical principle in AI emphasizes that AI systems should not cause harm to humans or society?", "options": ["Transparency", "Fairness", "Non-maleficence", "Accountability"], "answer": "Non-maleficence"},
+                        {"id": "ai_6_9", "question": "What is the 'Moravec's Paradox' in AI?", "options": ["The difficulty of teaching AI to perform complex logical reasoning", "The observation that tasks easy for humans are often hard for AI, and tasks hard for humans are easy for AI (e.g., perception vs. calculation)", "The paradox of AI creating art", "The difficulty of making AI systems self-aware"], "answer": "The observation that tasks easy for humans are often hard for AI, and tasks hard for humans are easy for AI (e.g., perception vs. calculation)"},
+                        {"id": "ai_6_10", "question": "Which term describes the process of making AI systems more efficient and less resource-intensive, often for deployment on edge devices?", "options": ["AI Scaling", "AI Optimization / Model Compression", "AI Expansion", "AI Generalization"], "answer": "AI Optimization / Model Compression"}
+                    ]
+                }
+            ],
+            "Technology": [
+                {
+                    "level": 1,
+                    "questions": [
+                        {"id": "tech_1_1", "question": "What does 'RAM' stand for in computing?", "options": ["Read Access Memory", "Random Access Memory", "Remote Access Module", "Rapid Application Management"], "answer": "Random Access Memory"},
+                        {"id": "tech_1_2", "question": "Which company developed the Windows operating system?", "options": ["Apple", "Google", "Microsoft", "IBM"], "answer": "Microsoft"},
+                        {"id": "tech_1_3", "question": "What is a 'URL' primarily used for?", "options": ["Sending emails", "Storing documents offline", "Identifying a resource on the internet", "Playing games"], "answer": "Identifying a resource on the internet"},
+                        {"id": "tech_1_4", "question": "Which of these is a common programming language?", "options": ["HTML", "CSS", "Python", "JPEG"], "answer": "Python"},
+                        {"id": "tech_1_5", "question": "What does 'Wi-Fi' allow devices to do?", "options": ["Charge wirelessly", "Connect to the internet wirelessly", "Play music loudly", "Store large files"], "answer": "Connect to the internet wirelessly"},
+                        {"id": "tech_1_6", "question": "What is a 'firewall' in computer security?", "options": ["A tool for starting fires", "A network security system that monitors and controls incoming and outgoing network traffic", "A type of computer virus", "A physical barrier for computers"], "answer": "A network security system that monitors and controls incoming and outgoing network traffic"},
+                        {"id": "tech_1_7", "question": "Which type of storage is non-volatile and retains data even when power is off?", "options": ["RAM", "Cache Memory", "SSD (Solid State Drive)", "Registers"], "answer": "SSD (Solid State Drive)"},
+                        {"id": "tech_1_8", "question": "What does 'CPU' stand for?", "options": ["Central Power Unit", "Computer Processing Unit", "Central Processing Unit", "Core Program Utility"], "answer": "Central Processing Unit"},
+                        {"id": "tech_1_9", "question": "Which component is often referred to as the 'brain' of a computer?", "options": ["Hard Drive", "RAM", "Motherboard", "CPU"], "answer": "CPU"},
+                        {"id": "tech_1_10", "question": "What is 'HTML' primarily used for?", "options": ["Styling web pages", "Programming interactive websites", "Structuring content on web pages", "Creating databases"], "answer": "Structuring content on web pages"}
+                    ]
+                },
+                {
+                    "level": 2,
+                    "questions": [
+                        {"id": "tech_2_1", "question": "What is 'cloud computing'?", "options": ["Using only local servers for data storage", "Storing and accessing data and programs over the internet instead of your computer's hard drive", "A new type of computer processor", "A method for encrypting data"], "answer": "Storing and accessing data and programs over the internet instead of your computer's hard drive"},
+                        {"id": "tech_2_2", "question": "Which communication technology is used for short-range wireless connections between devices, like headphones and smartphones?", "options": ["Wi-Fi", "Ethernet", "Bluetooth", "NFC"], "answer": "Bluetooth"},
+                        {"id": "tech_2_3", "question": "What is the primary function of an 'operating system'?", "options": ["To run specific applications", "To manage computer hardware and software resources", "To connect to the internet", "To display graphics"], "answer": "To manage computer hardware and software resources"},
+                        {"id": "tech_2_4", "question": "Which of these is an open-source operating system?", "options": ["Windows", "macOS", "Linux", "iOS"], "answer": "Linux"},
+                        {"id": "tech_2_5", "question": "What does 'VPN' stand for?", "options": ["Very Private Network", "Virtual Personal Navigator", "Virtual Private Network", "Verified Public Network"], "answer": "Virtual Private Network"},
+                        {"id": "tech_2_6", "question": "What is ' phishing' in cybersecurity?", "options": ["A method for secure online payments", "A type of encryption", "A fraudulent attempt to obtain sensitive information by disguising oneself as a trustworthy entity", "A software testing technique"], "answer": "A fraudulent attempt to obtain sensitive information by disguising oneself as a trustworthy entity"},
+                        {"id": "tech_2_7", "question": "Which company is known for its 'iPhone' and 'macOS'?", "options": ["Samsung", "Google", "Microsoft", "Apple"], "answer": "Apple"},
+                        {"id": "tech_2_8", "question": "What is 'bandwidth' in internet terms?", "options": ["The time it takes for a signal to travel", "The maximum amount of data that can be transmitted over a network connection in a given amount of time", "The physical length of an internet cable", "The cost of an internet plan"], "answer": "The maximum amount of data that can be transmitted over a network connection in a given amount of time"},
+                        {"id": "tech_2_9", "question": "Which technology enables the creation of a distributed, immutable ledger, famously used by cryptocurrencies like Bitcoin?", "options": ["Artificial Intelligence", "Virtual Reality", "Blockchain", "Quantum Computing"], "answer": "Blockchain"},
+                        {"id": "tech_2_10", "question": "What is 'JavaScript' primarily used for?", "options": ["Creating static web pages", "Styling web pages", "Adding interactivity and dynamic content to web pages", "Managing databases"], "answer": "Adding interactivity and dynamic content to web pages"}
+                    ]
+                },
+                {
+                    "level": 3,
+                    "questions": [
+                        {"id": "tech_3_1", "question": "What is 'IoT' stand for?", "options": ["Internet of Things", "Internal Operating Technology", "Integrated Online Tools", "Intelligent Object Tracking"], "answer": "Internet of Things"},
+                        {"id": "tech_3_2", "question": "Which type of software is distributed with its source code available for modification and enhancement by anyone?", "options": ["Proprietary Software", "Freeware", "Shareware", "Open Source Software"], "answer": "Open Source Software"},
+                        {"id": "tech_3_3", "question": "What is '5G' primarily known for in mobile networks?", "options": ["Lower data speeds", "Higher latency", "Significantly faster speeds and lower latency", "Increased power consumption"], "answer": "Significantly faster speeds and lower latency"},
+                        {"id": "tech_3_4", "question": "Which type of cyber attack involves overwhelming a system with traffic to make it unavailable to legitimate users?", "options": ["Phishing", "Malware", "DDoS (Distributed Denial of Service)", "Ransomware"], "answer": "DDoS (Distributed Denial of Service)"},
+                        {"id": "tech_3_5", "question": "What is the main purpose of 'virtual reality' (VR) technology?", "options": ["To enhance real-world environments", "To create immersive, simulated environments", "To project images onto walls", "To connect to the internet faster"], "answer": "To create immersive, simulated environments"},
+                        {"id": "tech_3_6", "question": "Which term describes a small piece of data sent from a website and stored on the user's computer by the user's web browser while the user is Browse?", "options": ["Packet", "Cookie", "Token", "Cache"], "answer": "Cookie"},
+                        {"id": "tech_3_7", "question": "What is 'Augmented Reality' (AR)?", "options": ["A completely virtual world", "An interactive experience of a real-world environment where the objects that reside in the real world are 'augmented' by computer-generated perceptual information", "A form of virtual tourism", "A technology for building robots"], "answer": "An interactive experience of a real-world environment where the objects that reside in the real world are 'augmented' by computer-generated perceptual information"},
+                        {"id": "tech_3_8", "question": "Which programming paradigm focuses on 'objects' that contain both data and methods?", "options": ["Procedural Programming", "Functional Programming", "Object-Oriented Programming (OOP)", "Logic Programming"], "answer": "Object-Oriented Programming (OOP)"},
+                        {"id": "tech_3_9", "question": "What is 'quantum computing'?", "options": ["A type of faster classical computer", "A new type of computer that uses quantum-mechanical phenomena like superposition and entanglement to solve problems", "A computer that operates solely on renewable energy", "A network of interconnected supercomputers"], "answer": "A new type of computer that uses quantum-mechanical phenomena like superposition and entanglement to solve problems"},
+                        {"id": "tech_3_10", "question": "What is 'DNS' (Domain Name System) primarily used for?", "options": ["Sending emails", "Translating human-readable domain names into IP addresses", "Storing website content", "Encrypting internet traffic"], "answer": "Translating human-readable domain names into IP addresses"}
+                    ]
+                },
+                {
+                    "level": 4,
+                    "questions": [
+                        {"id": "tech_4_1", "question": "What is the primary benefit of using 'Containerization' technologies like Docker?", "options": ["It makes software run faster on older hardware", "It provides a way to package and run applications in isolated environments, ensuring consistency across different computing environments", "It improves internet speed", "It automatically backs up data to the cloud"], "answer": "It provides a way to package and run applications in isolated environments, ensuring consistency across different computing environments"},
+                        {"id": "tech_4_2", "question": "Which concept in database management ensures that database transactions are processed reliably, often remembered by the acronym ACID?", "options": ["Scalability", "Consistency", "Concurrency", "Atomicity, Consistency, Isolation, Durability"], "answer": "Atomicity, Consistency, Isolation, Durability"},
+                        {"id": "tech_4_3", "question": "What is 'DevOps'?", "options": ["A type of computer virus", "A methodology that combines software development (Dev) with information technology operations (Ops) to shorten the systems development life cycle", "A framework for ethical AI development", "A new type of programming language"], "answer": "A methodology that combines software development (Dev) with information technology operations (Ops) to shorten the systems development life cycle"},
+                        {"id": "tech_4_4", "question": "Which network protocol is used for securely transmitting sensitive data over the internet, commonly seen as 'HTTPS'?", "options": ["HTTP", "FTP", "SSL/TLS (Secure Sockets Layer/Transport Layer Security)", "SMTP"], "answer": "SSL/TLS (Secure Sockets Layer/Transport Layer Security)"},
+                        {"id": "tech_4_5", "question": "What is 'Edge Computing'?", "options": ["Processing data only in centralized cloud servers", "Processing data closer to the source of the data generation, often at the 'edge' of the network", "A new type of graphics card", "Computing done only on mobile devices"], "answer": "Processing data closer to the source of the data generation, often at the 'edge' of the network"},
+                        {"id": "tech_4_6", "question": "Which programming language is commonly used for statistical computing and graphics?", "options": ["Java", "C++", "R", "Go"], "answer": "R"},
+                        {"id": "tech_4_7", "question": "What is 'Serverless Computing'?", "options": ["Running applications without any servers", "A cloud execution model where the cloud provider dynamically manages the allocation and provisioning of servers", "Using only physical servers in a data center", "A type of peer-to-peer network"], "answer": "A cloud execution model where the cloud provider dynamically manages the allocation and provisioning of servers"},
+                        {"id": "tech_4_8", "question": "Which type of database is designed to handle unstructured and semi-structured data, often used for big data applications?", "options": ["Relational Database (SQL)", "Hierarchical Database", "Network Database", "NoSQL Database"], "answer": "NoSQL Database"},
+                        {"id": "tech_4_9", "question": "What is the concept of 'Digital Twin' in technology?", "options": ["Having two identical physical devices", "A virtual replica of a physical object, process, or system", "A backup of all digital data", "A new cryptographic algorithm"], "answer": "A virtual replica of a physical object, process, or system"},
+                        {"id": "tech_4_10", "question": "Which standard ensures that different devices and systems can communicate and exchange data, often found in IoT devices?", "options": ["USB", "Bluetooth", "Interoperability", "Proprietary Protocol"], "answer": "Interoperability"}
+                    ]
+                },
+                {
+                    "level": 5,
+                    "questions": [
+                        {"id": "tech_5_1", "question": "What is 'Quantum Supremacy' in quantum computing?", "options": ["The ability of a quantum computer to perfectly simulate any classical computer", "The point at which a quantum computer can perform a specific computational task that no classical computer can perform in any feasible amount of time", "The dominance of quantum computers over all other computing technologies", "The ability to transfer quantum information instantly"], "answer": "The point at which a quantum computer can perform a specific computational task that no classical computer can perform in any feasible amount of time"},
+                        {"id": "tech_5_2", "question": "Which network architecture uses a decentralized peer-to-peer approach, where all participants hold a copy of the ledger?", "options": ["Client-Server", "Centralized", "Distributed Ledger Technology (DLT) / Blockchain", "Cloud-based"], "answer": "Distributed Ledger Technology (DLT) / Blockchain"},
+                        {"id": "tech_5_3", "question": "What is 'Homomorphic Encryption'?", "options": ["A type of encryption that is easy to break", "An encryption method that allows computations to be performed on encrypted data without decrypting it", "A method for encrypting data at rest only", "An old, outdated encryption technique"], "answer": "An encryption method that allows computations to be performed on encrypted data without decrypting it"},
+                        {"id": "tech_5_4", "question": "Which software development methodology emphasizes iterative development, collaboration, and rapid delivery, in contrast to traditional waterfall models?", "options": ["Spiral Model", "Waterfall Model", "Agile Methodology", "Big Bang Model"], "answer": "Agile Methodology"},
+                        {"id": "tech_5_5", "question": "What is 'Mesh Networking'?", "options": ["A network where devices connect to a central hub", "A network topology where each node relays data for the network, providing more direct and resilient connections", "A network used only for gaming", "A network that requires physical cables for all connections"], "answer": "A network topology where each node relays data for the network, providing more direct and resilient connections"},
+                        {"id": "tech_5_6", "question": "In cybersecurity, what is a 'Zero-day exploit'?", "options": ["A vulnerability that has been patched for zero days", "A vulnerability that is unknown to the software vendor and exploited by attackers before a fix is available", "An exploit that is very old", "An exploit that causes zero damage"], "answer": "A vulnerability that is unknown to the software vendor and exploited by attackers before a fix is available"},
+                        {"id": "tech_5_7", "question": "What is 'WebAssembly'?", "options": ["A new version of HTML", "A binary instruction format for a stack-based virtual machine, designed to run web applications at near-native speed", "A tool for debugging web pages", "A framework for building mobile apps"], "answer": "A binary instruction format for a stack-based virtual machine, designed to run web applications at near-native speed"},
+                        {"id": "tech_5_8", "question": "Which concept describes the use of algorithms to discover patterns and insights from large datasets, forming the basis of many AI applications?", "options": ["Data Entry", "Data Visualization", "Data Mining", "Data Archiving"], "answer": "Data Mining"},
+                        {"id": "tech_5_9", "question": "What is the primary challenge in 'Quantum Communication'?", "options": ["Slow data transmission speeds", "Maintaining quantum coherence over long distances", "High power consumption", "Lack of practical applications"], "answer": "Maintaining quantum coherence over long distances"},
+                        {"id": "tech_5_10", "question": "What does 'SaaS' stand for in the context of cloud computing?", "options": ["Software as a Service", "System as a Solution", "Service at a Software", "Secure and Scalable System"], "answer": "Software as a Service"}
+                    ]
+                },
+                {
+                    "level": 6,
+                    "questions": [
+                        {"id": "tech_6_1", "question": "What is 'Digital Sovereignty'?", "options": ["The ability of an individual to control their digital data", "The idea that a nation-state should have control over its digital infrastructure and data, free from foreign influence", "The complete absence of digital regulations", "The global standardization of digital laws"], "answer": "The idea that a nation-state should have control over its digital infrastructure and data, free from foreign influence"},
+                        {"id": "tech_6_2", "question": "Which concept describes the ability of a system to continue operating effectively when components fail?", "options": ["Scalability", "Efficiency", "Resilience / Fault Tolerance", "Interoperability"], "answer": "Resilience / Fault Tolerance"},
+                        {"id": "tech_6_3", "question": "What is the primary security concern when using 'Zero Trust Architecture'?", "options": ["Assuming all internal network traffic is safe", "Assuming no user or device, inside or outside the network, should be trusted by default, and access must be verified continually", "Relying solely on perimeter defenses", "Only trusting traffic from known IP addresses"], "answer": "Assuming no user or device, inside or outside the network, should be trusted by default, and access must be verified continually"},
+                        {"id": "tech_6_4", "question": "Which type of algorithm is designed to resist attacks from future quantum computers, often used in cryptography?", "options": ["Symmetric-key algorithms", "Asymmetric-key algorithms", "Post-Quantum Cryptography (PQC)", "Hash functions"], "answer": "Post-Quantum Cryptography (PQC)"},
+                        {"id": "tech_6_5", "question": "What is 'DeFi' (Decentralized Finance)?", "options": ["Traditional financial systems that use digital currency", "An emerging financial technology based on secure distributed ledgers similar to those used by cryptocurrencies, but without central intermediaries", "Central bank digital currencies", "Financial services offered by large tech companies"], "answer": "An emerging financial technology based on secure distributed ledgers similar to those used by cryptocurrencies, but without central intermediaries"},
+                        {"id": "tech_6_6", "question": "Which concept relates to the continuous delivery of software, where changes are automatically built, tested, and deployed to production?", "options": ["Continuous Integration (CI)", "Continuous Deployment (CD)", "Continuous Testing (CT)", "All of the above"], "answer": "All of the above"},
+                        {"id": "tech_6_7", "question": "What is a 'Digital Public Good'?", "options": ["Any software available online", "Open-source software, open data, open AI models, and open standards that adhere to privacy, security, and other principles, designed to achieve societal impact", "A company's digital marketing strategy", "Government-owned digital infrastructure"], "answer": "Open-source software, open data, open AI models, and open standards that adhere to privacy, security, and other principles, designed to achieve societal impact"},
+                        {"id": "tech_6_8", "question": "Which technology is essential for creating immersive metaverse experiences, often combined with AR/VR?", "options": ["2D Graphics", "High-Definition Television", "Real-time 3D Graphics and Spatial Computing", "Static Web Pages"], "answer": "Real-time 3D Graphics and Spatial Computing"},
+                        {"id": "tech_6_9", "question": "What is 'Explainable Robotics'?", "options": ["Robots that can explain jokes", "Robots that can explain their decisions and actions to human users in an understandable way", "Robots designed for teaching purposes", "Robots that can self-repair"], "answer": "Robots that can explain their decisions and actions to human users in an understandable way"},
+                        {"id": "tech_6_10", "question": "Which term describes the practice of managing and delivering applications and data over the internet, often referred to as 'Anything as a Service'?", "options": ["On-premise Solutions", "As-a-Service (XaaS)", "Local Hosting", "Physical Infrastructure"], "answer": "As-a-Service (XaaS)"}
+                    ]
+                }
+            ],
+            "Mathematics": [
+                {
+                    "level": 1,
+                    "questions": [
+                        {"id": "math_1_1", "question": "A baker has 10 cakes. He sells 3 and bakes 5 more. How many cakes does he have now? (Looks easy, but requires simple logical steps)", "options": ["12", "13", "14", "15"], "answer": "12"},
+                        {"id": "math_1_2", "question": "If you are driving a bus, and 5 people get on at the first stop, 3 get off and 7 get on at the second stop, and 2 get off and 4 get on at the third stop. What is the driver's name?", "options": ["The question doesn't provide it", "John", "Sarah", "Your name"], "answer": "Your name"},
+                        {"id": "math_1_3", "question": "What is 3 times the sum of 5 and 2?", "options": ["17", "21", "15", "10"], "answer": "21"},
+                        {"id": "math_1_4", "question": "If you have 10 apples and you take away 3, how many do you have?", "options": ["7", "10", "3", "None"], "answer": "3"},
+                        {"id": "math_1_5", "question": "A clock strikes 6 in 5 seconds. How long will it take to strike 12? (Assume constant time between strikes)", "options": ["10 seconds", "11 seconds", "12 seconds", "9 seconds"], "answer": "11 seconds"},
+                        {"id": "math_1_6", "question": "Which number comes next in the sequence: 1, 1, 2, 3, 5, 8, ...", "options": ["10", "11", "12", "13"], "answer": "13"},
+                        {"id": "math_1_7", "question": "I am an odd number. Take away one letter and I become even. What number am I?", "options": ["Seven", "Nine", "Eleven", "Fifty"], "answer": "Seven"},
+                        {"id": "math_1_8", "question": "What is the smallest positive integer that is divisible by all integers from 1 to 5, inclusive?", "options": ["10", "20", "30", "60"], "answer": "60"},
+                        {"id": "math_1_9", "question": "If a hen lays 2 eggs in 2 days, how many eggs will 10 hens lay in 10 days?", "options": ["10", "20", "50", "100"], "answer": "50"},
+                        {"id": "math_1_10", "question": "If you have a 3-gallon jug and a 5-gallon jug, how can you measure exactly 4 gallons of water?", "options": ["Fill 5-gallon, pour into 3-gallon, empty 3-gallon, pour remaining 2 from 5-gallon into 3-gallon, fill 5-gallon, then fill 3-gallon from 5-gallon.", "It's impossible", "Fill 3-gallon jug twice", "Fill both and combine"], "answer": "Fill 5-gallon, pour into 3-gallon, empty 3-gallon, pour remaining 2 from 5-gallon into 3-gallon, fill 5-gallon, then fill 3-gallon from 5-gallon."}
+                    ]
+                },
+                {
+                    "level": 2,
+                    "questions": [
+                        {"id": "math_2_1", "question": "A rope is cut into 10 pieces. How many cuts were made?", "options": ["9", "10", "11", "20"], "answer": "9"},
+                        {"id": "math_2_2", "question": "If a brick weighs one pound plus half a brick, how much does a brick weigh?", "options": ["1 pound", "1.5 pounds", "2 pounds", "3 pounds"], "answer": "2 pounds"},
+                        {"id": "math_2_3", "question": "A train leaves the station at 60 km/h. Another train leaves the same station one hour later at 80 km/h. How long will it take the second train to catch up to the first?", "options": ["2 hours", "3 hours", "4 hours", "5 hours"], "answer": "3 hours"},
+                        {"id": "math_2_4", "question": "If you toss a coin 3 times, what is the probability of getting exactly two heads?", "options": ["1/8", "1/4", "3/8", "1/2"], "answer": "3/8"},
+                        {"id": "math_2_5", "question": "What is the result of 6 ÷ 2(1+2)? (Order of operations is key!)", "options": ["1", "9", "6", "3"], "answer": "9"},
+                        {"id": "math_2_6", "question": "Three friends want to share 8 apples equally. How can they do it without using fractions (by cutting)?", "options": ["Cut 2 apples into 3 pieces each, give 2 whole apples to each friend.", "Cut all apples into halves and give 5 halves to each.", "Cut all apples into quarters and give 10 quarters to each.", "It's impossible to share equally without fractions."], "answer": "Cut 2 apples into 3 pieces each, give 2 whole apples to each friend."},
+                        {"id": "math_2_7", "question": "A and B start at the same point and walk in opposite directions. A walks at 3 mph, and B walks at 4 mph. How far apart will they be after 2 hours?", "options": ["7 miles", "10 miles", "12 miles", "14 miles"], "answer": "14 miles"},
+                        {"id": "math_2_8", "question": "If it takes 5 machines 5 minutes to make 5 widgets, how long would it take 100 machines to make 100 widgets?", "options": ["1 minute", "5 minutes", "100 minutes", "25 minutes"], "answer": "5 minutes"},
+                        {"id": "math_2_9", "question": "Which of these is a prime number? 51, 53, 55, 57", "options": ["51", "53", "55", "57"], "answer": "53"},
+                        {"id": "math_2_10", "question": "You have a barrel of water and you want to measure out exactly one gallon. You only have a 5-gallon bucket and a 3-gallon bucket. How can you do it?", "options": ["Fill 5, pour into 3 (leaves 2 in 5). Empty 3. Pour 2 from 5 into 3. Fill 5. Pour from 5 to fill 3 (uses 1 from 5, leaves 4 in 5).", "It's impossible.", "Fill 3-gallon, pour into 5-gallon. Fill 3-gallon again, pour into 5-gallon until 5-gallon is full (leaves 1 in 3-gallon).", "Fill 5, pour into 3 (leaves 2 in 5). Empty 3. Pour 2 from 5 into 3. Fill 5 again. Pour from 5 to fill 3 (uses 1 from 5) - leaving 4. "], "answer": "Fill 3-gallon, pour into 5-gallon. Fill 3-gallon again, pour into 5-gallon until 5-gallon is full (leaves 1 in 3-gallon)."}
+                    ]
+                },
+                {
+                    "level": 3,
+                    "questions": [
+                        {"id": "math_3_1", "question": "There are 50 birds on a wire. A hunter shoots 1. How many are left? (Tricky logic)", "options": ["49", "0", "1", "Depends on the type of bird"], "answer": "0"},
+                        {"id": "math_3_2", "question": "If you have a 7-minute hourglass and an 11-minute hourglass, how can you measure exactly 15 minutes?", "options": ["Start both, flip 7 when it runs out. When 11 runs out, flip 7 again. When 7 runs out, that's 15 mins.", "It's impossible.", "Start both. When 7 runs out, flip it. When 11 runs out, there are 4 minutes left on the 7. Flip the 7 and when it runs out, that's 15 mins.", "Start both. When 7 finishes, flip it. When 11 finishes, flip it. Total 18."], "answer": "Start both. When 7 runs out, flip it. When 11 runs out, there are 4 minutes left on the 7. Flip the 7 and when it runs out, that's 15 mins."},
+                        {"id": "math_3_3", "question": "A father is 25 years older than his son. In 5 years, the father will be twice as old as his son. How old is the son now?", "options": ["15", "20", "25", "30"], "answer": "20"},
+                        {"id": "math_3_4", "question": "You have a rectangular plot of land that is 10 meters long and 5 meters wide. If you double the length and halve the width, what happens to the area?", "options": ["It doubles", "It halves", "It stays the same", "It quadruples"], "answer": "It stays the same"},
+                        {"id": "math_3_5", "question": "What is the smallest number that, when divided by 2, 3, 4, 5, and 6, leaves a remainder of 1 in each case, but when divided by 7 leaves no remainder?", "options": ["61", "121", "241", "301"], "answer": "301"},
+                        {"id": "math_3_6", "question": "If you write down all the numbers from 1 to 100, how many times do you write the digit '1'?", "options": ["10", "11", "20", "21"], "answer": "21"},
+                        {"id": "math_3_7", "question": "A snail is climbing a 10-meter pole. It climbs 3 meters during the day and slides down 2 meters during the night. How many days will it take the snail to reach the top?", "options": ["7 days", "8 days", "9 days", "10 days"], "answer": "8 days"},
+                        {"id": "math_3_8", "question": "A certain type of bacteria doubles its population every minute. If a single bacterium is placed in a bottle and the bottle is full in 60 minutes, how long did it take for the bottle to be half full?", "options": ["30 minutes", "59 minutes", "58 minutes", "1 minute"], "answer": "59 minutes"},
+                        {"id": "math_3_9", "question": "There are three switches in a room. Only one of them turns on a light bulb in an adjacent room. You can't see the light bulb from the switch room. You can only enter the light bulb room once. How can you figure out which switch turns on the light?", "options": ["Flip switch 1, wait 5 mins, flip switch 1 off, flip switch 2 on. Go to room. If light is on, it's 2. If off but bulb warm, it's 1. If off and cold, it's 3.", "Randomly pick one", "Try all of them quickly", "It's impossible"], "answer": "Flip switch 1, wait 5 mins, flip switch 1 off, flip switch 2 on. Go to room. If light is on, it's 2. If off but bulb warm, it's 1. If off and cold, it's 3."},
+                        {"id": "math_3_10", "question": "You have 9 identical-looking coins, one of which is slightly lighter than the others. Using a balance scale, what is the minimum number of weighings required to find the lighter coin?", "options": ["1", "2", "3", "4"], "answer": "2"}
+                    ]
+                },
+                {
+                    "level": 4,
+                    "questions": [
+                        {"id": "math_4_1", "question": "A man looking at a portrait says, 'Brothers and sisters I have none, but that man's father is my father's son.' Who is in the portrait?", "options": ["His father", "His son", "His grandfather", "Himself"], "answer": "His son"},
+                        {"id": "math_4_2", "question": "If you have a square chocolate bar with 5x5 squares, what is the minimum number of breaks needed to separate all 25 squares?", "options": ["24", "25", "5", "10"], "answer": "24"},
+                        {"id": "math_4_3", "question": "A person buys an item for $10, sells it for $20, buys it back for $30, and sells it again for $40. How much profit did the person make?", "options": ["$0", "$10", "$20", "$30"], "answer": "$20"},
+                        {"id": "math_4_4", "question": "What number, when multiplied by itself, is equal to the sum of its digits?", "options": ["1", "9", "81", "It doesn't exist"], "answer": "1"},
+                        {"id": "math_4_5", "question": "How many minutes are there from 12:00 PM on Monday to 12:00 PM on Wednesday?", "options": ["1440", "2880", "4320", "24 hours"], "answer": "2880"},
+                        {"id": "math_4_6", "question": "A farmer has 17 sheep. All but 9 die. How many does he have left?", "options": ["8", "9", "17", "0"], "answer": "9"},
+                        {"id": "math_4_7", "question": "You have a deck of 52 playing cards. You pick one card. What is the probability that it is either a king or a heart?", "options": ["4/52", "13/52", "16/52", "17/52"], "answer": "16/52"},
+                        {"id": "math_4_8", "question": "What is the next letter in the series: O, T, T, F, F, S, S, E, N, ...?", "options": ["T", "E", "L", "O"], "answer": "T"},
+                        {"id": "math_4_9", "question": "If you have a 3-digit number where the first digit is half the second, and the third digit is twice the second, and the sum of the digits is 15. What is the number?", "options": ["248", "3612", "122", "Can't be formed"], "answer": "Can't be formed"},
+                        {"id": "math_4_10", "question": "There are 80 students in a class. 50 like math, 40 like science, and 20 like both. How many students like neither math nor science?", "options": ["10", "20", "30", "40"], "answer": "10"}
+                    ]
+                },
+                {
+                    "level": 5,
+                    "questions": [
+                        {"id": "math_5_1", "question": "You are given 12 balls, 1 of which is either heavier or lighter than the others. You have a balance scale. What is the minimum number of weighings to find the odd ball AND determine if it's heavier or lighter?", "options": ["2", "3", "4", "5"], "answer": "3"},
+                        {"id": "math_5_2", "question": "If you have a group of 23 people, what is the probability that at least two people share the same birthday (ignoring leap years)? (Requires knowledge of Birthday Paradox)", "options": ["Less than 1%", "Around 25%", "Around 50%", "More than 75%"], "answer": "Around 50%"},
+                        {"id": "math_5_3", "question": "A man has a wolf, a goat, and a cabbage. He needs to cross a river with them. His boat can only carry him and one other item. If left alone, the wolf will eat the goat, and the goat will eat the cabbage. How does he get all three across?", "options": ["Take goat, return. Take wolf, return with goat. Take cabbage, return. Take goat.", "Take wolf, return. Take cabbage, return with wolf. Take goat.", "Take goat, return. Take cabbage, return with goat. Take wolf, return. Take goat.", "It's impossible."], "answer": "Take goat, return. Take wolf, return with goat. Take cabbage, return. Take goat."},
+                        {"id": "math_5_4", "question": "If an object falls from a height of 100 meters, and on each bounce it rises to 1/2 of its previous height, what is the total vertical distance it travels before coming to rest?", "options": ["200 meters", "300 meters", "400 meters", "Infinitely long"], "answer": "300 meters"},
+                        {"id": "math_5_5", "question": "You have two strings, each of which burns for exactly one hour. They don't burn at a uniform rate. How can you measure exactly 45 minutes using only these two strings and a lighter?", "options": ["Light one string at one end, and the other at both ends.", "Light both strings at one end. When the second string finishes, light the first string from the other end.", "Light one string at both ends. When it finishes, light the second string at one end.", "Light both strings at both ends. The time is 30 minutes."], "answer": "Light one string at both ends. When it finishes, light the second string at one end."},
+                        {"id": "math_5_6", "question": "In a town, 5% of all people living in it have unlisted phone numbers. If you select 100 names at random from the phone book, how many of these people would you expect to have unlisted phone numbers?", "options": ["0", "5", "10", "It's impossible to tell"], "answer": "0"},
+                        {"id": "math_5_7", "question": "A car travels at an average speed of 60 km/h for the first half of a journey and 40 km/h for the second half. What is the average speed for the entire journey?", "options": ["50 km/h", "48 km/h", "52 km/h", "45 km/h"], "answer": "48 km/h"},
+                        {"id": "math_5_8", "question": "There are 3 doors. Behind one door is a car; behind the others, goats. You pick a door, say #1. The host, who knows what's behind the doors, opens another door, say #3, revealing a goat. He then asks if you want to switch to door #2. Should you switch?", "options": ["Yes, your chances improve to 2/3", "No, your chances remain 1/2", "It doesn't matter", "No, your chances decrease"], "answer": "Yes, your chances improve to 2/3"},
+                        {"id": "math_5_9", "question": "If you have a rectangular sheet of paper. You fold it in half, then in half again, and so on. If you can fold it 7 times, how thick would it be if the original thickness was 0.1 mm?", "options": ["0.7 mm", "1.4 mm", "12.8 mm", "25.6 mm"], "answer": "12.8 mm"},
+                        {"id": "math_5_10", "question": "What is the smallest number that is a perfect square and a perfect cube?", "options": ["1", "8", "64", "729"], "answer": "64"}
+                    ]
+                },
+                {
+                    "level": 6,
+                    "questions": [
+                        {"id": "math_6_1", "question": "You are blindfolded and told that there are 10 coins on a table, 5 of which are heads up and 5 are tails up. You need to separate them into two piles, each with the same number of heads up coins. You can't see or feel which side is up.", "options": ["It's impossible", "Split into 5 and 5, flip all in one pile", "Split into 2 and 8, flip 2 in the smaller pile", "Split into two piles of 5 coins each, then flip all coins in one of the piles."], "answer": "Split into two piles of 5 coins each, then flip all coins in one of the piles."},
+                        {"id": "math_6_2", "question": "Given two positive integers, 'a' and 'b', such that a * b = 24 and a + b = 10. What are the two integers?", "options": ["2 and 12", "3 and 8", "4 and 6", "1 and 24"], "answer": "4 and 6"},
+                        {"id": "math_6_3", "question": "A group of friends goes to a restaurant. The bill comes to $100. They decide to split it equally. If there were one less person, each person would have to pay $5 more. How many friends are there?", "options": ["4", "5", "6", "8"], "answer": "5"},
+                        {"id": "math_6_4", "question": "You are on an island and you find two paths. One leads to certain death, the other to treasure. There are two guardians. One always tells the truth, the other always lies. You don't know which is which. You can ask only one question to one guardian. What question should you ask to find the path to treasure?", "options": ["'Which path leads to treasure?'", "'Will the other guardian say this path leads to treasure?'", "'Is this path safe?'", "'Are you the truth-teller?'"], "answer": "'Will the other guardian say this path leads to treasure?'"},
+                        {"id": "math_6_5", "question": "There is a 10x10 grid. You start at (0,0) and want to reach (10,10) by only moving right or up. How many different paths are there?", "options": ["100", "200", "A very large number (combination)", "184756"], "answer": "184756"},
+                        {"id": "math_6_6", "question": "What is the only number that is exactly equal to the sum of the cubes of its digits?", "options": ["1", "153", "370", "407"], "answer": "153"},
+                        {"id": "math_6_7", "question": "If you throw two standard six-sided dice, what is the probability that the sum of the numbers rolled is 7?", "options": ["1/6", "1/12", "1/36", "7/36"], "answer": "1/6"},
+                        {"id": "math_6_8", "question": "A bottle of wine costs $10. The wine costs $9 more than the bottle. How much does the bottle cost?", "options": ["$0.50", "$1.00", "$1.50", "$2.00"], "answer": "$0.50"},
+                        {"id": "math_6_9", "question": "You have 50 white marbles and 50 black marbles. You have two urns. How should you distribute the marbles into the urns to maximize your chance of drawing a white marble at random from a randomly chosen urn?", "options": ["Put all white in one, all black in other", "Put 25 white and 25 black in each", "Put 1 white in one urn, and the remaining 49 white and 50 black in the other", "Put 50 white in one, 50 black in other."], "answer": "Put 1 white in one urn, and the remaining 49 white and 50 black in the other"},
+                        {"id": "math_6_10", "question": "Consider the sequence defined by x_1 = 1, and x_{n+1} = x_n + n. What is the 5th term in this sequence?", "options": ["10", "11", "15", "16"], "answer": "11"}
+                    ]
+                }
+            ],
+            "Current Affair": [
+                {
+                    "level": 1,
+                    "questions": [
+                        {"id": "current_1_1", "question": "Which country recently hosted the G7 Summit in May 2025?", "options": ["Japan", "Italy", "Germany", "France"], "answer": "Italy"},
+                        {"id": "current_1_2", "question": "Who was recently elected as the new President of the European Commission in late 2024?", "options": ["Ursula von der Leyen", "Roberta Metsola", "Charles Michel", "Emmanuel Macron"], "answer": "Ursula von der Leyen"},
+                        {"id": "current_1_3", "question": "Which major sporting event is scheduled to take place in Los Angeles in 2028?", "options": ["FIFA World Cup", "Olympic Games", "Commonwealth Games", "Asian Games"], "answer": "Olympic Games"},
+                        {"id": "current_1_4", "question": "Which social media platform underwent a significant rebrand in late 2023, changing its iconic bird logo?", "options": ["Facebook", "Instagram", "Twitter", "Snapchat"], "answer": "Twitter"},
+                        {"id": "current_1_5", "question": "What is the name of the new lunar lander developed by a private company that successfully docked with the ISS in early 2025?", "options": ["Starship", "Dragonfly", "Lunar Gateway", "Dream Chaser"], "answer": "Dream Chaser"},
+                        {"id": "current_1_6", "question": "Which global organization released a new report in early 2025 highlighting the urgent need for climate adaptation finance?", "options": ["WHO", "IMF", "UNEP", "WTO"], "answer": "UNEP"},
+                        {"id": "current_1_7", "question": "A new major trade agreement was signed between several Southeast Asian nations and Australia/New Zealand in late 2024. What is it called?", "options": ["ASEAN Plus", "RCEP 2.0", "AANZFTA 2.0", "Indo-Pacific Pact"], "answer": "AANZFTA 2.0"},
+                        {"id": "current_1_8", "question": "Which country successfully launched its first crewed space mission using its indigenous rocket in early 2025?", "options": ["India", "South Korea", "Brazil", "Turkey"], "answer": "India"},
+                        {"id": "current_1_9", "question": "What is the primary focus of the new global initiative 'Quantum Leap 2030' launched recently?", "options": ["Developing AI ethics guidelines", "Advancing quantum computing and related technologies", "Combating global pandemics", "Promoting sustainable agriculture"], "answer": "Advancing quantum computing and related technologies"},
+                        {"id": "current_1_10", "question": "Which famous landmark reopened to tourists in early 2025 after extensive restoration work lasting over two years?", "options": ["Eiffel Tower", "Colosseum", "Great Wall of China", "Big Ben Clock Tower"], "answer": "Big Ben Clock Tower"}
+                    ]
+                },
+                {
+                    "level": 2,
+                    "questions": [
+                        {"id": "current_2_1", "question": "The ongoing conflict in which region continues to dominate international headlines in early to mid-2025?", "options": ["South China Sea", "Eastern Europe", "Horn of Africa", "Middle East (specifically between Israel and Palestine)"], "answer": "Middle East (specifically between Israel and Palestine)"},
+                        {"id": "current_2_2", "question": "Which country recently announced a groundbreaking discovery in fusion energy, potentially paving the way for clean, limitless power?", "options": ["China", "United States", "Japan", "United Kingdom"], "answer": "United States"},
+                        {"id": "current_2_3", "question": "What significant legislative change regarding data privacy came into effect across all EU member states in January 2025?", "options": ["CCPA 2.0", "GDPR v2.0", "Digital Services Act expansion", "Data Governance Act"], "answer": "GDPR v2.0"},
+                        {"id": "current_2_4", "question": "Which global health organization declared a new pandemic threat due to a novel avian flu strain in late 2024?", "options": ["UNICEF", "WHO", "Red Cross", "Doctors Without Borders"], "answer": "WHO"},
+                        {"id": "current_2_5", "question": "A major cyberattack targeted critical infrastructure in several Western European countries in February 2025. Which sector was most affected?", "options": ["Healthcare", "Energy Grid", "Financial Services", "Transportation"], "answer": "Energy Grid"},
+                        {"id": "current_2_6", "question": "Which prominent tech CEO announced their resignation in March 2025, sending shockwaves through the industry?", "options": ["Elon Musk", "Sundar Pichai", "Tim Cook", "Jensen Huang"], "answer": "Elon Musk"},
+                        {"id": "current_2_7", "question": "What is the name of the new international space station module, developed jointly by ESA and JAXA, that launched in April 2025?", "options": ["Unity Module", "Harmony Module", "Tranquility Module", "Apex Module"], "answer": "Apex Module"},
+                        {"id": "current_2_8", "question": "A significant breakthrough in quantum computing was announced in early 2025, involving the creation of a stable, error-corrected 'logical qubit' by which company?", "options": ["IBM", "Google", "Microsoft", "Intel"], "answer": "Google"},
+                        {"id": "current_2_9", "question": "Which African nation experienced a successful, peaceful transition of power following a landmark election in early 2025, widely praised by international observers?", "options": ["Nigeria", "Kenya", "South Africa", "Ghana"], "answer": "South Africa"},
+                        {"id": "current_2_10", "question": "What new UN initiative, launched in late 2024, aims to protect 30% of the world's oceans by 2030?", "options": ["Ocean Shield", "Blue Planet 30", "High Seas Treaty Implementation Fund", "Marine Conservation Alliance"], "answer": "High Seas Treaty Implementation Fund"}
+                    ]
+                },
+                {
+                    "level": 3,
+                    "questions": [
+                        {"id": "current_3_1", "question": "Which country recently faced severe economic sanctions from the G20 nations in response to its continued aggression in a neighboring territory in early 2025?", "options": ["Russia", "North Korea", "Iran", "Venezuela"], "answer": "Russia"},
+                        {"id": "current_3_2", "question": "The 'Global AI Safety Summit' held in March 2025 focused on which key aspect of AI development?", "options": ["Promoting AI in education", "Addressing the risks and governance of advanced AI systems", "Investing in AI infrastructure", "Standardizing AI programming languages"], "answer": "Addressing the risks and governance of advanced AI systems"},
+                        {"id": "current_3_3", "question": "Which groundbreaking medical procedure, involving the first successful human gene editing to cure a genetic disorder, was announced in April 2025?", "options": ["CRISPR-Cas9 application for Sickle Cell Anemia", "First successful human head transplant", "Development of a universal cancer vaccine", "Regenerative organ printing"], "answer": "CRISPR-Cas9 application for Sickle Cell Anemia"},
+                        {"id": "current_3_4", "question": "What was the primary cause of the widespread power outages across South Asia in early 2025?", "options": ["Solar Flare", "Major Cyberattack", "Extreme Heatwave Overloading Grids", "Volcanic Eruption"], "answer": "Extreme Heatwave Overloading Grids"},
+                        {"id": "current_3_5", "question": "Which space agency announced a new initiative in May 2025 to develop a reusable lunar lander system for routine trips to the Moon?", "options": ["Roscosmos", "ESA", "NASA", "CNSA"], "answer": "NASA"},
+                        {"id": "current_3_6", "question": "A major financial scandal involving widespread cryptocurrency fraud rocked the global markets in late 2024. Which decentralized exchange was at the center of the investigation?", "options": ["Binance", "Coinbase", "FTX", "Terraform Labs"], "answer": "FTX"},
+                        {"id": "current_3_7", "question": "Which UN member state formally recognized Palestine as an independent state in May 2025, leading to significant diplomatic reactions?", "options": ["United States", "Germany", "Spain", "Australia"], "answer": "Spain"},
+                        {"id": "current_3_8", "question": "What is the name of the new highly anticipated electric vehicle battery technology, promising significantly longer range and faster charging, unveiled by a Japanese company in early 2025?", "options": ["Solid-State Battery 2.0", "Lithium-Air Battery", "Quantum Dot Battery", "Graphene Supercapacitor"], "answer": "Solid-State Battery 2.0"},
+                        {"id": "current_3_9", "question": "The 'Amazon Cooperation Treaty Organization' (ACTO) held an emergency summit in April 2025 to address what pressing environmental issue?", "options": ["Ocean Plastic Pollution", "Deforestation and Wildfires in the Amazon", "Desertification in Africa", "Glacier Melt in the Himalayas"], "answer": "Deforestation and Wildfires in the Amazon"},
+                        {"id": "current_3_10", "question": "Which country passed a landmark bill in March 2025, becoming the first major economy to regulate AI development comprehensively?", "options": ["USA", "China", "European Union (EU)", "Canada"], "answer": "European Union (EU)"}
+                    ]
+                },
+                {
+                    "level": 4,
+                    "questions": [
+                        {"id": "current_4_1", "question": "The International Court of Justice (ICJ) issued a new advisory opinion in April 2025 on the legal implications of climate change for which specific group of nations?", "options": ["Landlocked developing countries", "Small Island Developing States (SIDS)", "Arctic nations", "Oil-producing countries"], "answer": "Small Island Developing States (SIDS)"},
+                        {"id": "current_4_2", "question": "What is the name of the new global digital currency standard proposed by the IMF in early 2025 to streamline cross-border payments?", "options": ["IMF Coin", "Universal Central Bank Digital Currency (uCBDC) Framework", "Special Drawing Rights 2.0", "Global Stablecoin Initiative"], "answer": "Universal Central Bank Digital Currency (uCBDC) Framework"},
+                        {"id": "current_4_3", "question": "Which major scientific breakthrough in materials science, announced in May 2025, promises to revolutionize electronics with near-zero resistance at room temperature?", "options": ["Room-Temperature Superconductor LK-99", "Transparent Aluminum", "Self-healing Polymers", "Quantum Dots for Energy Storage"], "answer": "Room-Temperature Superconductor LK-99"},
+                        {"id": "current_4_4", "question": "A new trade war escalated between the US and China in March 2025, primarily over which key technology sector?", "options": ["Electric Vehicles", "Semiconductors", "Artificial Intelligence Software", "Renewable Energy Equipment"], "answer": "Semiconductors"},
+                        {"id": "current_4_5", "question": "Which country initiated a significant naval expansion program in late 2024, raising concerns about regional stability in the Indo-Pacific?", "options": ["Japan", "Australia", "China", "India"], "answer": "China"},
+                        {"id": "current_4_6", "question": "The 'AI for Good Global Summit 2025' focused on promoting AI solutions for which set of global challenges?", "options": ["Economic growth and corporate profits", "Military defense and security", "Sustainable Development Goals (SDGs)", "Space exploration and colonization"], "answer": "Sustainable Development Goals (SDGs)"},
+                        {"id": "current_4_7", "question": "What is the primary goal of the 'Global Carbon Dioxide Removal Initiative' launched by the UN in early 2025?", "options": ["Reducing industrial emissions", "Planting more trees", "Developing and deploying technologies to remove CO2 directly from the atmosphere", "Promoting electric vehicles"], "answer": "Developing and deploying technologies to remove CO2 directly from the atmosphere"},
+                        {"id": "current_4_8", "question": "Which major energy company announced its complete divestment from fossil fuels by 2030 in a landmark decision in April 2025?", "options": ["ExxonMobil", "Shell", "BP", "Saudi Aramco"], "answer": "Shell"},
+                        {"id": "current_4_9", "question": "A new international agreement was signed in March 2025 to regulate the development and use of 'autonomous weapons systems'. What is the common term for these systems?", "options": ["Drones", "Robots", "Killer Robots / Lethal Autonomous Weapons Systems (LAWS)", "Automated Turrets"], "answer": "Killer Robots / Lethal Autonomous Weapons Systems (LAWS)"},
+                        {"id": "current_4_10", "question": "Which major cybersecurity firm uncovered a sophisticated state-sponsored hacking campaign targeting democratic elections in several countries in May 2025?", "options": ["Kaspersky", "Symantec", "Mandiant (Google Cloud Security)", "McAfee"], "answer": "Mandiant (Google Cloud Security)"}
+                    ]
+                },
+                {
+                    "level": 5,
+                    "questions": [
+                        {"id": "current_5_1", "question": "What is the 'Global Treaty on Plastic Pollution' that was finalized in early 2025 primarily aimed at achieving?", "options": ["Recycling all plastic waste", "Phasing out single-use plastics and promoting a circular economy for plastics", "Burning plastic waste for energy", "Developing biodegradable plastics"], "answer": "Phasing out single-use plastics and promoting a circular economy for plastics"},
+                        {"id": "current_5_2", "question": "Which major pharmaceutical company announced a breakthrough in personalized cancer vaccines using mRNA technology in April 2025?", "options": ["Pfizer", "Moderna", "Johnson & Johnson", "AstraZeneca"], "answer": "Moderna"},
+                        {"id": "current_5_3", "question": "The 'Great Reset' initiative, discussed at the World Economic Forum in Davos in January 2025, primarily focuses on what overarching global agenda?", "options": ["Reforming international financial institutions", "Reshaping global economy and society towards sustainability and equity post-pandemic", "Promoting traditional industries", "Increasing fossil fuel production"], "answer": "Reshaping global economy and society towards sustainability and equity post-pandemic"},
+                        {"id": "current_5_4", "question": "Which UN agency warned in March 2025 that global food security is at an all-time low due to climate change and ongoing conflicts?", "options": ["FAO (Food and Agriculture Organization)", "WHO", "UNHCR", "UNICEF"], "answer": "FAO (Food and Agriculture Organization)"},
+                        {"id": "current_5_5", "question": "What is the primary objective of the 'Artemis Accords', which saw several new signatories in early 2025?", "options": ["Establishing rules for international space tourism", "Setting principles for peaceful and sustainable space exploration, particularly on the Moon and Mars", "Regulating satellite launches", "Developing new space weapons"], "answer": "Setting principles for peaceful and sustainable space exploration, particularly on the Moon and Mars"},
+                        {"id": "current_5_6", "question": "A new 'Global Digital Compact' was adopted by the UN in late 2024. What is its main purpose?", "options": ["To regulate the internet for national security", "To create a set of shared principles for an open, free, and secure digital future for all", "To establish a global digital currency", "To control online content"], "answer": "To create a set of shared principles for an open, free, and secure digital future for all"},
+                        {"id": "current_5_7", "question": "Which country recently achieved a major milestone in geothermal energy production, announcing the world's largest plant in April 2025?", "options": ["Iceland", "Indonesia", "Kenya", "USA"], "answer": "Indonesia"},
+                        {"id": "current_5_8", "question": "The ongoing discussions about 'Universal Basic Income' (UBI) gained new momentum in early 2025 following pilot programs in which two European countries?", "options": ["Germany and France", "Finland and Netherlands", "Spain and Portugal", "Ireland and Scotland"], "answer": "Finland and Netherlands"},
+                        {"id": "current_5_9", "question": "What is the 'Global Methane Pledge', which saw increased commitment in March 2025, primarily focused on?", "options": ["Reducing methane emissions from agriculture and fossil fuel industries", "Increasing methane production for energy", "Measuring methane levels in the atmosphere", "Developing new methane capture technologies"], "answer": "Reducing methane emissions from agriculture and fossil fuel industries"},
+                        {"id": "current_5_10", "question": "Which global intergovernmental organization released a comprehensive report in May 2025 on the future of work in the age of AI and automation?", "options": ["World Bank", "International Labour Organization (ILO)", "OECD", "G7"], "answer": "International Labour Organization (ILO)"}
+                    ]
+                },
+                {
+                    "level": 6,
+                    "questions": [
+                        {"id": "current_6_1", "question": "The concept of 'Planetary Boundaries' gained significant traction in policy discussions in early 2025. What does it refer to?", "options": ["Boundaries of planets in our solar system", "The safe operating space for humanity with respect to Earth's systems", "The limits of human space travel", "The boundaries of national territories"], "answer": "The safe operating space for humanity with respect to Earth's systems"},
+                        {"id": "current_6_2", "question": "Which global initiative aims to provide accessible and affordable internet connectivity to the entire world, seeing significant progress in late 2024?", "options": ["Starlink", "Project Loon", "Alliance for Affordable Internet (A4AI)", "OneWeb"], "answer": "Alliance for Affordable Internet (A4AI)"},
+                        {"id": "current_6_3", "question": "What is the 'Global South-South Cooperation' primarily aimed at in the context of recent geopolitical shifts (late 2024/early 2025)?", "options": ["Increasing aid from developed to developing countries", "Promoting economic, social, and political cooperation among developing countries", "Establishing new trade barriers", "Focusing solely on environmental issues"], "answer": "Promoting economic, social, and political cooperation among developing countries"},
+                        {"id": "current_6_4", "question": "Which international body released a framework in April 2025 for regulating the responsible use of gene drive technology?", "options": ["WHO", "Convention on Biological Diversity (CBD)", "UNEP", "UNESCO"], "answer": "Convention on Biological Diversity (CBD)"},
+                        {"id": "current_6_5", "question": "The 'Digital Public Infrastructure' (DPI) concept gained widespread adoption in several developing nations in early 2025, referring to what?", "options": ["Publicly owned internet service providers", "Open and interoperable digital systems (like digital identity, payment systems) that enable public and private service delivery", "Government surveillance systems", "Free public Wi-Fi networks"], "answer": "Open and interoperable digital systems (like digital identity, payment systems) that enable public and private service delivery"},
+                        {"id": "current_6_6", "question": "Which country recently announced a significant national program to reskill its workforce for the AI era, committing billions to training initiatives?", "options": ["Germany", "Singapore", "Japan", "Canada"], "answer": "Singapore"},
+                        {"id": "current_6_7", "question": "The 'International Criminal Court' (ICC) issued a new set of indictments in May 2025 against high-ranking officials for war crimes related to which ongoing conflict?", "options": ["Yemen Civil War", "Sudan Conflict", "Ukraine War", "Myanmar Rohingya Crisis"], "answer": "Ukraine War"},
+                        {"id": "current_6_8", "question": "What is the primary focus of the 'Global Biodiversity Framework', which gained renewed commitment in late 2024?", "options": ["Protecting specific endangered species", "Halting and reversing biodiversity loss by 2030, and ensuring its sustainable use", "Promoting agricultural monoculture", "Developing new genetically modified organisms"], "answer": "Halting and reversing biodiversity loss by 2030, and ensuring its sustainable use"},
+                        {"id": "current_6_9", "question": "Which technology is at the forefront of efforts to create 'carbon-negative' concrete, a breakthrough announced in early 2025?", "options": ["3D Printing", "Carbon Capture and Utilization (CCU)", "AI-driven material design", "Nanotechnology"], "answer": "Carbon Capture and Utilization (CCU)"},
+                        {"id": "current_6_10", "question": "What significant geopolitical shift occurred in the Arctic region in early 2025, leading to increased tensions between major powers?", "options": ["Discovery of new oil reserves", "New military alliances formed", "Increased militarization and claims over shipping routes due to accelerated ice melt", "Establishment of an independent Arctic state"], "answer": "Increased militarization and claims over shipping routes due to accelerated ice melt"}
+                    ]
+                }
+            ],
+            "Sports (Cricket)": [
+                {
+                    "level": 1,
+                    "questions": [
+                        {"id": "cricket_1_1", "question": "How many players are on a cricket team at any given time on the field?", "options": ["9", "10", "11", "12"], "answer": "11"},
+                        {"id": "cricket_1_2", "question": "What is the small piece of wood that sits on top of the wickets?", "options": ["Bail", "Stump", "Crease", "Bat"], "answer": "Bail"},
+                        {"id": "cricket_1_3", "question": "Which famous cricketer is known as 'The Little Master'?", "options": ["Ricky Ponting", "Sachin Tendulkar", "Brian Lara", "Virat Kohli"], "answer": "Sachin Tendulkar"},
+                        {"id": "cricket_1_4", "question": "What is the term for a batsman scoring 100 runs in a single innings?", "options": ["Fifty", "Hundred", "Century", "Double Century"], "answer": "Century"},
+                        {"id": "cricket_1_5", "question": "Which country won the ICC Men's T20 World Cup in 2024?", "options": ["Australia", "India", "England", "West Indies"], "answer": "India"},
+                        {"id": "cricket_1_6", "question": "What is the primary objective of the fielding team in cricket?", "options": ["Score runs", "Get batsmen out", "Hit the ball the furthest", "Run between the wickets"], "answer": "Get batsmen out"},
+                        {"id": "cricket_1_7", "question": "What is the name of the international governing body for cricket?", "options": ["FIFA", "ICC", "BCCI", "ECB"], "answer": "ICC"},
+                        {"id": "cricket_1_8", "question": "Which of these is NOT a dismissal in cricket?", "options": ["Bowled", "Caught", "Run out", "Wide"], "answer": "Wide"},
+                        {"id": "cricket_1_9", "question": "How many overs are in a standard One Day International (ODI) match?", "options": ["20", "40", "50", "90"], "answer": "50"},
+                        {"id": "cricket_1_10", "question": "What is the term for a batsman hitting the ball over the boundary without it touching the ground?", "options": ["Four", "Three", "Six", "Two"], "answer": "Six"}
+                    ]
+                },
+                {
+                    "level": 2,
+                    "questions": [
+                        {"id": "cricket_2_1", "question": "Which Indian city is home to the iconic 'Wankhede Stadium'?", "options": ["Delhi", "Kolkata", "Chennai", "Mumbai"], "answer": "Mumbai"},
+                        {"id": "cricket_2_2", "question": "What is 'Leg Before Wicket' (LBW) a type of dismissal in cricket?", "options": ["When the ball hits the batsman's leg in front of the stumps without first hitting the bat", "When the ball hits the leg and goes for a boundary", "When the leg breaks a wicket", "When the batsman hits the ball with his leg"], "answer": "When the ball hits the batsman's leg in front of the stumps without first hitting the bat"},
+                        {"id": "cricket_2_3", "question": "Who is currently the captain of the Indian Men's Cricket Team in Test matches (as of May 2025)?", "options": ["Virat Kohli", "Rohit Sharma", "KL Rahul", "Hardik Pandya"], "answer": "Rohit Sharma"},
+                        {"id": "cricket_2_4", "question": "In Test cricket, what is the term for a team's total runs in an innings, often significantly less than the opponent's?", "options": ["Collapse", "Drought", "Follow-on", "All out"], "answer": "Follow-on"},
+                        {"id": "cricket_2_5", "question": "Which country is home to the 'Big Bash League' (BBL) T20 competition?", "options": ["India", "England", "Australia", "South Africa"], "answer": "Australia"},
+                        {"id": "cricket_2_6", "question": "What is a 'Hat-trick' in cricket?", "options": ["A batsman scoring three consecutive centuries", "A bowler taking three wickets in three consecutive deliveries", "A fielder taking three catches in an over", "A team winning three matches in a row"], "answer": "A bowler taking three wickets in three consecutive deliveries"},
+                        {"id": "cricket_2_7", "question": "Which legendary West Indies cricketer is known for hitting 6 sixes in an over in international cricket?", "options": ["Brian Lara", "Chris Gayle", "Viv Richards", "Kieron Pollard"], "answer": "Kieron Pollard"},
+                        {"id": "cricket_2_8", "question": "What is the term for a ball bowled that goes wide of the stumps and the batsman, resulting in an extra run?", "options": ["No-ball", "Byes", "Leg Byes", "Wide"], "answer": "Wide"},
+                        {"id": "cricket_2_9", "question": "Which format of cricket typically lasts up to five days?", "options": ["T20", "One Day International (ODI)", "Test Cricket", "The Hundred"], "answer": "Test Cricket"},
+                        {"id": "cricket_2_10", "question": "What is the fielding position directly behind the wicket-keeper on the leg side?", "options": ["Slip", "Gully", "Fine Leg", "Third Man"], "answer": "Fine Leg"}
+                    ]
+                },
+                {
+                    "level": 3,
+                    "questions": [
+                        {"id": "cricket_3_1", "question": "What is the term for a batsman getting out without scoring any runs?", "options": ["Duck", "Maiden", "Dot ball", "Wicket maiden"], "answer": "Duck"},
+                        {"id": "cricket_3_2", "question": "Which iconic Australian cricketer is often considered the greatest batsman of all time, with an astonishing Test average of 99.94?", "options": ["Ricky Ponting", "Steve Smith", "Donald Bradman", "Alan Border"], "answer": "Donald Bradman"},
+                        {"id": "cricket_3_3", "question": "What is the significance of the 'Ashes' series in cricket?", "options": ["It's a series between India and Pakistan", "It's the oldest and most famous rivalry between England and Australia in Test cricket", "It's a T20 tournament for developing nations", "It's a series played in a specific stadium"], "answer": "It's the oldest and most famous rivalry between England and Australia in Test cricket"},
+                        {"id": "cricket_3_4", "question": "In which year did India win their first Cricket World Cup (ODI)?", "options": ["1975", "1983", "2007", "2011"], "answer": "1983"},
+                        {"id": "cricket_3_5", "question": "What is the term for a bowler who bowls with the aim of hitting the wickets directly, often at high speed?", "options": ["Spinner", "Medium pacer", "Fast bowler", "All-rounder"], "answer": "Fast bowler"},
+                        {"id": "cricket_3_6", "question": "Which unique rule applies to the 'The Hundred' cricket competition in England?", "options": ["Each innings consists of 100 balls", "Only 10 overs are bowled per innings", "Only sixes are allowed", "Batsmen can only score in boundaries"], "answer": "Each innings consists of 100 balls"},
+                        {"id": "cricket_3_7", "question": "Who was the first Indian to score a triple century in Test cricket?", "options": ["Sachin Tendulkar", "Rahul Dravid", "Virender Sehwag", "Rohit Sharma"], "answer": "Virender Sehwag"},
+                        {"id": "cricket_3_8", "question": "What does 'DRS' stand for in cricket?", "options": ["Decision Review System", "Delivery Replay System", "Dynamic Run Score", "Defensive Rule System"], "answer": "Decision Review System"},
+                        {"id": "cricket_3_9", "question": "Which bowler has taken the most wickets in Test cricket history?", "options": ["Shane Warne", "Muttiah Muralitharan", "Anil Kumble", "James Anderson"], "answer": "Muttiah Muralitharan"},
+                        {"id": "cricket_3_10", "question": "What is the term for when a bowler completes an over without conceding any runs?", "options": ["Empty over", "Zero over", "Maiden over", "Dry over"], "answer": "Maiden over"}
+                    ]
+                },
+                {
+                    "level": 4,
+                    "questions": [
+                        {"id": "cricket_4_1", "question": "Which former Indian captain is known as 'Captain Cool'?", "options": ["Sourav Ganguly", "Anil Kumble", "MS Dhoni", "Virat Kohli"], "answer": "MS Dhoni"},
+                        {"id": "cricket_4_2", "question": "What is the 'D/L method' used for in rain-affected cricket matches?", "options": ["Determining the weather forecast", "Calculating revised targets and results in limited-overs matches affected by interruptions", "Deciding the Man of the Match", "Setting fielding restrictions"], "answer": "Calculating revised targets and results in limited-overs matches affected by interruptions"},
+                        {"id": "cricket_4_3", "question": "Which country won the most recent ICC Men's Cricket World Cup (ODI) in 2023?", "options": ["India", "Australia", "England", "New Zealand"], "answer": "Australia"},
+                        {"id": "cricket_4_4", "question": "What is the term for a fielding position on the off-side, close to the batsman, often catching slips?", "options": ["Mid-on", "Point", "Cover", "Slip"], "answer": "Slip"},
+                        {"id": "cricket_4_5", "question": "Which player is credited with inventing the 'Doosra' delivery in off-spin bowling?", "options": ["Shane Warne", "Harbhajan Singh", "Muttiah Muralitharan", "Saqlain Mushtaq"], "answer": "Saqlain Mushtaq"},
+                        {"id": "cricket_4_6", "question": "What is the highest individual score in a Men's Test innings?", "options": ["300", "333", "375", "400*"], "answer": "400*"},
+                        {"id": "cricket_4_7", "question": "Which ground is known as the 'Home of Cricket'?", "options": ["Eden Gardens", "MCG (Melbourne Cricket Ground)", "Lord's", "The Oval"], "answer": "Lord's"},
+                        {"id": "cricket_4_8", "question": "What is 'reverse swing' in fast bowling?", "options": ["Swinging the ball in the opposite direction to conventional swing due to wear and tear", "Swinging the ball faster", "A type of slow bowling", "Swinging the ball after it bounces"], "answer": "Swinging the ball in the opposite direction to conventional swing due to wear and tear"},
+                        {"id": "cricket_4_9", "question": "Which Indian bowler is the highest wicket-taker in ODIs for India?", "options": ["Anil Kumble", "Harbhajan Singh", "Javagal Srinath", "Jasprit Bumrah"], "answer": "Anil Kumble"},
+                        {"id": "cricket_4_10", "question": "What is the term for a fielder who stands very close to the batsman, often near the wicket-keeper, aiming for catches?", "options": ["Long-on", "Deep square leg", "Short leg / Silly point", "Mid-off"], "answer": "Short leg / Silly point"}
+                    ]
+                },
+                {
+                    "level": 5,
+                    "questions": [
+                        {"id": "cricket_5_1", "question": "Which South African cricketer was controversially found guilty of ball-tampering during a Test match against Australia in 2018?", "options": ["AB de Villiers", "Faf du Plessis", "Dale Steyn", "Kagiso Rabada"], "answer": "Faf du Plessis"},
+                        {"id": "cricket_5_2", "question": "What is the 'Bazball' approach, famously adopted by the England Test team under Brendon McCullum?", "options": ["A highly aggressive and entertaining style of Test cricket", "A defensive strategy focused on drawing matches", "A strategy to only play T20 cricket", "A specific type of bowling technique"], "answer": "A highly aggressive and entertaining style of Test cricket"},
+                        {"id": "cricket_5_3", "question": "Which Indian city hosted the final of the ICC Men's Cricket World Cup 2023?", "options": ["Mumbai", "Delhi", "Ahmedabad", "Chennai"], "answer": "Ahmedabad"},
+                        {"id": "cricket_5_4", "question": "What is the 'Spirit of Cricket' as defined by the MCC?", "options": ["Winning at all costs", "Playing aggressively and intimidating opponents", "Playing hard but fair, respecting opponents, umpires, and the game's traditions", "Only playing friendly matches"], "answer": "Playing hard but fair, respecting opponents, umpires, and the game's traditions"},
+                        {"id": "cricket_5_5", "question": "Which bowler has taken all 10 wickets in a single Test innings (a 'Perfect 10' or 'Ten-wicket haul')?", "options": ["Anil Kumble", "Jim Laker", "Ajaz Patel", "All of the above"], "answer": "All of the above"},
+                        {"id": "cricket_5_6", "question": "What is the term for a delivery that swings sharply into a right-handed batsman (or away from a left-hander) and then moves away off the pitch?", "options": ["Leg-cutter", "Off-cutter", "Inswinger", "Outswinger"], "answer": "Inswinger"},
+                        {"id": "cricket_5_7", "question": "Which historical event led to the suspension of South Africa from international cricket for over two decades?", "options": ["Financial irregularities", "Apartheid policies", "Lack of competitive teams", "Player strikes"], "answer": "Apartheid policies"},
+                        {"id": "cricket_5_8", "question": "What is 'Mankading' in cricket, and why is it sometimes controversial?", "options": ["A legal dismissal where a bowler runs out the non-striker who is backing up too far, considered by some against the spirit of the game", "A type of spin bowling", "A fielding technique", "A batsman's shot"], "answer": "A legal dismissal where a bowler runs out the non-striker who is backing up too far, considered by some against the spirit of the game"},
+                        {"id": "cricket_5_9", "question": "Which player holds the record for the fastest century in Test cricket history?", "options": ["Brendon McCullum", "Viv Richards", "Adam Gilchrist", "Misbah-ul-Haq"], "answer": "Brendon McCullum"},
+                        {"id": "cricket_5_10", "question": "What is the 'Pink Ball' primarily used for in Test cricket?", "options": ["Matches played in foggy conditions", "Day-Night Test matches", "Women's Test matches", "Training sessions"], "answer": "Day-Night Test matches"}
+                    ]
+                },
+                {
+                    "level": 6,
+                    "questions": [
+                        {"id": "cricket_6_1", "question": "Which fielding position is considered the most challenging and requires exceptional reflexes, often standing very close to the bat?", "options": ["Mid-wicket", "Square leg", "Short leg", "Gully"], "answer": "Short leg"},
+                        {"id": "cricket_6_2", "question": "What is the strategic significance of 'declaration' in Test cricket?", "options": ["To end the innings when a team has too many runs", "To give the opposing team enough time to bat and bowl them out, aiming for a result rather than a draw", "To allow a specific batsman to reach a milestone", "To confuse the opponent"], "answer": "To give the opposing team enough time to bat and bowl them out, aiming for a result rather than a draw"},
+                        {"id": "cricket_6_3", "question": "Which iconic partnership holds the record for the highest partnership in Test cricket history?", "options": ["Rahul Dravid & VVS Laxman", "Mahela Jayawardene & Kumar Sangakkara", "Matthew Hayden & Justin Langer", "Sachin Tendulkar & Virender Sehwag"], "answer": "Mahela Jayawardene & Kumar Sangakkara"},
+                        {"id": "cricket_6_4", "question": "What is the 'MCC' (Marylebone Cricket Club) and its historical significance?", "options": ["The governing body for cricket in Australia", "The owner of Lord's Cricket Ground and the custodian of the Laws of Cricket", "A prominent cricket club in India", "The official sponsor of the World Cup"], "answer": "The owner of Lord's Cricket Ground and the custodian of the Laws of Cricket"},
+                        {"id": "cricket_6_5", "question": "Which Australian cricketer famously 'walked' in a Test match after nicking the ball, despite the umpire not giving him out, upholding the spirit of the game?", "options": ["Ricky Ponting", "Steve Waugh", "Adam Gilchrist", "Shane Warne"], "answer": "Adam Gilchrist"},
+                        {"id": "cricket_6_6", "question": "What is the 'Bazball' approach, famously adopted by the England Test team under Brendon McCullum, often criticized for?", "options": ["Its slow scoring rate", "Its emphasis on defensive play", "Its potential to lead to collapses and unnecessary risks", "Its overuse of spin bowlers"], "answer": "Its potential to lead to collapses and unnecessary risks"},
+                        {"id": "cricket_6_7", "question": "Which Indian cricketer is known as 'The Wall' for his resolute defensive batting in Test matches?", "options": ["Sourav Ganguly", "VVS Laxman", "Rahul Dravid", "MS Dhoni"], "answer": "Rahul Dravid"},
+                        {"id": "cricket_6_8", "question": "What is the 'Super Over' used for in limited-overs cricket?", "options": ["To decide the Man of the Match", "To settle ties in knockout matches", "To determine fielding restrictions", "To allow extra practice for players"], "answer": "To settle ties in knockout matches"},
+                        {"id": "cricket_6_9", "question": "Which cricket tournament is specifically designed to promote cricket among associate and affiliate member nations of the ICC?", "options": ["ICC World Test Championship", "ICC Cricket World Cup League 2", "Asia Cup", "Champions Trophy"], "answer": "ICC Cricket World Cup League 2"},
+                        {"id": "cricket_6_10", "question": "What was the controversial 'Bodyline' series about in the 1930s?", "options": ["A series where players refused to bat", "A bowling tactic by England against Australia, specifically targeting the body with fast, short-pitched deliveries, deemed unsportsmanlike", "A series played without protective gear", "A series where teams only scored boundaries"], "answer": "A bowling tactic by England against Australia, specifically targeting the body with fast, short-pitched deliveries, deemed unsportsmanlike"}
+                    ]
+                }
+            ]
+        };
 
         // --- Utility Functions ---
         function switchScreen(screenId) {
-            const screens = [languageScreen, startScreen, quizScreen, resultsScreen];
+            const screens = [introScreen, languageScreen, startScreen, quizScreen, resultsScreen];
             screens.forEach(screen => {
                 if (screen.id === screenId) {
                     screen.classList.remove('exiting');
@@ -457,13 +1020,13 @@
             document.body.classList.remove('lang-en', 'lang-hi');
             document.body.classList.add(`lang-${lang}`);
 
-            // If Hindi is selected, show a message and still use English questions from externalQuestions
+            // If Hindi is selected, show a message, but quiz still uses English questions
             if (currentLang === 'hi') {
                 showMessageBox("हिंदी सामग्री जल्द ही आ रही है! अभी के लिए, क्विज़ अंग्रेजी में चल रहा है।");
             }
 
             updateTextsForLanguage();
-            displayCategories(); // Redraw categories based on available questions (from externalQuestions)
+            displayCategories(); // Redraw categories based on available questions
             switchScreen('start-screen');
         }
 
@@ -526,7 +1089,7 @@
             askedQuestionGlobalIds.clear(); // Reset for a new game/category
 
             loadLevelQuestions();
-            startQuizTimer();
+            // Timer starts within loadQuestion
             switchScreen('quiz-screen');
         }
 
@@ -540,7 +1103,7 @@
                     return;
                 }
             } else {
-                // For specific categories, use the level-based structure from JSON
+                // For specific categories, use the level-based structure from embedded questions
                 if (externalQuestions[currentCategory] && externalQuestions[currentCategory].length > 0) {
                     const levelData = externalQuestions[currentCategory].find(l => l.level === currentLevel);
 
@@ -563,7 +1126,8 @@
 
         function getRandomQuestionsFromAllCategories(count) {
             let allAvailableQuestions = [];
-            for (const category in externalQuestions) { // Always use externalQuestions for "All Sections"
+            // Iterate only over the categories that are now in externalQuestions
+            for (const category in externalQuestions) {
                 if (externalQuestions.hasOwnProperty(category)) {
                     externalQuestions[category].forEach(levelData => {
                         allAvailableQuestions.push(...levelData.questions);
@@ -587,7 +1151,6 @@
                 return []; // Return empty array to signal failure
             }
 
-
             const selected = [];
             for (let i = 0; i < count; i++) {
                 if (poolOfNewQuestions.length === 0) {
@@ -604,41 +1167,52 @@
         }
 
         function loadQuestion() {
-            clearTimeout(timerId); // Clear any previous timer
-            timeLeft = TIME_PER_QUESTION; // Reset timer for new question
+            clearInterval(timerId); // Clear any previous timer
+
+            // Check if all questions for the current level have been asked
+            if (currentQuestionIndex >= currentLevelQuestions.length) {
+                endQuiz(false); // All questions in the current level answered
+                return;
+            }
+
+            const questionData = currentLevelQuestions[currentQuestionIndex];
+
+            // Determine time limit based on question category/type
+            // Check if it's the Mathematics category OR if it's an "All Sections" question with a Math ID
+            if (currentCategory === "Mathematics" || (currentCategory === "All Sections" && questionData.id.startsWith('math_'))) {
+                currentQuestionTimeLimit = MATH_TIME_PER_QUESTION; // 40 seconds for Math questions
+            } else {
+                currentQuestionTimeLimit = DEFAULT_TIME_PER_QUESTION; // Default 25 seconds for others
+            }
+            timeLeft = currentQuestionTimeLimit; // Set timeLeft based on the determined limit
+
             timerBar.style.width = '100%';
             timerBar.style.backgroundColor = '#63b3ed'; // Reset color
             timerText.classList.remove('low-time');
             timerText.textContent = timeLeft;
 
-            if (currentQuestionIndex < currentLevelQuestions.length) {
-                const questionData = currentLevelQuestions[currentQuestionIndex];
-                // Access question and answer directly as they are strings in JSON
-                questionText.textContent = questionData.question;
-                optionsContainer.innerHTML = '';
+            // Access question and answer directly as they are strings in JSON
+            questionText.textContent = questionData.question;
+            optionsContainer.innerHTML = '';
 
-                shuffleArray(questionData.options).forEach((option, index) => {
-                    const button = document.createElement('button');
-                    button.classList.add('action-button', 'option');
-                    button.textContent = option;
-                    button.dataset.index = index; // Store original index for animation delay
-                    button.onclick = () => checkAnswer(option, questionData.answer);
-                    optionsContainer.appendChild(button);
-                });
+            shuffleArray(questionData.options).forEach((option, index) => {
+                const button = document.createElement('button');
+                button.classList.add('action-button', 'option');
+                button.textContent = option;
+                button.dataset.index = index; // Store original index for animation delay
+                button.onclick = () => checkAnswer(option, questionData.answer);
+                optionsContainer.appendChild(button);
+            });
 
-                // Update topic display based on mode
-                if (currentCategory === "All Sections") {
-                    currentLevelTopic.textContent = `${currentLang === 'en' ? 'Mixed Categories' : 'मिश्रित श्रेणियाँ'} - Level ${currentLevel}`;
-                    questionCounter.textContent = `${currentQuestionIndex + 1} / ${ALL_SECTIONS_QUESTIONS_PER_LEVEL}`;
-                } else {
-                    currentLevelTopic.textContent = `${currentCategory} - Level ${currentLevel}`;
-                    questionCounter.textContent = `${currentQuestionIndex + 1} / ${currentLevelQuestions.length}`;
-                }
-                startQuizTimer();
+            // Update topic display based on mode
+            if (currentCategory === "All Sections") {
+                currentLevelTopic.textContent = `${currentLang === 'en' ? 'Mixed Categories' : 'मिश्रित श्रेणियाँ'} - Level ${currentLevel}`;
+                questionCounter.textContent = `${currentQuestionIndex + 1} / ${ALL_SECTIONS_QUESTIONS_PER_LEVEL}`;
             } else {
-                // All questions in the current level answered
-                endQuiz(false); // Indicates level completion, not overall quiz end
+                currentLevelTopic.textContent = `${currentCategory} - Level ${currentLevel}`;
+                questionCounter.textContent = `${currentQuestionIndex + 1} / ${currentLevelQuestions.length}`;
             }
+            startQuizTimer();
         }
 
         function startQuizTimer() {
@@ -646,7 +1220,8 @@
             timerId = setInterval(() => {
                 timeLeft--;
                 timerText.textContent = timeLeft;
-                timerBar.style.width = (timeLeft / TIME_PER_QUESTION) * 100 + '%';
+                // Use currentQuestionTimeLimit for the bar calculation
+                timerBar.style.width = (timeLeft / currentQuestionTimeLimit) * 100 + '%';
 
                 if (timeLeft <= 5) {
                     timerBar.style.backgroundColor = '#f56565'; // Red for low time
@@ -665,7 +1240,7 @@
                     // Automatically move to next question if time runs out
                     setTimeout(nextQuestion, 1000); // Give a small delay before next question
                 }
-            }, 1000);
+            }, 1000); // Ensure this is exactly 1000ms
         }
 
         function checkAnswer(selectedOption, correctAnswer) {
@@ -699,7 +1274,7 @@
         }
 
         function endQuiz(categoryCompleted = false) {
-            clearTimeout(timerId);
+            clearInterval(timerId); // Ensure timer is stopped
             switchScreen('results-screen');
 
             let totalQuestionsInLevel;
@@ -712,7 +1287,8 @@
                 totalLevelsForMode = ALL_SECTIONS_TOTAL_LEVELS;
             } else {
                 totalQuestionsInLevel = currentLevelQuestions.length;
-                passingScore = 7; // Assuming 70% for 10 questions/level (7 correct)
+                // Assuming 70% passing score for specific categories, adjust as needed
+                passingScore = Math.ceil(totalQuestionsInLevel * 0.7);
                 totalLevelsForMode = externalQuestions[currentCategory].length; // 6 levels per category
             }
 
@@ -737,11 +1313,11 @@
                 }
             } else { // Specific Category
                 currentLevelTopicText = `${currentCategory} - Level ${currentLevel}`;
-                if (percentage >= passingScore) {
+                if (correctAnswersCount >= passingScore) { // Check score against calculated passingScore
                     statusMessage = `${currentLang === 'en' ? 'Congratulations! You passed Level' : 'बधाई हो! आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of' : 'का'} ${currentCategory} ${currentLang === 'en' ? 'with' : 'के साथ'} <span class="correct">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy.' : 'सटीकता।'}`;
                     nextLevelPossible = true;
                 } else {
-                    statusMessage = `${currentLang === 'en' ? 'You completed Level' : 'आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of' : 'का'} ${currentCategory} ${currentLang === 'en' ? 'with' : 'के साथ'} <span class="wrong">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy. You need to score at least' : 'सटीकता। आपको कम से कम स्कोर करने की आवश्यकता है'} ${passingScore}% ${currentLang === 'en' ? 'to unlock the next level.' : 'अगले स्तर को अनलॉक करने के लिए।'}`;
+                    statusMessage = `${currentLang === 'en' ? 'You completed Level' : 'आपने स्तर'} ${currentLevel} ${currentLang === 'en' ? 'of' : 'का'} ${currentCategory} ${currentLang === 'en' ? 'with' : 'के साथ'} <span class="wrong">${percentage.toFixed(0)}%</span> ${currentLang === 'en' ? 'accuracy. You need to score at least' : 'सटीकता। आपको कम से कम स्कोर करने की आवश्यकता है'} ${passingScore} ${currentLang === 'en' ? 'correct answers to unlock the next level.' : 'सही उत्तर अगले स्तर को अनलॉक करने के लिए।'}`;
                     nextLevelPossible = false;
                 }
             }
@@ -809,60 +1385,58 @@
         });
 
         tryDiffCatButton.addEventListener('click', () => {
-            clearTimeout(timerId);
+            clearInterval(timerId); // Clear timer
+            // Reset quiz state when going back to category selection
+            currentLevel = 1;
+            score = 0;
+            correctAnswersCount = 0;
+            incorrectAnswersCount = 0;
+            askedQuestionGlobalIds.clear();
             switchScreen('start-screen');
         });
 
         homeButton.addEventListener('click', () => {
-            clearTimeout(timerId);
-            currentLevel = 1; // Reset level on going home
-            askedQuestionGlobalIds.clear(); // Clear on going home
-            switchScreen('language-screen'); // Go back to language selection
+            clearInterval(timerId); // Clear timer
+            // Reset quiz state when going back to language selection (which then leads to start screen)
+            currentLevel = 1;
+            score = 0;
+            correctAnswersCount = 0;
+            incorrectAnswersCount = 0;
+            askedQuestionGlobalIds.clear();
+            switchScreen('language-screen');
         });
 
         quitQuizButton.addEventListener('click', () => {
-            clearTimeout(timerId);
+            clearInterval(timerId); // Clear timer
             currentLevel = 1; // Reset level on quitting
+            score = 0;
+            correctAnswersCount = 0;
+            incorrectAnswersCount = 0;
             askedQuestionGlobalIds.clear(); // Clear on quitting
             switchScreen('start-screen');
         });
 
         // --- Initialization ---
-        // Fetch questions.json
-        fetch('questions.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                externalQuestions = data;
-                console.log("questions.json loaded successfully:", externalQuestions);
-                // After loading, set initial language and display categories
-                setLanguage('en'); // Set default to English after loading JSON
-            })
-            .catch(error => {
-                console.error("Error loading questions.json:", error);
-                showMessageBox(currentLang === 'en' ? "Failed to load quiz questions. Please check the 'questions.json' file and ensure it's valid JSON." : "क्विज़ प्रश्न लोड करने में विफल। कृपया 'questions.json' फ़ाइल की जाँच करें और सुनिश्चित करें कि यह वैध JSON है।");
-                // Fallback or disable English quiz if JSON fails to load
-                langEnButton.disabled = true;
-            });
+        // Initial screen setup
+        document.addEventListener('DOMContentLoaded', () => {
+            switchScreen('intro-screen'); // Start with the intro screen
+        });
 
+        startIntroButton.addEventListener('click', () => {
+            switchScreen('language-screen');
+            document.getElementById('lang-select-title').textContent = "Select Language / भाषा चुनें";
+        });
 
         langEnButton.addEventListener('click', () => setLanguage('en'));
         langHiButton.addEventListener('click', () => setLanguage('hi'));
         changeLanguageButton.addEventListener('click', () => {
-            clearTimeout(timerId);
+            clearInterval(timerId); // Clear timer
             switchScreen('language-screen');
         });
 
         // Event listener for the "All Sections" button
         allSectionsButton.addEventListener('click', () => startGame("All Sections"));
 
-        // Initial screen setup
-        switchScreen('language-screen');
-        document.getElementById('lang-select-title').textContent = "Select Language / भाषा चुनें"; // Ensure this is set on load
     </script>
 </body>
 </html>
