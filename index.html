@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Presents Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="title-screen" class="screen active">
+            <h1>Shubham Presents Quiz</h1>
+            <button id="start-btn" class="animated-button">Start Quiz</button>
+        </div>
+
+        <div id="category-screen" class="screen">
+            <h2>Select a Category</h2>
+            <div class="categories-grid">
+                <button class="category-btn" data-category="General Knowledge">General Knowledge</button>
+                <button class="category-btn" data-category="Indian History">Indian History</button>
+                <button class="category-btn" data-category="About India">About India</button>
+                <button class="category-btn" data-category="Hindu Religion">Hindu Religion</button>
+                <button class="category-btn" data-category="Indian Politics">Indian Politics</button>
+                <button class="category-btn" data-category="World History">World History</button>
+                <button class="category-btn mixed-category-btn" data-category="All Sections Mix">All Sections Mix</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="quiz-header">
+                <h3 id="current-category">Category: General Knowledge</h3>
+                <h3 id="current-level">Level: 1</h3>
+            </div>
+            <div class="timer-container">
+                <div id="timer-bar" class="timer-bar"></div>
+                <span id="timer-display">23</span>s
+            </div>
+            <h2 id="question-text"></h2>
+            <div class="options-grid">
+                <button class="option-btn" data-option="0"></button>
+                <button class="option-btn" data-option="1"></button>
+                <button class="option-btn" data-option="2"></button>
+                <button class="option-btn" data-option="3"></button>
+            </div>
+            <button id="fail-btn" class="fail-button animated-button">Fail (Show Answer)</button>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <h2>Quiz Results</h2>
+            <p>Correct Answers: <span id="correct-count">0</span></p>
+            <p>Wrong Answers: <span id="wrong-count">0</span></p>
+            <p id="level-status"></p>
+            <button id="next-level-btn" class="animated-button action-button">Next Level</button>
+            <button id="retry-btn" class="animated-button action-button">Retry Level</button>
+            <button id="back-to-categories-btn" class="animated-button action-button">Back to Categories</button>
+            <p id="game-over-message" class="game-over-message"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
