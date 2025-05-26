@@ -390,15 +390,11 @@
         let timerId;
         const TIME_PER_QUESTION = 25; // seconds
         let timeLeft = TIME_PER_QUESTION;
-        let selectedQuestions = {}; // Will hold questions for the current language (always from externalQuestions now)
         let currentLevelQuestions = []; // Questions for the current category and level
         let askedQuestionGlobalIds = new Set(); // To keep track of asked questions for "All Sections"
 
         // Global variable to store questions from JSON
         let externalQuestions = {}; // Will be loaded from questions.json
-
-        // Hindi Questions (Removed from HTML as requested. Will be loaded from JSON if available in the future)
-        // For now, if Hindi is selected, it will use English questions from externalQuestions.
 
         // --- Utility Functions ---
         function switchScreen(screenId) {
@@ -461,16 +457,13 @@
             document.body.classList.remove('lang-en', 'lang-hi');
             document.body.classList.add(`lang-${lang}`);
 
-            // Always use externalQuestions for now, as Hindi questions are removed from HTML.
-            selectedQuestions = externalQuestions;
-
-            // Display a message if Hindi is selected, as content is not yet localized.
+            // If Hindi is selected, show a message and still use English questions from externalQuestions
             if (currentLang === 'hi') {
                 showMessageBox("हिंदी सामग्री जल्द ही आ रही है! अभी के लिए, क्विज़ अंग्रेजी में चल रहा है।");
             }
 
             updateTextsForLanguage();
-            displayCategories(); // Redraw categories based on selected language's available questions
+            displayCategories(); // Redraw categories based on available questions (from externalQuestions)
             switchScreen('start-screen');
         }
 
@@ -506,17 +499,16 @@
 
         function displayCategories() {
             categorySelection.innerHTML = ''; // Clear existing buttons
-            // Add category buttons for categories found in selectedQuestions (which is externalQuestions)
-            for (const category in selectedQuestions) {
-                // Skip "All Sections" from dynamic category buttons if it's a special case
-                if (category === "All Sections") continue; // This check might be redundant if "All Sections" isn't a top-level key in JSON
-
-                const button = document.createElement('button');
-                button.classList.add('action-button');
-                button.textContent = category;
-                button.dataset.category = category;
-                button.addEventListener('click', () => startGame(category));
-                categorySelection.appendChild(button);
+            // Add category buttons for categories found in externalQuestions
+            for (const category in externalQuestions) {
+                if (externalQuestions.hasOwnProperty(category)) {
+                    const button = document.createElement('button');
+                    button.classList.add('action-button');
+                    button.textContent = category;
+                    button.dataset.category = category;
+                    button.addEventListener('click', () => startGame(category));
+                    categorySelection.appendChild(button);
+                }
             }
         }
 
@@ -549,8 +541,8 @@
                 }
             } else {
                 // For specific categories, use the level-based structure from JSON
-                if (selectedQuestions[currentCategory] && selectedQuestions[currentCategory].length > 0) {
-                    const levelData = selectedQuestions[currentCategory].find(l => l.level === currentLevel);
+                if (externalQuestions[currentCategory] && externalQuestions[currentCategory].length > 0) {
+                    const levelData = externalQuestions[currentCategory].find(l => l.level === currentLevel);
 
                     if (levelData) {
                         currentLevelQuestions = shuffleArray([...levelData.questions]); // Shuffle questions for the current level
@@ -721,9 +713,8 @@
             } else {
                 totalQuestionsInLevel = currentLevelQuestions.length;
                 passingScore = 7; // Assuming 70% for 10 questions/level (7 correct)
-                totalLevelsForMode = selectedQuestions[currentCategory].length; // 6 levels per category
+                totalLevelsForMode = externalQuestions[currentCategory].length; // 6 levels per category
             }
-
 
             // Update scores
             scoreDisplay.querySelector('span:first-child').textContent = correctAnswersCount;
